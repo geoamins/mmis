@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BasicController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
@@ -25,6 +26,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/dashboard', [dashboard::class, 'dashboard'])->name('dashboard')->middleware(['auth', 'verified']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::resource('basic',BasicController::class);
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);

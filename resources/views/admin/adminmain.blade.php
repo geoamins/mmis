@@ -37,7 +37,7 @@
           <div class="left_col scroll-view">
 
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Imdigisol</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>MMIS</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -68,7 +68,7 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                    @canany(['user-list', 'role-list', 'permission-list'])
+                @canany(['user-list', 'role-list', 'permission-list'])
                   <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> User Configuration <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         @can('user-list')
@@ -79,6 +79,15 @@
                       @endcan
                       @can('permission-list')
                       <li><a href="{{ route('permissions.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'permissionlist' ? 'active' : '') : '' }}">Permissions</a></li>
+                      @endcan
+                    </ul>
+                    @endcan
+                  </li>
+                  @canany(['basic-list'])
+                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> Basic Setting <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      @can('basic-list')
+                        <li><a href="{{ route('basic.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Country Setup</a></li>
                       @endcan
                     </ul>
                     @endcan
