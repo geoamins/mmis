@@ -4,7 +4,23 @@
     <div class="card">
         <div class="card-header">
             <h6 class="card-title">Country List</h6>
+
             <div class="card-tools">
+                <div class="title_right">
+                    <form action="<?php echo e(route('basic.index')); ?>" method="GET">
+                        <div class="col-md-5 col-sm-5  form-group pull-right top_search">
+                            <div class="input-group">
+
+                                    <input type="text" name="search" class="form-control" placeholder="Search for...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary"  type="submit">Go!</button>
+                                    </span>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-create')): ?>
                     <span class="float-right" style="float: right;">
                         <a class="btn btn-primary" href="<?php echo e(route('basic.create')); ?>">Add Country</a>
@@ -13,6 +29,8 @@
             </div>
         </div>
         <div class="card-body">
+            <?php echo e($data->render()); ?>
+
             <table id="myTable" class="table table-hover">
                 <thead class="thead-dark">
                     <tr>

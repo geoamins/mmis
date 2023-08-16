@@ -10,9 +10,16 @@ class BasicController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data=Basic::orderBy('CountryID','DESC')->paginate(5);
+        if(!empty($request->query('search'))){
+            $search=$request->query('search');
+            $data=Basic::where('CountryName','like','%'.$search.'%')->orderBy('CountryID','DESC')->paginate(5);
+        }
+        else{
+            $data=Basic::orderBy('CountryID','DESC')->paginate(5);
+        }
+
         return view('basic.index', compact('data'));
     }
 
