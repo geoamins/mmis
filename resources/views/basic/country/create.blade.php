@@ -31,7 +31,7 @@
                                 </span>
                             </div>
                             <div class="card-body">
-                                {!! Form::open(array('route' => 'basic.store','method'=>'POST')) !!}
+                                {!! Form::open(array('route' => 'country.store','method'=>'POST')) !!}
                                     <div class="form-group">
                                         <strong>Name:</strong>
                                         {!! Form::text('CountryName', null, array('placeholder' => 'Please enter the country Name','class' => 'form-control')) !!}

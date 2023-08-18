@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\BasicController;
+use App\Http\Controllers\CountryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProvinceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,8 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/dashboard', [dashboard::class, 'dashboard'])->name('dashboard')->middleware(['auth', 'verified']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::resource('basic',BasicController::class);
+Route::resource('country',CountryController::class);
+Route::resource('province',ProvinceController::class);
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);

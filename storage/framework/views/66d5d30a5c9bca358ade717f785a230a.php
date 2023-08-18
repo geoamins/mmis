@@ -71,14 +71,14 @@
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['user-list', 'role-list', 'permission-list'])): ?>
                   <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-home"></i> User Configuration <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('user-list')): ?>
-                      <li><a href="<?php echo e(route('users.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Users</a></li>
+                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('user-list')): ?>
+                        <li><a href="<?php echo e(route('users.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Users</a></li>
                       <?php endif; ?>
                       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-list')): ?>
-                      <li ><a href="<?php echo e(route('roles.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'roleslist' ? 'active' : '') : ''); ?>">Roles</a></li>
+                        <li ><a href="<?php echo e(route('roles.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'roleslist' ? 'active' : '') : ''); ?>">Roles</a></li>
                       <?php endif; ?>
                       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('permission-list')): ?>
-                      <li><a href="<?php echo e(route('permissions.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'permissionlist' ? 'active' : '') : ''); ?>">Permissions</a></li>
+                        <li><a href="<?php echo e(route('permissions.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'permissionlist' ? 'active' : '') : ''); ?>">Permissions</a></li>
                       <?php endif; ?>
                     </ul>
                     <?php endif; ?>
@@ -86,12 +86,15 @@
                   <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['basic-list'])): ?>
                   <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-home"></i> Basic Setting <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('basic-list')): ?>
-                        <li><a href="<?php echo e(route('basic.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Country Setup</a></li>
+                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('country-list')): ?>
+                        <li><a href="<?php echo e(route('country.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Country Setup</a></li>
                       <?php endif; ?>
-                    </ul>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('province-list')): ?>
+                        <li><a href="<?php echo e(route('province.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Province Setup</a></li>
                     <?php endif; ?>
+                    </ul>
                   </li>
+                  <?php endif; ?>
 
 
 
@@ -265,7 +268,7 @@
         <footer>
           <div class="pull-right">
             
-             <strong><?php echo e(date('Y')); ?> &copy; All Rights Reserved <a href="https://travsol.com.pk/"> Travsol Technologies
+             <strong><?php echo e(date('Y')); ?> &copy; All Rights Reserved <a href="https://BSoft.pk/"> Travsol Technologies
                 (pvt) ltd</a>.</strong>
           </div>
           <div class="clearfix"></div>

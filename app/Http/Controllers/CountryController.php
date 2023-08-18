@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Basic;
+use App\Models\Country;
 use Faker\Provider\Base;
 use Illuminate\Http\Request;
 
-class BasicController extends Controller
+class CountryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +14,12 @@ class BasicController extends Controller
     {
         if(!empty($request->query('search'))){
             $search=$request->query('search');
-            $data=Basic::where('CountryName','like','%'.$search.'%')->orderBy('CountryID','DESC')->paginate(5);
+            $data=Country::where('CountryName','like','%'.$search.'%')->orderBy('CountryID','DESC')->paginate(5);
         }
         else{
-            $data=Basic::orderBy('CountryID','DESC')->paginate(5);
+            $data=Country::orderBy('CountryID','DESC')->paginate(5);
         }
-
-        return view('basic.index', compact('data'));
+        return view('basic.country.index', compact('data'));
     }
 
     /**
@@ -28,7 +27,7 @@ class BasicController extends Controller
      */
     public function create()
     {
-        return view('basic.create');
+        return view('basic.country.create');
     }
 
     /**
@@ -40,9 +39,9 @@ class BasicController extends Controller
             'CountryName' => 'required|max:255',
         ]);
 
-        Basic::create(['CountryName' => $request->input('CountryName')]);
+        Country::create(['CountryName' => $request->input('CountryName')]);
 
-        return redirect()->route('basic.index')
+        return redirect()->route('country.index')
             ->with('success', 'Country created successfully.');
     }
 
@@ -59,9 +58,9 @@ class BasicController extends Controller
      */
     public function edit(string $id)
     {
-        $data = Basic::find($id);
+        $data = Country::find($id);
 
-        return view('basic.edit', compact('data'));
+        return view('basic.country.edit', compact('data'));
     }
 
     /**
@@ -73,11 +72,11 @@ class BasicController extends Controller
             'CountryName' => 'required|max:255'
         ]);
 
-        $data = Basic::find($id);
+        $data = Country::find($id);
         $data->CountryName = $request->input('CountryName');
         $data->save();
 
-        return redirect()->route('basic.index')
+        return redirect()->route('country.index')
             ->with('success', 'Country updated successfully.');
     }
 
@@ -86,9 +85,9 @@ class BasicController extends Controller
      */
     public function destroy(string $id)
     {
-        Basic::find($id)->delete();
+        Country::find($id)->delete();
 
-        return redirect()->route('basic.index')
+        return redirect()->route('country.index')
             ->with('success', 'Country deleted successfully');
     }
 }

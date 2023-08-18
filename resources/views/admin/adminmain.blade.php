@@ -71,14 +71,14 @@
                 @canany(['user-list', 'role-list', 'permission-list'])
                   <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> User Configuration <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        @can('user-list')
-                      <li><a href="{{ route('users.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Users</a></li>
+                      @can('user-list')
+                        <li><a href="{{ route('users.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Users</a></li>
                       @endcan
                       @can('role-list')
-                      <li ><a href="{{ route('roles.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'roleslist' ? 'active' : '') : '' }}">Roles</a></li>
+                        <li ><a href="{{ route('roles.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'roleslist' ? 'active' : '') : '' }}">Roles</a></li>
                       @endcan
                       @can('permission-list')
-                      <li><a href="{{ route('permissions.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'permissionlist' ? 'active' : '') : '' }}">Permissions</a></li>
+                        <li><a href="{{ route('permissions.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'permissionlist' ? 'active' : '') : '' }}">Permissions</a></li>
                       @endcan
                     </ul>
                     @endcan
@@ -86,12 +86,15 @@
                   @canany(['basic-list'])
                   <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> Basic Setting <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      @can('basic-list')
-                        <li><a href="{{ route('basic.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Country Setup</a></li>
+                      @can('country-list')
+                        <li><a href="{{ route('country.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Country Setup</a></li>
                       @endcan
-                    </ul>
+                    @can('province-list')
+                        <li><a href="{{ route('province.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Province Setup</a></li>
                     @endcan
+                    </ul>
                   </li>
+                  @endcan
 
 
 
@@ -268,7 +271,7 @@
           <div class="pull-right">
             {{-- Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
              --}}
-             <strong>{{date('Y')}} &copy; All Rights Reserved <a href="https://travsol.com.pk/"> Travsol Technologies
+             <strong>{{date('Y')}} &copy; All Rights Reserved <a href="https://BSoft.pk/"> Travsol Technologies
                 (pvt) ltd</a>.</strong>
           </div>
           <div class="clearfix"></div>
