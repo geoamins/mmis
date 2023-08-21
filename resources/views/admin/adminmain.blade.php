@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="rtl">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -274,7 +274,7 @@
             <!-- Content Header (Page header) -->
 
             <div class="right_col" role="main">
-                <div class="">
+                <div class="col-md-10 col-sm-10">
 
 
 
@@ -294,11 +294,9 @@
 
         <!-- footer content -->
         <footer>
-          <div class="pull-right">
-            {{-- Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-             --}}
-             <strong>{{date('Y')}} &copy; All Rights Reserved <a href="https://BSoft.pk/"> Travsol Technologies
-                (pvt) ltd</a>.</strong>
+          <div class="">  //pull-right
+             <strong>{{date('Y')}} &copy; All Rights Reserved <a href="https://BSoft.pk/"> Bridge Soft Technologies
+                (pvt) LTD</a>.</strong>
           </div>
           <div class="clearfix"></div>
         </footer>
