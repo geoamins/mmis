@@ -11,23 +11,23 @@
     <title>Gentelella Alela! | </title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{asset('../../asset/vendors/bootstrap/dist/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('../../asset/vendors/bootstrap/dist/css/bootstrap.min.css')); ?>">
 
     <!-- Font Awesome -->
 
-    <link rel="stylesheet" href="{{asset('../../asset/vendors/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('../../asset/vendors/font-awesome/css/font-awesome.min.css')); ?>">
     <!-- NProgress -->
 
-    <link rel="stylesheet" href="{{asset('../../asset/vendors/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('../../asset/vendors/font-awesome/css/font-awesome.min.css')); ?>">
     <!-- FullCalendar -->
 
-    <link rel="stylesheet" href="{{asset('../../asset/vendors/fullcalendar/dist/fullcalendar.min.css')}}" rel="stylesheet" media="print">
-    {{-- <link rel="stylesheet" href="{{asset('../../asset/vendors/fullcalendar/dist/fullcalendar.min.css')}}"> --}}
-    {{-- <link href="../vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print"> --}}
+    <link rel="stylesheet" href="<?php echo e(asset('../../asset/vendors/fullcalendar/dist/fullcalendar.min.css')); ?>" rel="stylesheet" media="print">
+    
+    
 
     <!-- Custom styling plus plugins -->
-    {{-- <link href="../build/css/custom.min.css" rel="stylesheet"> --}}
-    <link rel="stylesheet" href="{{asset('../../asset/build/css/custom.min.css')}}">
+    
+    <link rel="stylesheet" href="<?php echo e(asset('../../asset/build/css/custom.min.css')); ?>">
   </head>
 
   <body class="nav-md">
@@ -44,19 +44,19 @@
 
             <!-- menu profile quick info -->
             <div class="profile clearfix">
-                @auth
+                <?php if(auth()->guard()->check()): ?>
               <div class="profile_pic">
-                {{-- <img src="images/img.jpg" alt="..." class="img-circle profile_img"> --}}
-                <img class="img-circle profile_img" src="{{ asset('images/' . Auth::user()->image)}}" />
-                {{-- <img src="images/img.jpg" alt="..." class="img-circle profile_img"> --}}
+                
+                <img class="img-circle profile_img" src="<?php echo e(asset('images/' . Auth::user()->image)); ?>" />
+                
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2> {{ Auth::user()->name }}</h2>
+                <h2> <?php echo e(Auth::user()->name); ?></h2>
               </div>
-              @endauth
+              <?php endif; ?>
             </div>
-            {{-- <img class="img-circle" src="{{ asset('images/' . Auth::user()->image)}}" /> {{ Auth::user()->name }} --}}
+            
 
 
             <!-- /menu profile quick info -->
@@ -68,66 +68,66 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                @canany(['user-list', 'role-list', 'permission-list'])
-                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> User Configuration <span class="fa fa-chevron-down"></span></a>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['user-list', 'role-list', 'permission-list'])): ?>
+                  <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-home"></i> User Configuration <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      @can('user-list')
-                        <li><a href="{{ route('users.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Users</a></li>
-                      @endcan
-                      @can('role-list')
-                        <li ><a href="{{ route('roles.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'roleslist' ? 'active' : '') : '' }}">Roles</a></li>
-                      @endcan
-                      @can('permission-list')
-                        <li><a href="{{ route('permissions.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'permissionlist' ? 'active' : '') : '' }}">Permissions</a></li>
-                      @endcan
+                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('user-list')): ?>
+                        <li><a href="<?php echo e(route('users.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Users</a></li>
+                      <?php endif; ?>
+                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-list')): ?>
+                        <li ><a href="<?php echo e(route('roles.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'roleslist' ? 'active' : '') : ''); ?>">Roles</a></li>
+                      <?php endif; ?>
+                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('permission-list')): ?>
+                        <li><a href="<?php echo e(route('permissions.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'permissionlist' ? 'active' : '') : ''); ?>">Permissions</a></li>
+                      <?php endif; ?>
                     </ul>
-                    @endcan
+                    <?php endif; ?>
                   </li>
-                  @canany(['basic-list'])
-                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> Basic Setting <span class="fa fa-chevron-down"></span></a>
+                  <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['basic-list'])): ?>
+                  <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-home"></i> Basic Setting <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      @can('country-list')
-                        <li><a href="{{ route('country.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Country Setup</a></li>
-                      @endcan
-                    @can('province-list')
-                        <li><a href="{{ route('province.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Province Setup</a></li>
-                    @endcan
-                    @can('district-list')
-                        <li><a href="{{ route('district.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">District Setup</a></li>
-                    @endcan
-                    @can('department-list')
-                        <li><a href="{{ route('department.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Department Setup</a></li>
-                    @endcan
-                    @can('session-list')
-                        <li><a href="{{ route('session.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Sessions Setup</a></li>
-                    @endcan
-                    @can('student-type-list')
-                        <li><a href="{{ route('studenttype.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Student Type Setup</a></li>
-                    @endcan
+                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('country-list')): ?>
+                        <li><a href="<?php echo e(route('country.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Country Setup</a></li>
+                      <?php endif; ?>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('province-list')): ?>
+                        <li><a href="<?php echo e(route('province.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Province Setup</a></li>
+                    <?php endif; ?>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('district-list')): ?>
+                        <li><a href="<?php echo e(route('district.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">District Setup</a></li>
+                    <?php endif; ?>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('department-list')): ?>
+                        <li><a href="<?php echo e(route('department.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Department Setup</a></li>
+                    <?php endif; ?>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('session-list')): ?>
+                        <li><a href="<?php echo e(route('session.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Sessions Setup</a></li>
+                    <?php endif; ?>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('student-type-list')): ?>
+                        <li><a href="<?php echo e(route('studenttype.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Student Type Setup</a></li>
+                    <?php endif; ?>
                     </ul>
-                  </li>
-
-                  @canany(['basic-list'])
-                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> Student <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      @can('basic-list')
-                        <li><a href="{{ route('student.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Student Registration</a></li>
-                      @endcan
-                      @can('basic-list')
-                        <li><a href="{{ route('student.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Generate Cards</a></li>
-                      @endcan
-                    </ul>
-                    @endcan
                   </li>
 
-                  @endcan
+                  <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['basic-list'])): ?>
+                  <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-home"></i> Student <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('basic-list')): ?>
+                        <li><a href="<?php echo e(route('student.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Student Registration</a></li>
+                      <?php endif; ?>
+                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('basic-list')): ?>
+                        <li><a href="<?php echo e(route('student.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Generate Cards</a></li>
+                      <?php endif; ?>
+                    </ul>
+                    <?php endif; ?>
+                  </li>
+
+                  <?php endif; ?>
 
 
 
 
 
 
-                  {{-- <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li> --}}
+                  
                 </ul>
               </div>
 
@@ -163,29 +163,27 @@
                 <nav class="nav navbar-nav">
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
-                    @auth
+                    <?php if(auth()->guard()->check()): ?>
 
 
 
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                        <img class="img-circle" src="{{ asset('images/' . Auth::user()->image)}}" /> {{ Auth::user()->name }}
+                        <img class="img-circle" src="<?php echo e(asset('images/' . Auth::user()->image)); ?>" /> <?php echo e(Auth::user()->name); ?>
+
                     </a>
 
-@endauth
+<?php endif; ?>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      {{-- <a class="dropdown-item"  href="javascript:;"> Profile</a> --}}
-                      {{-- <a class="dropdown-item" href="{{ route('profile') }}">Profile</a> --}}
-                      {{-- <a class="dropdown-item" href="{{ route('userpasswordchange') }}">Change your password</a> --}}
-                        {{-- <a class="dropdown-item"  href="javascript:;">
-                          <span class="badge bg-red pull-right">50%</span>
-                          <span>Settings</span>
-                        </a> --}}
+                      
+                      
+                      
+                        
                     <a class="dropdown-item"  href="javascript:;">Help</a>
-                      {{-- <a class="dropdown-item"  href="login.html"><i class="dropdown-item"></i> Log Out</a> --}}
+                      
                       <div class="">
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                        <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST"
                             class="d-inline-block">
-                            @csrf
+                            <?php echo csrf_field(); ?>
                             <button type="submit" class="dropdown-item ">
                                 <i class=""></i>
                                 Signout
@@ -280,7 +278,7 @@
 
 
                   <div class="clearfix"></div>
-                  @yield('contents')
+                  <?php echo $__env->yieldContent('contents'); ?>
 
                 </div>
               </div>
@@ -295,9 +293,8 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            {{-- Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-             --}}
-             <strong>{{date('Y')}} &copy; All Rights Reserved <a href="https://BSoft.pk/"> Travsol Technologies
+            
+             <strong><?php echo e(date('Y')); ?> &copy; All Rights Reserved <a href="https://BSoft.pk/"> Travsol Technologies
                 (pvt) ltd</a>.</strong>
           </div>
           <div class="clearfix"></div>
@@ -314,25 +311,26 @@
 
     <!-- jQuery -->
 
-    <script src="{{asset('../../asset/vendors/jquery/dist/jquery.min.js')}}"></script>
+    <script src="<?php echo e(asset('../../asset/vendors/jquery/dist/jquery.min.js')); ?>"></script>
     <!-- Bootstrap -->
 
 
-   <script src="{{asset('../../asset/vendors/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+   <script src="<?php echo e(asset('../../asset/vendors/bootstrap/dist/js/bootstrap.bundle.min.js')); ?>"></script>
     <!-- FastClick -->
 
-    <script src="{{asset('../../asset/vendors/fastclick/lib/fastclick.js')}}"></script>
+    <script src="<?php echo e(asset('../../asset/vendors/fastclick/lib/fastclick.js')); ?>"></script>
     <!-- NProgress -->
 
-    <script src="{{asset('../../asset/vendors/nprogress/nprogress.js')}}"></script>
+    <script src="<?php echo e(asset('../../asset/vendors/nprogress/nprogress.js')); ?>"></script>
     <!-- FullCalendar -->
 
-    <script src="{{asset('../../asset/vendors/moment/min/moment.min.js')}}"></script>
-    <script src="{{asset('../../asset/vendors/fullcalendar/dist/fullcalendar.min.js')}}"></script>
+    <script src="<?php echo e(asset('../../asset/vendors/moment/min/moment.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('../../asset/vendors/fullcalendar/dist/fullcalendar.min.js')); ?>"></script>
 
 
     <!-- Custom Theme Scripts -->
-    <script src="{{asset('../../asset//build/js/custom.min.js')}}"></script>
+    <script src="<?php echo e(asset('../../asset//build/js/custom.min.js')); ?>"></script>
 
   </body>
 </html>
+<?php /**PATH /Users/rizwansarwar/Desktop/mmis/resources/views/admin/adminmain.blade.php ENDPATH**/ ?>
