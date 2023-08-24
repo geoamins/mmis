@@ -14,7 +14,10 @@ class ProvinceController extends Controller
     {
         if(!empty($request->query('search'))){
             $search=$request->query('search');
-            $data=Province::where('ProvinceName','like','%'.$search.'%')->orderBy('ProvinceID','DESC')->paginate(5);
+            $data=Province::where('ProvinceName','like','%'.$search.'%')
+            ->orderBy('ProvinceID','DESC')
+            ->leftjoin('setup_country','setup_country.CountryID','=','setup_province.CountryID')
+            ->paginate(5);
         }
         else{
             $data=Province::leftjoin('setup_country','setup_country.CountryID','=','setup_province.CountryID')->paginate(5);
@@ -62,7 +65,6 @@ class ProvinceController extends Controller
     public function edit(String $province)
     {
         $data = Province::find($province);
-        // dd($data);
         return view('basic.province.edit', compact('data'));
     }
 
@@ -93,4 +95,9 @@ class ProvinceController extends Controller
         return redirect()->route('province.index')
             ->with('success', 'Province deleted successfully');
     }
+
+    // public function getProvinces(Request $request){
+    //     $CountryID = $request->post('CountryID');
+    //     $provinces = Province::where('')
+    // }
 }
