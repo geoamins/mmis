@@ -23,7 +23,7 @@
 
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-create')): ?>
                     <span class="float-right" style="float: right;">
-                        <a class="btn btn-primary" href="<?php echo e(route('country.create')); ?>">Add Country</a>
+                        <a class="btn btn-primary" href="<?php echo e(route('country.create')); ?>"><?php echo e(__('country.add')); ?></a>
                     </span>
                 <?php endif; ?>
             </div>
@@ -51,11 +51,11 @@
                                 <?php endif; ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('country-delete')): ?>
 
-                                    <?php echo Form::open(['method' => 'DELETE','route' => ['country.destroy', $basic->CountryID],'style'=>'display:inline']); ?>
+                                    <button type="submit" data-id="delete-country" class="btn btn-danger del-popup" data-toggle="tooltip" title='Delete'>Delete</button>
+                                    <?php echo Form::open(['id' => 'delete-country', 'method' => 'DELETE','route' => ['country.destroy', $basic->CountryID],'style'=>'display:inline']); ?>
 
 
                                     <input name="_method" type="hidden" value="DELETE">
-                                    <button type="submit" class="btn btn-danger del-roles" data-toggle="tooltip" title='Delete'>Delete</button>
                                     <?php echo Form::close(); ?>
 
 

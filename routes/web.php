@@ -29,7 +29,7 @@ Route::get('/dashboard', [dashboard::class, 'dashboard'])->name('dashboard')->mi
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::resource('country',CountryController::class);
 Route::resource('province',ProvinceController::class);
-
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);

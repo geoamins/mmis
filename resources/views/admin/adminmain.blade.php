@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -248,7 +248,7 @@
             <!-- Content Header (Page header) -->
 
             <div class="right_col" role="main">
-                <div class="col-md-10 col-sm-10">
+                <div class="col-md-12 col-sm-12">
 
 
 
@@ -270,7 +270,7 @@
         <footer>
           <div class="">  //pull-right
              <strong>{{date('Y')}} &copy; All Rights Reserved <a href="https://BSoft.pk/"> Bridge Soft Technologies
-                (pvt) LTD</a>.</strong>
+                (PVT) LTD</a>.</strong>
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -302,9 +302,30 @@
     <script src="{{asset('../../asset/vendors/moment/min/moment.min.js')}}"></script>
     <script src="{{asset('../../asset/vendors/fullcalendar/dist/fullcalendar.min.js')}}"></script>
 
-
     <!-- Custom Theme Scripts -->
     <script src="{{asset('../../asset//build/js/custom.min.js')}}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function($){
+            $('button.del-popup').click(function(e){
+                var formid = $(this).attr('data-id');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        $('#' + formid).submit();
+                    }
+                  })
+            })
+        })
+    </script>
 
   </body>
 </html>

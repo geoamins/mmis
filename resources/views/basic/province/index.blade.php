@@ -55,11 +55,11 @@
                                     <a class="btn btn-primary" href="{{ route('province.edit', $province->ProvinceID) }}">Edit</a>
                                 @endcan
                                 @can('province-delete')
-
-                                    {!! Form::open(['method' => 'DELETE','route' => ['province.destroy', $province->ProvinceID],'style'=>'display:inline']) !!}
+                                <button type="submit" data-id="delete-province" class="btn btn-danger del-popup" data-toggle="tooltip" title='Delete'>Delete</button>
+                                    {!! Form::open(['id' => 'delete-province', 'method' => 'DELETE','route' => ['province.destroy', $province->ProvinceID],'style'=>'display:inline']) !!}
 
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button type="submit" class="btn btn-danger del-roles" data-toggle="tooltip" title='Delete'>Delete</button>
+
                                     {!! Form::close() !!}
 
                                     {{--  <form action="{{ url('/basic', $data->CountryID) }}" method="post">

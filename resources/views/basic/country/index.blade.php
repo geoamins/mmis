@@ -27,7 +27,7 @@
 
                 @can('role-create')
                     <span class="float-right" style="float: right;">
-                        <a class="btn btn-primary" href="{{ route('country.create') }}">Add Country</a>
+                        <a class="btn btn-primary" href="{{ route('country.create') }}">{{ __('country.add') }}</a>
                     </span>
                 @endcan
             </div>
@@ -54,10 +54,10 @@
                                 @endcan
                                 @can('country-delete')
 
-                                    {!! Form::open(['method' => 'DELETE','route' => ['country.destroy', $basic->CountryID],'style'=>'display:inline']) !!}
+                                    <button type="submit" data-id="delete-country" class="btn btn-danger del-popup" data-toggle="tooltip" title='Delete'>Delete</button>
+                                    {!! Form::open(['id' => 'delete-country', 'method' => 'DELETE','route' => ['country.destroy', $basic->CountryID],'style'=>'display:inline']) !!}
 
                                     <input name="_method" type="hidden" value="DELETE">
-                                    <button type="submit" class="btn btn-danger del-roles" data-toggle="tooltip" title='Delete'>Delete</button>
                                     {!! Form::close() !!}
 
                                     {{--  <form action="{{ url('/basic', $data->CountryID) }}" method="post">

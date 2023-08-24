@@ -52,12 +52,12 @@
                                     <a class="btn btn-primary" href="<?php echo e(route('province.edit', $province->ProvinceID)); ?>">Edit</a>
                                 <?php endif; ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('province-delete')): ?>
-
-                                    <?php echo Form::open(['method' => 'DELETE','route' => ['province.destroy', $province->ProvinceID],'style'=>'display:inline']); ?>
+                                <button type="submit" data-id="delete-province" class="btn btn-danger del-popup" data-toggle="tooltip" title='Delete'>Delete</button>
+                                    <?php echo Form::open(['id' => 'delete-province', 'method' => 'DELETE','route' => ['province.destroy', $province->ProvinceID],'style'=>'display:inline']); ?>
 
 
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button type="submit" class="btn btn-danger del-roles" data-toggle="tooltip" title='Delete'>Delete</button>
+
                                     <?php echo Form::close(); ?>
 
 

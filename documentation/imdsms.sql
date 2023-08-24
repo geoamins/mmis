@@ -11,7 +11,7 @@
  Target Server Version : 80027 (8.0.27)
  File Encoding         : 65001
 
- Date: 16/08/2023 13:24:07
+ Date: 24/08/2023 13:07:17
 */
 
 SET NAMES utf8mb4;
@@ -126,7 +126,7 @@ CREATE TABLE `permissions`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of permissions
@@ -147,6 +147,10 @@ INSERT INTO `permissions` VALUES (17, 'basic-list', 'web', '2023-08-10 08:14:10'
 INSERT INTO `permissions` VALUES (18, 'country-list', 'web', '2023-08-10 09:16:24', '2023-08-10 09:16:24');
 INSERT INTO `permissions` VALUES (19, 'country-edit', 'web', '2023-08-10 09:16:42', '2023-08-10 09:16:42');
 INSERT INTO `permissions` VALUES (20, 'country-delete', 'web', '2023-08-10 09:42:55', '2023-08-10 09:42:55');
+INSERT INTO `permissions` VALUES (21, 'province-list', 'web', '2023-08-17 08:26:26', '2023-08-17 08:26:26');
+INSERT INTO `permissions` VALUES (22, 'province-edit', 'web', '2023-08-17 08:43:10', '2023-08-17 08:43:10');
+INSERT INTO `permissions` VALUES (23, 'province-delete', 'web', '2023-08-17 08:43:32', '2023-08-17 08:43:32');
+INSERT INTO `permissions` VALUES (24, 'province-create', 'web', '2023-08-17 08:44:05', '2023-08-17 08:44:05');
 
 -- ----------------------------
 -- Table structure for personal_access_tokens
@@ -214,6 +218,10 @@ INSERT INTO `role_has_permissions` VALUES (17, 1);
 INSERT INTO `role_has_permissions` VALUES (18, 1);
 INSERT INTO `role_has_permissions` VALUES (19, 1);
 INSERT INTO `role_has_permissions` VALUES (20, 1);
+INSERT INTO `role_has_permissions` VALUES (21, 1);
+INSERT INTO `role_has_permissions` VALUES (22, 1);
+INSERT INTO `role_has_permissions` VALUES (23, 1);
+INSERT INTO `role_has_permissions` VALUES (24, 1);
 
 -- ----------------------------
 -- Table structure for roles
@@ -243,17 +251,13 @@ CREATE TABLE `setup_country`  (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`CountryID`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of setup_country
 -- ----------------------------
 INSERT INTO `setup_country` VALUES (5, 'Pakistan', '2023-08-16 07:53:23', '2023-08-16 07:53:23');
 INSERT INTO `setup_country` VALUES (6, 'Afghanistan', '2023-08-16 07:53:27', '2023-08-16 07:53:27');
-INSERT INTO `setup_country` VALUES (7, 'Iran', '2023-08-16 07:53:33', '2023-08-16 07:53:33');
-INSERT INTO `setup_country` VALUES (8, 'India', '2023-08-16 07:53:38', '2023-08-16 07:53:38');
-INSERT INTO `setup_country` VALUES (9, 'China', '2023-08-16 07:53:45', '2023-08-16 07:53:45');
-INSERT INTO `setup_country` VALUES (10, 'Bangladesh', '2023-08-16 07:54:34', '2023-08-16 07:54:34');
 
 -- ----------------------------
 -- Table structure for setup_department
@@ -317,20 +321,20 @@ CREATE TABLE `setup_madrasa`  (
 DROP TABLE IF EXISTS `setup_province`;
 CREATE TABLE `setup_province`  (
   `ProvinceID` int NOT NULL AUTO_INCREMENT,
-  `ProvicenName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `ProvinceName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `CountryID` int NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ProvinceID`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of setup_province
 -- ----------------------------
-INSERT INTO `setup_province` VALUES (1, 'Khyber Pakhutnkhwa', 1, '2023-08-10 23:25:57', NULL);
-INSERT INTO `setup_province` VALUES (2, 'Panjab', 1, '2023-08-10 23:26:03', NULL);
-INSERT INTO `setup_province` VALUES (3, 'Sindh', 1, '2023-08-10 23:26:10', NULL);
-INSERT INTO `setup_province` VALUES (4, 'Balochistan', 1, '2023-08-10 23:26:17', NULL);
+INSERT INTO `setup_province` VALUES (1, 'KP', 5, '2023-08-10 23:25:57', '2023-08-17 08:56:53');
+INSERT INTO `setup_province` VALUES (2, 'Panjab', 5, '2023-08-10 23:26:03', '2023-08-17 13:34:49');
+INSERT INTO `setup_province` VALUES (3, 'Sindh', 5, '2023-08-10 23:26:10', '2023-08-17 13:34:50');
+INSERT INTO `setup_province` VALUES (9, 'Gilgit Balchistan', 5, '2023-08-17 09:20:39', '2023-08-17 09:20:39');
 
 -- ----------------------------
 -- Table structure for setup_session
