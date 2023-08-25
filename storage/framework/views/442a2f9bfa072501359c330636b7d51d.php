@@ -1217,7 +1217,7 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                            <p class="text-danger"><?php echo e($message); ?></p>
+                            <p class="text-danger"><?php echo e('Additional Education is Required'); ?></p>
                             <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -1226,15 +1226,15 @@ unset($__errorArgs, $__bag); ?>
                         </span>
                     </div>
                     <div class="second">
-                        <p>Monthly Fees</p>
-                        <input type="text" name="monthlyfee">
+                        <p>Asri Education</p>
+                        <input type="text" name="AsriEdu">
                         <span>
-                            <?php $__errorArgs = ['monthlyfee'];
+                            <?php $__errorArgs = ['AsriEdu'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                            <p class="text-danger"><?php echo e($message); ?></p>
+                            <p class="text-danger"><?php echo e('Asri Education is Required'); ?></p>
                             <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -1263,8 +1263,8 @@ unset($__errorArgs, $__bag); ?>
                 </div>
                 <div class="feediscount">
                     <div class="first">
-                        <p>Fee Discount</p>
-                        <input type="text" name="feediscount">
+                        <p>Monthly Fee</p>
+                        <input type="text" name="monthlyfee">
                         <?php $__errorArgs = ['feediscount'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

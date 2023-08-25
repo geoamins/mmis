@@ -1040,17 +1040,17 @@
                         <input type="text" name="AddlEdu" value="{{$data->AddlEdu}}">
                         <span>
                             @error('AddlEdu')
-                            <p class="text-danger">{{$message}}</p>
+                            <p class="text-danger">{{'Additional Education is Required'}}</p>
                             @enderror
 
                         </span>
                     </div>
                     <div class="second">
-                        <p>Monthly Fees</p>
-                        <input type="text" name="monthlyfee">
+                        <p>Asri Education</p>
+                        <input type="text" name="AsriEdu">
                         <span>
-                            @error('monthlyfee')
-                            <p class="text-danger">{{$message}}</p>
+                            @error('AsriEdu')
+                            <p class="text-danger">{{'Asri Education is Required'}}</p>
                             @enderror
 
                         </span>
@@ -1069,8 +1069,8 @@
                 </div>
                 <div class="feediscount">
                     <div class="first">
-                        <p>Fee Discount</p>
-                        <input type="text" name="feediscount">
+                        <p>Monthly Fee</p>
+                        <input type="text" name="monthlyfee">
                         @error('feediscount')
                             <p class="text-danger">{{$message}}</p>
                             @enderror

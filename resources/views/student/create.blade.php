@@ -701,6 +701,9 @@
                 <div class="name">
                     <div class="first">
                         <p>Registration No</p>
+                        {{-- @php
+                            $RegNo = $LastRegNo->RegistrationNo + 1;
+                        @endphp --}}
                         <input type="text" name="RegistrationNo" value="{{old('RegistrationNo')}}">
                             @error('RegistrationNo')
                             <p class="text-danger">{{'Registration No is Required'}}</p>
@@ -823,7 +826,7 @@
                         <input type="text" name="FMobile" value="{{old('FMobile')}}">
                         <span>
                             @error('FMobile')
-                            <p class="text-danger">{{'Father Mobile No is requiresd'}}</p>
+                            <p class="text-danger">{{'Father Mobile No is required'}}</p>
                             @enderror
 
                         </span>
@@ -961,8 +964,9 @@
                         <p>Class</p>
                         <select id="" name="ClassID">
                             <option value="">Select Class</option>
-                            <option value="1">New Addmission</option>
-                            <option value="2">Promotion</option>
+                            @foreach ($classes as $class)
+                                <option value="{{$class->ClassID}}">{{$class->ClassName}}</option>
+                            @endforeach
                         </select>
                         <span>
                             @error('ClassID')
@@ -975,8 +979,9 @@
                         <p>Section</p>
                         <select id="" name="SectionID">
                             <option value="">Select Section</option>
-                            <option value="1">A</option>
-                            <option value="2">B</option>
+                            @foreach ($sections as $section)
+                                <option value="{{$section->SectionID}}">{{$section->SectionName}}</option>
+                            @endforeach
                         </select>
                         <span>
                             @error('SectionID')
@@ -1036,8 +1041,14 @@
                         </span>
                     </div>
                     <div class="second">
-                        <p>Monthly Fees</p>
-                        <input type="text" name="monthlyfee">
+                        <p>Asri Education</p>
+                        <input type="text" name="AsriEdu">
+                        <span>
+                            @error('AsriEdu')
+                            <p class="text-danger">{{'Asri Edu is Required'}}</p>
+                            @enderror
+
+                        </span>
                     </div>
                     <div class="third">
                         <p>Attached brother</p>
@@ -1047,8 +1058,8 @@
                 </div>
                 <div class="feediscount">
                     <div class="first">
-                        <p>Fee Discount</p>
-                        <input type="text" name="feediscount">
+                        <p>Monthly Fee</p>
+                        <input type="text" name="monthlyfee">
                     </div>
                     <div class="second">
                         <p>Total Fee</p>

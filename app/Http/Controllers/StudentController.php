@@ -13,6 +13,7 @@ use App\Models\StudentType;
 use App\Models\Classes;
 use App\Models\Sections;
 use Barryvdh\DomPDF\PDF;
+use Alert;
 
 class StudentController extends Controller
 {
@@ -41,8 +42,6 @@ class StudentController extends Controller
         else{
             $data=StudentMaster::orderBy('StudentID','DESC')->paginate(5);
         }
-
-
         return view('student.index', compact('data'));
     }
 
@@ -57,7 +56,10 @@ class StudentController extends Controller
         $departments = Department::all();
         $sessions = Session::all();
         $studenttypes = StudentType::all();
-        return view('student.create',compact('countries','provinces','districts','departments','sessions','studenttypes'));
+        $classes = Classes::all();
+        $sections = Sections::all();
+        $LastRegNo = StudentMaster::get()->last();
+        return view('student.create',compact('countries','provinces','districts','departments','sessions','studenttypes','classes','sections','LastRegNo'));
     }
 
     /**
@@ -66,41 +68,42 @@ class StudentController extends Controller
     public function store(Request $request)
     {
 
-        // $validated = $request->validate([
-        //     'RegistrationNo' => 'required',
-        //     'StudentName' => 'required',
-        //     'SCNIC' => 'required',
-        //     'DOB' => 'required',
-        //     'GenderID' => 'required',
-        //     'DeptID' => 'required',
-        //     'FatherName' => 'required',
-        //     'FCNIC' => 'required',
-        //     'GuardianName' => 'required',
-        //     'GuardianRelation' => 'required',
-        //     'FMobile' => 'required',
-        //     'CurrentAddress' => 'required',
-        //     'PermanentAddress' => 'required',
-        //     'CountryID' => 'required',
-        //     'ProvinceID' => 'required',
-        //     'DistrictID' => 'required',
-        //     'SessionID' => 'required',
-        //     'AdmissionDate' => 'required',
-        //     'HijriYear' => 'required',
-        //     'StudentTypeID' => 'required',
-        //     'ClassID' => 'required',
-        //     'SectionID' => 'required',
-        //     'HostelStatus' => 'required',
-        //     'PreviousMadrasa' => 'required',
-        //     'IslamicEdu' => 'required',
+        $validated = $request->validate([
+            // 'RegistrationNo' => 'required',
+            // 'StudentName' => 'required',
+            // 'SCNIC' => 'required',
+            // 'DOB' => 'required',
+            // 'GenderID' => 'required',
+            // 'DeptID' => 'required',
+            // 'FatherName' => 'required',
+            // 'FCNIC' => 'required',
+            // 'GuardianName' => 'required',
+            // 'GuardianRelation' => 'required',
+            // 'FMobile' => 'required',
+            // 'CurrentAddress' => 'required',
+            // 'PermanentAddress' => 'required',
+            // 'CountryID' => 'required',
+            // 'ProvinceID' => 'required',
+            // 'DistrictID' => 'required',
+            // 'SessionID' => 'required',
+            // 'AdmissionDate' => 'required',
+            // 'HijriYear' => 'required',
+            // 'StudentTypeID' => 'required',
+            // 'ClassID' => 'required',
+            // 'SectionID' => 'required',
+            // 'HostelStatus' => 'required',
+            // 'PreviousMadrasa' => 'required',
+            // 'IslamicEdu' => 'required',
             // 'AsriEdu' => 'required',
             // 'AddlEdu' => 'required',
-        //     'DOSLC' => 'required',
-        //     'ReasonSLC' => 'required',
-        // ]);
+            // 'DOSLC' => 'required',
+            // 'ReasonSLC' => 'required',
+        ]);
 
         $ImageName = time().'.'.$request->Image->extension();
         $request->Image->move(public_path('images'), $ImageName);
 
+        // $LastRegNo = StudentMaster::get()->last();
 
         StudentMaster::create([
             'RegistrationNo' => $request->RegistrationNo,
@@ -134,6 +137,8 @@ class StudentController extends Controller
             'ReasonSLC' => $request->ReasonSLC,
             'Image' => $ImageName,
         ]);
+
+        Alert::toast('You\'ve Successfully Registered', 'success');
 
         return redirect()->route('student.index')
             ->with('success', 'Student created successfully.');
@@ -217,8 +222,8 @@ class StudentController extends Controller
             'HostelStatus' => 'required',
             'PreviousMadrasa' => 'required',
             'IslamicEdu' => 'required',
-            // 'AsriEdu' => 'required',
-            // 'AddlEdu' => 'required',
+            'AsriEdu' => 'required',
+            'AddlEdu' => 'required',
         //     'DOSLC' => 'required',
         //     'ReasonSLC' => 'required',
         ]);
