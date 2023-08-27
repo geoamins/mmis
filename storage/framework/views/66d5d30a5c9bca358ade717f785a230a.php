@@ -92,8 +92,40 @@
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('province-list')): ?>
                         <li><a href="<?php echo e(route('province.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Province Setup</a></li>
                     <?php endif; ?>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('district-list')): ?>
+                        <li><a href="<?php echo e(route('district.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">District Setup</a></li>
+                    <?php endif; ?>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('department-list')): ?>
+                        <li><a href="<?php echo e(route('department.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Department Setup</a></li>
+                    <?php endif; ?>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('session-list')): ?>
+                        <li><a href="<?php echo e(route('session.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Sessions Setup</a></li>
+                    <?php endif; ?>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('student-type-list')): ?>
+                        <li><a href="<?php echo e(route('studenttype.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Student Type Setup</a></li>
+                    <?php endif; ?>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('class-list')): ?>
+                        <li><a href="<?php echo e(route('class.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Classes Setup</a></li>
+                    <?php endif; ?>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('student-type-list')): ?>
+                        <li><a href="<?php echo e(route('section.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Sections Setup</a></li>
+                    <?php endif; ?>
                     </ul>
                   </li>
+
+                  <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['basic-list'])): ?>
+                  <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-home"></i> Student <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('basic-list')): ?>
+                        <li><a href="<?php echo e(route('student.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Student Registration</a></li>
+                      <?php endif; ?>
+                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('section-list')): ?>
+                        <li><a href="<?php echo e(route('student.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Generate Cards</a></li>
+                      <?php endif; ?>
+                    </ul>
+                    <?php endif; ?>
+                  </li>
+
                   <?php endif; ?>
 
 
@@ -299,7 +331,6 @@
 
     <script src="<?php echo e(asset('../../asset/vendors/moment/min/moment.min.js')); ?>"></script>
     <script src="<?php echo e(asset('../../asset/vendors/fullcalendar/dist/fullcalendar.min.js')); ?>"></script>
-
 
     <!-- Custom Theme Scripts -->
     <script src="<?php echo e(asset('../../asset//build/js/custom.min.js')); ?>"></script>
