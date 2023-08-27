@@ -1,8 +1,4 @@
-@extends('admin.adminmain', [
-    'menu' => 'userconfiguration',
-    'sub_menu' => 'roleslist'
-])
-@section('contents')
+<?php $__env->startSection('contents'); ?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -688,8 +684,8 @@
 </head>
 
 <body>
-    <form action="{{route('student.store')}}" method="POST" enctype="multipart/form-data">
-        @csrf
+    <form action="<?php echo e(route('student.store')); ?>" method="POST" enctype="multipart/form-data">
+        <?php echo csrf_field(); ?>
     <div class="form">
             <h1>
                 Registration Form
@@ -701,32 +697,50 @@
                 <div class="name">
                     <div class="first">
                         <p>Registration No</p>
-                        {{-- @php
-                            $RegNo = $LastRegNo->RegistrationNo + 1;
-                        @endphp --}}
-                        <input type="text" name="RegistrationNo" value="{{old('RegistrationNo')}}">
-                            @error('RegistrationNo')
-                            <p class="text-danger">{{'Registration No is Required'}}</p>
-                            @enderror
+                        <input type="text" name="RegistrationNo" value="<?php echo e(old('RegistrationNo')); ?>">
+                            <?php $__errorArgs = ['RegistrationNo'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Registration No is Required'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                     </div>
                     <div class="second">
                         <p>Student Name</p>
-                        <input type="text" name="StudentName" value="{{old('StudentName')}}">
+                        <input type="text" name="StudentName" value="<?php echo e(old('StudentName')); ?>">
                         <span>
-                            @error('StudentName')
-                            <p class="text-danger">{{'Student name is Required'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['StudentName'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Student name is Required'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
                     <div class="third">
                         <p>CNIC</p>
-                        <input type="text" name="SCNIC" value="{{old('SCNIC')}}">
+                        <input type="text" name="SCNIC" value="<?php echo e(old('SCNIC')); ?>">
                         <span>
-                            @error('SCNIC')
-                            <p class="text-danger">{{'Student CNIC is Required'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['SCNIC'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Student CNIC is Required'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
@@ -735,11 +749,18 @@
                 <div class="registration">
                     <div class="first">
                         <p>DOB</p>
-                        <input type="date" name="DOB" value="{{old('DOB')}}">
+                        <input type="date" name="DOB" value="<?php echo e(old('DOB')); ?>">
                         <span>
-                            @error('DOB')
-                            <p class="text-danger">{{'DOB is Required'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['DOB'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('DOB is Required'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
@@ -752,9 +773,16 @@
                             <option value="2">Female</option>
                         </select>
                         <span>
-                            @error('GenderID')
-                            <p class="text-danger">{{'Please select gender'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['GenderID'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Please select gender'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
@@ -763,14 +791,21 @@
                         <p>Department</p>
                         <select id="" name="DeptID">
                             <option value="">Select Dept</option>
-                            @foreach ($departments as $department)
-                            <option value="{{$department->DeptID}}">{{$department->DepartmentName}}</option>
-                            @endforeach
+                            <?php $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $department): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($department->DeptID); ?>"><?php echo e($department->DepartmentName); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                         <span>
-                            @error('DeptID')
-                            <p class="text-danger">{{'Please select department'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['DeptID'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Please select department'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
@@ -779,31 +814,52 @@
                 <div class="age">
                     <div class="first">
                         <p>Father Name</p>
-                        <input type="text" name="FatherName" value="{{old('FatherName')}}">
+                        <input type="text" name="FatherName" value="<?php echo e(old('FatherName')); ?>">
                         <span>
-                            @error('FatherName')
-                            <p class="text-danger">{{'Father Name is required'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['FatherName'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Father Name is required'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
                     <div class="second">
                         <p>Father CNIC</p>
-                        <input type="text" name="FCNIC" value="{{old('FCNIC')}}">
+                        <input type="text" name="FCNIC" value="<?php echo e(old('FCNIC')); ?>">
                         <span>
-                            @error('FCNIC')
-                            <p class="text-danger">{{'Father CNIC is required'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['FCNIC'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Father CNIC is required'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
                     <div class="third">
                         <p>Guardian Name</p>
-                        <input type="text" name="GuardianName" value="{{old('GuardianName')}}">
+                        <input type="text" name="GuardianName" value="<?php echo e(old('GuardianName')); ?>">
                         <span>
-                            @error('GuardianName')
-                            <p class="text-danger">{{'Guardian Name is required'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['GuardianName'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Guardian Name is required'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
@@ -813,21 +869,35 @@
                 <div class="contactno">
                     <div class="first">
                         <p>Guardian Relation</p>
-                        <input type="text" name="GuardianRelation" value="{{old('GuardianRelation')}}">
+                        <input type="text" name="GuardianRelation" value="<?php echo e(old('GuardianRelation')); ?>">
                         <span>
-                            @error('GuardianRelation')
-                            <p class="text-danger">{{'Guardian Relation is required'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['GuardianRelation'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Guardian Relation is required'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
                     <div class="second">
                         <p>Father Mobile</p>
-                        <input type="text" name="FMobile" value="{{old('FMobile')}}">
+                        <input type="text" name="FMobile" value="<?php echo e(old('FMobile')); ?>">
                         <span>
-                            @error('FMobile')
-                            <p class="text-danger">{{'Father Mobile No is required'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['FMobile'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Father Mobile No is requiresd'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
@@ -836,20 +906,34 @@
 
                 <div class="address">
                     <p>Current Address</p>
-                    <input id="addressfield" type="text" name="CurrentAddress" value="{{old('CurrentAddress')}}">
+                    <input id="addressfield" type="text" name="CurrentAddress" value="<?php echo e(old('CurrentAddress')); ?>">
                     <span>
-                        @error('CurrentAddress')
-                        <p class="text-danger">{{'Current Address is required'}}</p>
-                        @enderror
+                        <?php $__errorArgs = ['CurrentAddress'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <p class="text-danger"><?php echo e('Current Address is required'); ?></p>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                     </span>
 
                     <p>Permanent Address</p>
-                    <input id="addressfield" type="text" name="PermanentAddress" value="{{old('PermanentAddress')}}">
+                    <input id="addressfield" type="text" name="PermanentAddress" value="<?php echo e(old('PermanentAddress')); ?>">
                     <span>
-                        @error('PermanentAddress')
-                        <p class="text-danger">{{'Permanent Address is required'}}</p>
-                        @enderror
+                        <?php $__errorArgs = ['PermanentAddress'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <p class="text-danger"><?php echo e('Permanent Address is required'); ?></p>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                     </span>
                 </div>
@@ -860,15 +944,22 @@
                         <p>Country</p>
                         <select clas id="Country" name="CountryID">
                             <option value="">Select Country</option>
-                            @foreach ($countries as $country)
-                            <option value="{{$country->CountryID}}">{{$country->CountryName}}</option>
-                            @endforeach
+                            <?php $__currentLoopData = $countries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($country->CountryID); ?>"><?php echo e($country->CountryName); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                         </select>
                         <span>
-                            @error('CountryID')
-                            <p class="text-danger">{{'Please Select Country'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['CountryID'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Please Select Country'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
@@ -876,14 +967,21 @@
                         <p>Province</p>
                         <select id="Province" name="ProvinceID">
                             <option value="">Select Province</option>
-                            @foreach ($provinces as $province)
-                            <option value="{{$province->ProvinceID}}">{{$province->ProvinceName}}</option>
-                            @endforeach
+                            <?php $__currentLoopData = $provinces; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $province): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($province->ProvinceID); ?>"><?php echo e($province->ProvinceName); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                         <span>
-                            @error('ProvinceID')
-                            <p class="text-danger">{{'Please Select Province'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['ProvinceID'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Please Select Province'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
@@ -891,14 +989,21 @@
                         <p>District</p>
                         <select id="District" name="DistrictID">
                             <option value="">Select District</option>
-                            @foreach ($districts as $district)
-                            <option value="{{$district->DistrictID}}">{{$district->DistrictName}}</option>
-                            @endforeach
+                            <?php $__currentLoopData = $districts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $district): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($district->DistrictID); ?>"><?php echo e($district->DistrictName); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                         <span>
-                            @error('DistrictID')
-                            <p class="text-danger">{{'Please Select District'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['DistrictID'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Please Select District'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
@@ -909,35 +1014,56 @@
                         <p>Admission Session</p>
                         <select id="" name="SessionID">
                             <option value="">Select Session</option>
-                            @foreach ($sessions as $session)
-                            <option value="{{$session->SessionID}}">{{$session->SessionTitle}}</option>
-                            @endforeach
+                            <?php $__currentLoopData = $sessions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $session): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($session->SessionID); ?>"><?php echo e($session->SessionTitle); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                         <span>
-                            @error('SessionID')
-                            <p class="text-danger">{{'Please Select Session'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['SessionID'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Please Select Session'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
 
                     <div class="second">
                         <p>Admission Date</p>
-                        <input type="date" name="AdmissionDate" value="{{old('AdmissionDate')}}">
+                        <input type="date" name="AdmissionDate" value="<?php echo e(old('AdmissionDate')); ?>">
                         <span>
-                            @error('AdmissionDate')
-                            <p class="text-danger">{{'Admission Date is required'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['AdmissionDate'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Admission Date is required'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
                     <div class="third">
                         <p>Hajri Year</p>
-                        <input type="text" name="HijriYear" value="{{old('HijriYear')}}">
+                        <input type="text" name="HijriYear" value="<?php echo e(old('HijriYear')); ?>">
                         <span>
-                            @error('HijriYear')
-                            <p class="text-danger">{{'Hijri Year is required'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['HijriYear'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Hijri Year is required'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
@@ -948,15 +1074,22 @@
                         <p>Student Type</p>
                         <select id="" name="StudentTypeID">
                             <option value="">Select Student Type</option>
-                            @foreach ($studenttypes as $studenttype)
-                            <option value="{{$studenttype->StudentTypeID}}">{{$studenttype->StudentType}}</option>
-                            @endforeach
+                            <?php $__currentLoopData = $studenttypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $studenttype): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($studenttype->StudentTypeID); ?>"><?php echo e($studenttype->StudentType); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                         </select>
                         <span>
-                            @error('StudentTypeID')
-                            <p class="text-danger">{{'Student Type is required'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['StudentTypeID'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Student Type is required'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
@@ -964,14 +1097,20 @@
                         <p>Class</p>
                         <select id="" name="ClassID">
                             <option value="">Select Class</option>
-                            @foreach ($classes as $class)
-                                <option value="{{$class->ClassID}}">{{$class->ClassName}}</option>
-                            @endforeach
+                            <option value="1">New Addmission</option>
+                            <option value="2">Promotion</option>
                         </select>
                         <span>
-                            @error('ClassID')
-                            <p class="text-danger">{{'Please Select Class'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['ClassID'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Please Select Class'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
@@ -979,14 +1118,20 @@
                         <p>Section</p>
                         <select id="" name="SectionID">
                             <option value="">Select Section</option>
-                            @foreach ($sections as $section)
-                                <option value="{{$section->SectionID}}">{{$section->SectionName}}</option>
-                            @endforeach
+                            <option value="1">A</option>
+                            <option value="2">B</option>
                         </select>
                         <span>
-                            @error('SectionID')
-                            <p class="text-danger">{{'Please Select Section'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['SectionID'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Please Select Section'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
@@ -1001,29 +1146,50 @@
                             <option value="0">No</option>
                         </select>
                         <span>
-                            @error('HostelStatus')
-                            <p class="text-danger">{{'Please select Hostel Status'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['HostelStatus'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Please select Hostel Status'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
                     <div class="second">
                         <p>Previous Madrassa</p>
-                        <input type="text" name="PreviousMadrasa" value="{{old('PreviousMadrasa')}}">
+                        <input type="text" name="PreviousMadrasa" value="<?php echo e(old('PreviousMadrasa')); ?>">
                         <span>
-                            @error('PreviousMadrasa')
-                            <p class="text-danger">{{'Previous Madrasa is required'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['PreviousMadrasa'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Previous Madrasa is required'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
                     <div class="third">
                         <p>Islamic Education</p>
-                        <input type="text" name="IslamicEdu" value="{{old('IslamicEdu')}}">
+                        <input type="text" name="IslamicEdu" value="<?php echo e(old('IslamicEdu')); ?>">
                         <span>
-                            @error('IslamicEdu')
-                            <p class="text-danger">{{'Islamic Edu is required'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['IslamicEdu'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Islamic Edu is required'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
@@ -1032,23 +1198,24 @@
                 <div class="additionalability">
                     <div class="first">
                         <p>Additional Education</p>
-                        <input type="text" name="AddlEdu" value="{{old('AddlEdu')}}">
+                        <input type="text" name="AddlEdu" value="<?php echo e(old('AddlEdu')); ?>">
                         <span>
-                            @error('AddlEdu')
-                            <p class="text-danger">{{'Additional Edu is Required'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['AddlEdu'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Additional Edu is Required'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
                     <div class="second">
-                        <p>Asri Education</p>
-                        <input type="text" name="AsriEdu">
-                        <span>
-                            @error('AsriEdu')
-                            <p class="text-danger">{{'Asri Edu is Required'}}</p>
-                            @enderror
-
-                        </span>
+                        <p>Monthly Fees</p>
+                        <input type="text" name="monthlyfee">
                     </div>
                     <div class="third">
                         <p>Attached brother</p>
@@ -1058,8 +1225,8 @@
                 </div>
                 <div class="feediscount">
                     <div class="first">
-                        <p>Monthly Fee</p>
-                        <input type="text" name="monthlyfee">
+                        <p>Fee Discount</p>
+                        <input type="text" name="feediscount">
                     </div>
                     <div class="second">
                         <p>Total Fee</p>
@@ -1067,11 +1234,18 @@
                     </div>
                     <div class="third">
                         <p>DOSLC</p>
-                        <input type="date" name="DOSLC" value="{{old('DOSLC')}}">
+                        <input type="date" name="DOSLC" value="<?php echo e(old('DOSLC')); ?>">
                         <span>
-                            @error('DOSLC')
-                            <p class="text-danger">{{'DOSLC is required'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['DOSLC'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('DOSLC is required'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
@@ -1080,11 +1254,18 @@
                 <div class="reason">
                     <div class="first">
                         <p>Reason For DOSLC</p>
-                        <input type="text" name="ReasonSLC" value="{{old('ReasonSLC')}}">
+                        <input type="text" name="ReasonSLC" value="<?php echo e(old('ReasonSLC')); ?>">
                         <span>
-                            @error('ReasonSLC')
-                            <p class="text-danger">{{'Reason SLC is required'}}</p>
-                            @enderror
+                            <?php $__errorArgs = ['ReasonSLC'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Reason SLC is required'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                         </span>
                     </div>
@@ -1119,7 +1300,7 @@ $(document).ready(function(){
             url: '/getProvinces',
             type: 'post',
             data: 'CountryID='+CountryID+
-            '&_token={{csrf_token()}}'
+            '&_token=<?php echo e(csrf_token()); ?>'
             success: function(result){
                 $('#Province').html(result)
             }
@@ -1128,4 +1309,9 @@ $(document).ready(function(){
 })
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.adminmain', [
+    'menu' => 'userconfiguration',
+    'sub_menu' => 'roleslist'
+], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/rizwansarwar/Desktop/Laravel-Web/mmis/resources/views/student/create.blade.php ENDPATH**/ ?>

@@ -38,7 +38,8 @@ class StudentMaster extends Model
     'AsriEdu',
     'AddlEdu',
     'DOSLC',
-    'ReasonSLC'
+    'ReasonSLC',
+    'Image'
     ];
 
 }

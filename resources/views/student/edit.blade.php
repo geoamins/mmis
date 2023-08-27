@@ -42,6 +42,12 @@
             border: 1px solid black;
         }
 
+        .pic img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .right input{
             margin-top: 10px;
         }
@@ -963,9 +969,10 @@
                     <div class="second">
                         <p>Class</p>
                         <select id="" name="ClassID">
-                            <option value="">Select Class</option>
-                            <option value="1">Class 1</option>
-                            <option value="2">Class 2</option>
+                            <option value="{{$data->ClassID}}">{{$data->ClassName}}</option>
+                            @foreach ($classes as $class)
+                            <option value="{{$class->ClassID}}">{{$class->ClassName}}</option>
+                            @endforeach
                         </select>
                         <span>
                             @error('ClassID')
@@ -977,9 +984,10 @@
                     <div class="third">
                         <p>Section</p>
                         <select id="" name="SectionID">
-                            <option value="">Select Section</option>
-                            <option value="1">A</option>
-                            <option value="2">B</option>
+                            <option value="{{$data->SectionID}}">{{$data->SectionName}}</option>
+                            @foreach ($sections as $section)
+                            <option value="{{$section->SectionID}}">{{$section->SectionName}}</option>
+                            @endforeach
                         </select>
                         <span>
                             @error('SectionID')
@@ -1032,17 +1040,17 @@
                         <input type="text" name="AddlEdu" value="{{$data->AddlEdu}}">
                         <span>
                             @error('AddlEdu')
-                            <p class="text-danger">{{$message}}</p>
+                            <p class="text-danger">{{'Additional Education is Required'}}</p>
                             @enderror
 
                         </span>
                     </div>
                     <div class="second">
-                        <p>Monthly Fees</p>
-                        <input type="text" name="monthlyfee">
+                        <p>Asri Education</p>
+                        <input type="text" name="AsriEdu">
                         <span>
-                            @error('monthlyfee')
-                            <p class="text-danger">{{$message}}</p>
+                            @error('AsriEdu')
+                            <p class="text-danger">{{'Asri Education is Required'}}</p>
                             @enderror
 
                         </span>
@@ -1061,8 +1069,8 @@
                 </div>
                 <div class="feediscount">
                     <div class="first">
-                        <p>Fee Discount</p>
-                        <input type="text" name="feediscount">
+                        <p>Monthly Fee</p>
+                        <input type="text" name="monthlyfee">
                         @error('feediscount')
                             <p class="text-danger">{{$message}}</p>
                             @enderror
@@ -1108,9 +1116,9 @@
 
             <div class="right">
                 <div class="pic">
-                    <center>Picture Here</center>
+                    <img src="{{asset('images/'.$data->Image)}}" alt="">
                 </div>
-                <input type="file" name="image">
+                <input type="file" name="Image">
 
             </div>
         </div>

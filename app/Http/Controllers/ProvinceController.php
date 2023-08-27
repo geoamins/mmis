@@ -65,7 +65,6 @@ class ProvinceController extends Controller
     public function edit(String $province)
     {
         $data = Province::find($province);
-        // dd($data);
         return view('basic.province.edit', compact('data'));
     }
 

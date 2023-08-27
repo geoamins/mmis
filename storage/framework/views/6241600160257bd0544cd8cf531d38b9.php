@@ -1,8 +1,4 @@
-@extends('admin.adminmain', [
-    'menu' => 'userconfiguration',
-    'sub_menu' => 'roleslist'
-])
-@section('contents')
+<?php $__env->startSection('contents'); ?>
 
 <html lang="en">
 <head>
@@ -152,44 +148,44 @@
         <hr>
         <div class="profile">
             <div class="left">
-                <img src="{{asset('images/'.$data->Image)}}" alt="">
+                <img src="<?php echo e(asset('images/'.$data->Image)); ?>" alt="">
             </div>
             <div class="right">
                 <div class="rleft">
                    <h5>Registration No</h5>
-                    <p>{{$data->RegistrationNo}}</p>
+                    <p><?php echo e($data->RegistrationNo); ?></p>
                     <h5>Student CNIC</h5>
-                    <p>{{$data->SCNIC}}</p>
+                    <p><?php echo e($data->SCNIC); ?></p>
                     <h5>Gender</h5>
-                    @if ($data->GenderID == 1)
+                    <?php if($data->GenderID == 1): ?>
                         <p>Male</p>
-                    @elseif($data->GenderID == 2)
+                    <?php elseif($data->GenderID == 2): ?>
                         <p>Female</p>
-                    @endif
+                    <?php endif; ?>
                     <h5>Father Name</h5>
-                    <p>{{$data->FatherName}}</p>
+                    <p><?php echo e($data->FatherName); ?></p>
                     <h5>Father Mobile</h5>
-                    <p>{{$data->FMobile}}</p>
+                    <p><?php echo e($data->FMobile); ?></p>
                     <h5>Permanent Address</h5>
-                    <p>{{$data->PermanentAddress}}</p>
+                    <p><?php echo e($data->PermanentAddress); ?></p>
                     <h5>Province</h5>
-                    <p>{{$data->ProvinceName}}</p>
+                    <p><?php echo e($data->ProvinceName); ?></p>
                 </div>
                 <div class="rright">
                     <h5>Full Name</h5>
-                    <p>{{$data->StudentName}}</p>
+                    <p><?php echo e($data->StudentName); ?></p>
                     <h5>Date of Birth</h5>
-                    <p>{{$data->DOB}}</p>
+                    <p><?php echo e($data->DOB); ?></p>
                     <h5>Department</h5>
-                    <p>{{$data->DepartmentName}}</p>
+                    <p><?php echo e($data->DepartmentName); ?></p>
                     <h5>Father CNIC</h5>
-                    <p>{{$data->FCNIC}}</p>
+                    <p><?php echo e($data->FCNIC); ?></p>
                     <h5>Current Address</h5>
-                    <p>{{$data->CurrentAddress}}</p>
+                    <p><?php echo e($data->CurrentAddress); ?></p>
                     <h5>Country</h5>
-                    <p>{{$data->CountryName}}</p>
+                    <p><?php echo e($data->CountryName); ?></p>
                     <h5>District</h5>
-                    <p>{{$data->DistrictName}}</p>
+                    <p><?php echo e($data->DistrictName); ?></p>
 
 
 
@@ -206,33 +202,33 @@
             <div class="right">
                 <div class="rleft">
                     <h5>Admission Session</h5>
-                    <p>{{$data->SessionTitle}}</p>
+                    <p><?php echo e($data->SessionTitle); ?></p>
                     <h5>Hijri Year</h5>
-                    <p>{{$data->HijriYear}}</p>
+                    <p><?php echo e($data->HijriYear); ?></p>
                     <h5>Class</h5>
-                    <p>{{$data->ClassName}}</p>
+                    <p><?php echo e($data->ClassName); ?></p>
                     <h5>Previous Madrasa</h5>
-                    <p>{{$data->PreviousMadrasa}}</p>
+                    <p><?php echo e($data->PreviousMadrasa); ?></p>
                     <h5>Asri Education</h5>
-                    <p>{{$data->AsriEdu}}</p>
+                    <p><?php echo e($data->AsriEdu); ?></p>
                     <h5>Hostel Status</h5>
-                    @if ($data->HostelStatus == 1)
+                    <?php if($data->HostelStatus == 1): ?>
                         <p>Resident</p>
-                    @elseif($data->HostelStatus == 0)
+                    <?php elseif($data->HostelStatus == 0): ?>
                         <p>Non Resident</p>
-                    @endif
+                    <?php endif; ?>
                 </div>
                 <div class="rright">
                     <h5>Admission Date</h5>
-                    <p>{{$data->AdmissionDate}}</p>
+                    <p><?php echo e($data->AdmissionDate); ?></p>
                     <h5>Student Type</h5>
-                    <p>{{$data->StudentType}}</p>
+                    <p><?php echo e($data->StudentType); ?></p>
                     <h5>Section</h5>
-                    <p>{{$data->SectionName}}</p>
+                    <p><?php echo e($data->SectionName); ?></p>
                     <h5>Islamic Education</h5>
-                    <p>{{$data->IslamicEdu}}</p>
+                    <p><?php echo e($data->IslamicEdu); ?></p>
                     <h5>Addition Education</h5>
-                    <p>{{$data->AddlEdu}}</p>
+                    <p><?php echo e($data->AddlEdu); ?></p>
 
                 </div>
             </div>
@@ -245,15 +241,15 @@
             <div class="right">
                 <div class="rleft">
                     <h5>Father Name</h5>
-                    <p>{{$data->FatherName}}</p>
+                    <p><?php echo e($data->FatherName); ?></p>
                     <h5>Guardian Name</h5>
-                    <p>{{$data->GuardianName}}</p>
+                    <p><?php echo e($data->GuardianName); ?></p>
                 </div>
                 <div class="rright">
                     <h5>Father CNIC</h5>
-                    <p>{{$data->FCNIC  }}</p>
+                    <p><?php echo e($data->FCNIC); ?></p>
                     <h5>Relation with Guardian</h5>
-                    <p>{{$data->GuardianRelation}}</p>
+                    <p><?php echo e($data->GuardianRelation); ?></p>
                 </div>
             </div>
         </div>
@@ -265,19 +261,19 @@
             <div class="right">
                 <div class="rleft">
                     <h5>Monthly Fee</h5>
-                    <p>{{$data->StudentName}}</p>
+                    <p><?php echo e($data->StudentName); ?></p>
                     <h5>Fee Discount</h5>
-                    <p>{{$data->StudentName}}</p>
+                    <p><?php echo e($data->StudentName); ?></p>
                     <h5>Struck Off Date</h5>
-                    <p>{{$data->DOSLC}}</p>
+                    <p><?php echo e($data->DOSLC); ?></p>
                 </div>
                 <div class="rright">
                     <h5>Attached Brother</h5>
-                    <p>{{$data->StudentName}}</p>
+                    <p><?php echo e($data->StudentName); ?></p>
                     <h5>Total Fee</h5>
-                    <p>{{$data->StudentName}}</p>
+                    <p><?php echo e($data->StudentName); ?></p>
                     <h5>Struck Off Reason</h5>
-                    <p>{{$data->ReasonSLC}}</p>
+                    <p><?php echo e($data->ReasonSLC); ?></p>
                 </div>
             </div>
         </div>
@@ -286,4 +282,9 @@
 </body>
 </html>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.adminmain', [
+    'menu' => 'userconfiguration',
+    'sub_menu' => 'roleslist'
+], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/rizwansarwar/Desktop/Laravel-Web/mmis/resources/views/student/show.blade.php ENDPATH**/ ?>
