@@ -16,4 +16,5 @@ return [
     'User Configuration' => 'صارف کی ترتیب',
     'Basic Setting' => 'بنیادی ترتیب',
     'Student Record' => 'طلباء کا ریکارڈ',
+    'Users' => 'صارفین'
 ];

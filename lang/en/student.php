@@ -13,9 +13,7 @@ return [
     |
     */
 
-    'User Configuration' => 'User Configuration',
-    'Basic Setting' => 'Basic Setting',
-    'Student Record' => 'Student Registration',
-    'Users' => 'Users'
+    'Students List' => 'طلباء کی فہرست',
+
 
 ];
