@@ -69,7 +69,7 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['user-list', 'role-list', 'permission-list'])): ?>
-                  <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-home"></i> User Configuration <span class="fa fa-chevron-down"></span></a>
+                  <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-home"></i> <?php echo e(__('sidebar.User Configuration')); ?> <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('user-list')): ?>
                         <li><a href="<?php echo e(route('users.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Users</a></li>
@@ -84,7 +84,7 @@
                     <?php endif; ?>
                   </li>
                   <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['basic-list'])): ?>
-                  <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-home"></i> Basic Setting <span class="fa fa-chevron-down"></span></a>
+                  <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-home"></i> <?php echo e(__('sidebar.Basic Setting')); ?> <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('country-list')): ?>
                         <li><a href="<?php echo e(route('country.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Country Setup</a></li>
@@ -114,7 +114,7 @@
                   </li>
 
                   <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['basic-list'])): ?>
-                  <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-home"></i> Student <span class="fa fa-chevron-down"></span></a>
+                  <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-home"></i> <?php echo e(__('sidebar.Student Record')); ?> <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('basic-list')): ?>
                         <li><a href="<?php echo e(route('student.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Student Registration</a></li>
@@ -184,15 +184,16 @@
                       
                       
                         
-                    <a class="dropdown-item"  href="javascript:;">Help</a>
-                      
-                      <div class="">
-                        <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST"
-                            class="d-inline-block">
+                    
+
+
+
+                       <div class="">
+                        <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-inline-block">
                             <?php echo csrf_field(); ?>
                             <button type="submit" class="dropdown-item ">
                                 <i class=""></i>
-                                Signout
+                                Logout
                             </button>
                         </form>
                     </div>
@@ -200,68 +201,10 @@
                   </li>
 
                   <li role="presentation" class="nav-item dropdown open">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-envelope-o"></i>
-                      <span class="badge bg-green">6</span>
-                    </a>
-                    <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <div class="text-center">
-                          <a class="dropdown-item">
-                            <strong>See All Alerts</strong>
-                            <i class="fa fa-angle-right"></i>
-                          </a>
-                        </div>
-                      </li>
-                    </ul>
+                    <select class="form-control Langchange">
+                        <option value="en" <?php echo e(session()->get('locale') == 'en' ? 'selected' : ''); ?>>English</option>
+                        <option value="ur" <?php echo e(session()->get('locale') == 'ur' ? 'selected' : ''); ?>>Urdu</option>
+                    </select>
                   </li>
                 </ul>
               </nav>
@@ -298,7 +241,7 @@
 
         <!-- footer content -->
         <footer>
-          <div class="">  //pull-right
+          <div class="">
              <strong><?php echo e(date('Y')); ?> &copy; All Rights Reserved <a href="https://BSoft.pk/"> Bridge Soft Technologies
                 (PVT) LTD</a>.</strong>
           </div>
@@ -356,7 +299,12 @@
             })
         })
     </script>
-
+    <script type="text/javascript">
+        var url = "<?php echo e(route('LangChange')); ?>";
+        $(".Langchange").change(function(){
+            window.location.href = url + "?lang="+ $(this).val();
+        });
+    </script>
   </body>
 </html>
 <?php /**PATH D:\wamp64\www\mmis\resources\views/admin/adminmain.blade.php ENDPATH**/ ?>

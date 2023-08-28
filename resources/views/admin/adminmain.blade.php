@@ -69,7 +69,7 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                 @canany(['user-list', 'role-list', 'permission-list'])
-                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> User Configuration <span class="fa fa-chevron-down"></span></a>
+                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> {{ __('sidebar.User Configuration') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       @can('user-list')
                         <li><a href="{{ route('users.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Users</a></li>
@@ -84,7 +84,7 @@
                     @endcan
                   </li>
                   @canany(['basic-list'])
-                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> Basic Setting <span class="fa fa-chevron-down"></span></a>
+                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> {{ __('sidebar.Basic Setting') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       @can('country-list')
                         <li><a href="{{ route('country.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Country Setup</a></li>
@@ -114,7 +114,7 @@
                   </li>
 
                   @canany(['basic-list'])
-                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> Student <span class="fa fa-chevron-down"></span></a>
+                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> {{ __('sidebar.Student Record') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       @can('basic-list')
                         <li><a href="{{ route('student.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Student Registration</a></li>
@@ -186,15 +186,16 @@
                           <span class="badge bg-red pull-right">50%</span>
                           <span>Settings</span>
                         </a> --}}
-                    <a class="dropdown-item"  href="javascript:;">Help</a>
-                      {{-- <a class="dropdown-item"  href="login.html"><i class="dropdown-item"></i> Log Out</a> --}}
-                      <div class="">
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                            class="d-inline-block">
+                    {{--  <a class="dropdown-item"  href="javascript:;">Help</a>  --}}
+
+
+
+                       <div class="">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline-block">
                             @csrf
                             <button type="submit" class="dropdown-item ">
                                 <i class=""></i>
-                                Signout
+                                Logout
                             </button>
                         </form>
                     </div>
@@ -202,68 +203,10 @@
                   </li>
 
                   <li role="presentation" class="nav-item dropdown open">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-envelope-o"></i>
-                      <span class="badge bg-green">6</span>
-                    </a>
-                    <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <div class="text-center">
-                          <a class="dropdown-item">
-                            <strong>See All Alerts</strong>
-                            <i class="fa fa-angle-right"></i>
-                          </a>
-                        </div>
-                      </li>
-                    </ul>
+                    <select class="form-control Langchange">
+                        <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>English</option>
+                        <option value="ur" {{ session()->get('locale') == 'ur' ? 'selected' : '' }}>Urdu</option>
+                    </select>
                   </li>
                 </ul>
               </nav>
@@ -300,7 +243,7 @@
 
         <!-- footer content -->
         <footer>
-          <div class="">  //pull-right
+          <div class="">
              <strong>{{date('Y')}} &copy; All Rights Reserved <a href="https://BSoft.pk/"> Bridge Soft Technologies
                 (PVT) LTD</a>.</strong>
           </div>
@@ -358,6 +301,11 @@
             })
         })
     </script>
-
+    <script type="text/javascript">
+        var url = "{{ route('LangChange') }}";
+        $(".Langchange").change(function(){
+            window.location.href = url + "?lang="+ $(this).val();
+        });
+    </script>
   </body>
 </html>

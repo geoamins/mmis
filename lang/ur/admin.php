@@ -13,6 +13,6 @@ return [
     |
     */
 
-    'user-list' => 'قائمة المستخدم',
+    'user-list' => 'User list',
 
 ];

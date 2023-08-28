@@ -13,6 +13,6 @@ return [
     |
     */
 
-    'add' => 'إضافة بلد',
+    'add' => 'Add Country',
 
 ];

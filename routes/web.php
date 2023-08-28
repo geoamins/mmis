@@ -36,6 +36,8 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/dashboard', [dashboard::class, 'dashboard'])->name('dashboard')->middleware(['auth', 'verified']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('change/lang', [HomeController::class,'lang_change'])->name('LangChange');
+
 Route::resource('country',CountryController::class);
 Route::resource('province',ProvinceController::class);
 Route::resource('district',DistrictController::class);

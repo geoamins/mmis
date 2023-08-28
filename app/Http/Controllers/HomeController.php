@@ -26,4 +26,10 @@ class HomeController extends Controller
     {
         return view('dashboard');
     }
+    public function lang_change(Request $request)
+    {
+        App::setLocale($request->lang);
+        session()->put('locale', $request->lang);
+        return view('dashboard');
+    }
 }
