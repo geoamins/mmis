@@ -13,6 +13,10 @@ return [
     |
     */
 
-    'add' => 'Add Country',
+    'Add Country' => 'ملک شامل کریں۔',
+    'Country Name' => 'ملک کا نام',
+    'Country List' => 'ممالک کی فہرست',
+    'go!' => ' !جائیں',
+    'Search for' => ' تلاش کریں۔',
 
 ];

@@ -13,13 +13,7 @@ return [
     |
     */
 
-    'Add Country' => 'Add Country',
-    'Country Name' => 'Country Name',
-    'Country List' => 'Country List',
-    'go!' => 'go!',
-    'Search for' => 'Search for',
+    'New Role' => 'New Role',
 
-    
-    
 
 ];

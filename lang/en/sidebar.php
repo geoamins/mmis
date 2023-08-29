@@ -15,7 +15,12 @@ return [
 
     'User Configuration' => 'User Configuration',
     'Basic Setting' => 'Basic Setting',
-    'Student Record' => 'Student Registration',
-    'Users' => 'Users'
+    'Student Record' => 'Student Record',
+    'Users' => 'Users',
+    'Roles' => 'Roles',
+    'Permissions' => 'Permissions',
+    'Country Setup' => 'Country Setup',
+    'Province Setup' => 'Province Setup',
+    'Student Registration' => 'Student Registration',
 
 ];

@@ -13,13 +13,9 @@ return [
     |
     */
 
-    'Add Country' => 'Add Country',
-    'Country Name' => 'Country Name',
-    'Country List' => 'Country List',
-    'go!' => 'go!',
-    'Search for' => 'Search for',
-
-    
+    'Friendly Title' => 'Friendly Title',
+    'New Permission' => 'New Permission',
+    'Edit permission' => 'Edit permission',
     
 
 ];

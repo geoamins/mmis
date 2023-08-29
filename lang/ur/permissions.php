@@ -13,13 +13,9 @@ return [
     |
     */
 
-    'Add Country' => 'Add Country',
-    'Country Name' => 'Country Name',
-    'Country List' => 'Country List',
-    'go!' => 'go!',
-    'Search for' => 'Search for',
-
-    
+    'Friendly Title' => 'دوستانہ عنوان',
+    'New Permission' => ' نئی اجازت شامل کریں',
+    'Edit permission' => 'اجازت میں ترمیم کریں۔',
     
 
 ];

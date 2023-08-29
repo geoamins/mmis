@@ -16,5 +16,10 @@ return [
     'User Configuration' => 'صارف کی ترتیب',
     'Basic Setting' => 'بنیادی ترتیب',
     'Student Record' => 'طلباء کا ریکارڈ',
-    'Users' => 'صارفین'
+    'Users' => 'صارفین',
+    'Roles' => 'کردار',
+    'Permissions' => 'اجازتیں',
+    'Country Setup' => 'ملک کی ترتیب',
+    'Province Setup' => 'صوبائی  ترتیب',
+    'Student Registration' => 'طالب علم کے اندراج ',
 ];
