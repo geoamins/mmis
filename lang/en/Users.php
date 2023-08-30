@@ -33,6 +33,12 @@ return [
     'super' => 'super',
     'Create user' => 'Create user',
     'Submit' => 'Submit',
+    'New Role' => 'New Role',
+    'Friendly Title' => 'Friendly Title',
+    'New Permission' => 'New Permission',
+    'Edit permission' => 'Edit permission',
+    
+
 
    
 ];

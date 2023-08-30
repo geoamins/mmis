@@ -32,6 +32,13 @@ return [
     'super' => 'اعلٰی صارف',
     'Create user' => 'صارف بنائیں',
     'Submit' => ' جمع کرائیں',
+    'New Role' => 'نیا کردار',
+    'Friendly Title' => 'دوستانہ عنوان',
+    'New Permission' => ' نئی اجازت شامل کریں',
+    'Edit permission' => 'اجازت میں ترمیم کریں۔',
+    'Province Name' => 'صوبے کا نام',
+    'Add Province' => ' صوبہ شامل کریں۔ ',
+    
 
    
 ];

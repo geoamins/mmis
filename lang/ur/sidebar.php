@@ -21,5 +21,13 @@ return [
     'Permissions' => 'اجازتیں',
     'Country Setup' => 'ملک کی ترتیب',
     'Province Setup' => 'صوبائی  ترتیب',
+    'District Setup' => 'ضلعی ترتیب',
+    'Department Setup' => 'شعبہ ترتیب',
+    'Sessions Setup' => 'دورہ تنظیم ',
+    'Student Type Setup' => 'طالب علم کی قسم کی ترتیب دینا',
+    'Classes Setup' => ' اجماعات کی ترتیب',
+    'Sections Setup' => 'حصے کی ترتیب',
     'Student Registration' => 'طالب علم کے اندراج ',
+    'Generate Cards' => 'کارڈز بنائیں ',
+    
 ];

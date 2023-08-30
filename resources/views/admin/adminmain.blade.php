@@ -72,13 +72,13 @@
                   <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> {{ __('sidebar.User Configuration') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       @can('user-list')
-                        <li><a href="{{ route('users.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Users</a></li>
+                        <li><a href="{{ route('users.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('users.User')}}</a></li>
                       @endcan
                       @can('role-list')
-                        <li ><a href="{{ route('roles.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'roleslist' ? 'active' : '') : '' }}">Roles</a></li>
+                        <li ><a href="{{ route('roles.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'roleslist' ? 'active' : '') : '' }}">{{__('users.Roles')}}</a></li>
                       @endcan
                       @can('permission-list')
-                        <li><a href="{{ route('permissions.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'permissionlist' ? 'active' : '') : '' }}">Permissions</a></li>
+                        <li><a href="{{ route('permissions.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'permissionlist' ? 'active' : '') : '' }}">{{__('sidebar.Permissions')}}</a></li>
                       @endcan
                     </ul>
                     @endcan
@@ -87,28 +87,28 @@
                   <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> {{ __('sidebar.Basic Setting') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       @can('country-list')
-                        <li><a href="{{ route('country.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Country Setup</a></li>
+                        <li><a href="{{ route('country.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Country Setup')}}</a></li>
                       @endcan
                     @can('province-list')
-                        <li><a href="{{ route('province.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Province Setup</a></li>
+                        <li><a href="{{ route('province.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Province Setup')}}</a></li>
                     @endcan
                     @can('district-list')
-                        <li><a href="{{ route('district.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">District Setup</a></li>
+                        <li><a href="{{ route('district.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.District Setup')}}</a></li>
                     @endcan
                     @can('department-list')
-                        <li><a href="{{ route('department.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Department Setup</a></li>
+                        <li><a href="{{ route('department.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Department Setup')}}</a></li>
                     @endcan
                     @can('session-list')
-                        <li><a href="{{ route('session.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Sessions Setup</a></li>
+                        <li><a href="{{ route('session.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Sessions Setup')}}</a></li>
                     @endcan
                     @can('student-type-list')
-                        <li><a href="{{ route('studenttype.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Student Type Setup</a></li>
+                        <li><a href="{{ route('studenttype.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Student Type Setup')}}</a></li>
                     @endcan
                     @can('class-list')
-                        <li><a href="{{ route('class.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Classes Setup</a></li>
+                        <li><a href="{{ route('class.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Classes Setup')}}</a></li>
                     @endcan
                     @can('student-type-list')
-                        <li><a href="{{ route('section.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Sections Setup</a></li>
+                        <li><a href="{{ route('section.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Sections Setup')}}</a></li>
                     @endcan
                     </ul>
                   </li>
@@ -117,10 +117,10 @@
                   <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> {{ __('sidebar.Student Record') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       @can('basic-list')
-                        <li><a href="{{ route('student.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Student Registration</a></li>
+                        <li><a href="{{ route('student.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Student Registration')}}</a></li>
                       @endcan
                       @can('section-list')
-                        <li><a href="{{ route('student.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Generate Cards</a></li>
+                        <li><a href="{{ route('student.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Generate Cards')}}</a></li>
                       @endcan
                     </ul>
                     @endcan

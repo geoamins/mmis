@@ -21,6 +21,13 @@ return [
     'Permissions' => 'Permissions',
     'Country Setup' => 'Country Setup',
     'Province Setup' => 'Province Setup',
+    'District Setup' => 'District Setup',
+    'Department Setup' => 'Department Setup',
+    'Sessions Setup' => 'Sessions Setup',
+    'Student Type Setup' => 'Student Type Setup',
+    'Classes Setup' => 'Classes Setup',
+    'Sections Setup' => 'Sections Setup',
     'Student Registration' => 'Student Registration',
+    'Generate Cards' => 'Generate Cards',
 
 ];
