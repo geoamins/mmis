@@ -163,6 +163,24 @@ class StudentController extends Controller
         return view('student.show', compact('data'));
     }
 
+    public function show_api(Request $id)
+    {
+
+        // $data = StudentMaster::find($id);
+        $data = StudentMaster::leftjoin('setup_country','setup_country.CountryID','=','studentmaster.CountryID')
+        ->leftjoin('setup_province','setup_province.ProvinceID','=','studentmaster.ProvinceID')
+        ->leftjoin('setup_district','setup_district.DistrictID','=','studentmaster.DistrictID')
+        ->leftjoin('setup_department','setup_department.DeptID','=','studentmaster.DeptID')
+        ->leftjoin('setup_session','setup_session.SessionID','=','studentmaster.SessionID')
+        ->leftjoin('setup_student_type','setup_student_type.StudentTypeID','=','studentmaster.StudentTypeID')
+        ->leftjoin('setup_class','setup_class.ClassID','=','studentmaster.ClassID')
+        ->leftjoin('setup_section','setup_section.SectionID','=','studentmaster.SectionID')
+        ->find($id->id);
+
+        return response()->json($data);
+        // return view('student.show', compact('data'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
