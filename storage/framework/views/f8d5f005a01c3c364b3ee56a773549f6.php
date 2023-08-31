@@ -3,7 +3,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h6 class="card-title">Country List</h6>
+            <h6 class="card-title"><?php echo e(__('Basic.Country List')); ?></h6>
 
             <div class="card-tools">
                 <div class="title_right">
@@ -11,9 +11,9 @@
                         <div class="col-md-5 col-sm-5  form-group pull-right top_search">
                             <div class="input-group">
 
-                                    <input type="text" name="search" class="form-control" placeholder="Search for...">
+                                    <input type="text" name="search" class="form-control" placeholder="<?php echo e(__('Basic.Please Enter your Country name here!')); ?>">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-primary"  type="submit">Go!</button>
+                                        <button class="btn btn-primary"  type="submit"><?php echo e(__('Basic.go!')); ?></button>
                                     </span>
 
                             </div>
@@ -23,7 +23,7 @@
 
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-create')): ?>
                     <span class="float-right" style="float: right;">
-                        <a class="btn btn-primary" href="<?php echo e(route('country.create')); ?>"><?php echo e(__('country.add')); ?></a>
+                        <a class="btn btn-primary" href="<?php echo e(route('country.create')); ?>"><?php echo e(__('Basic.Add Country')); ?></a>
                     </span>
                 <?php endif; ?>
             </div>
@@ -34,9 +34,9 @@
             <table id="myTable" class="table table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th>#</th>
-                        <th>Country Name</th>
-                        <th width="280px">Action</th>
+                        <th><?php echo e(__('Users.#')); ?></th>
+                        <th><?php echo e(__('Basic.Country Name')); ?></th>
+                        <th width="280px"><?php echo e(__('Users.Action')); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,11 +47,11 @@
                             <td>
                                 
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('country-edit')): ?>
-                                    <a class="btn btn-primary" href="<?php echo e(route('country.edit', $basic->CountryID)); ?>">Edit</a>
+                                    <a class="btn btn-primary" href="<?php echo e(route('country.edit', $basic->CountryID)); ?>"><?php echo e(__('Users.Edit')); ?></a>
                                 <?php endif; ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('country-delete')): ?>
 
-                                    <button type="submit" data-id="delete-country" class="btn btn-danger del-popup" data-toggle="tooltip" title='Delete'>Delete</button>
+                                    <button type="submit" data-id="delete-country" class="btn btn-danger del-popup" data-toggle="tooltip" title='Delete'><?php echo e(__('Users.Edit')); ?></button>
                                     <?php echo Form::open(['id' => 'delete-country', 'method' => 'DELETE','route' => ['country.destroy', $basic->CountryID],'style'=>'display:inline']); ?>
 
 

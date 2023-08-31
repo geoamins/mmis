@@ -21,20 +21,25 @@
                             </div>
                         <?php endif; ?>
                         <div class="card">
-                            <div class="card-header">Create role
+                            <div class="card-header"><?php echo e(__('Basic.Create Country')); ?>
+
                                 <span class="float-right">
-                                    <a class="btn btn-primary" href="<?php echo e(route('roles.index')); ?>">Roles</a>
+                                    <a class="btn btn-primary" href="<?php echo e(route('country.index')); ?>"><?php echo e(__('Users.Back')); ?></a>
                                 </span>
                             </div>
                             <div class="card-body">
                                 <?php echo Form::open(array('route' => 'country.store','method'=>'POST')); ?>
 
                                     <div class="form-group">
-                                        <strong>Name:</strong>
-                                        <?php echo Form::text('CountryName', null, array('placeholder' => 'Please enter the country Name','class' => 'form-control')); ?>
+                                        <strong><?php echo e(__('Basic.Country Name')); ?></strong>
+                                        <?php echo Form::text('CountryName', null, [
+                                            'placeholder' => __('Basic.Please Enter your Country name here!'),
+                                            'class' => 'form-control'
+                                        ]); ?>
 
+                                        
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary"><?php echo e(__('Users.Submit')); ?></button>
                                 <?php echo Form::close(); ?>
 
                             </div>

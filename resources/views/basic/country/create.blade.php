@@ -25,18 +25,22 @@
                             </div>
                         @endif
                         <div class="card">
-                            <div class="card-header">Create role
+                            <div class="card-header">{{ __('Basic.Create Country') }}
                                 <span class="float-right">
-                                    <a class="btn btn-primary" href="{{ route('roles.index') }}">Roles</a>
+                                    <a class="btn btn-primary" href="{{ route('country.index') }}">{{ __('Users.Back') }}</a>
                                 </span>
                             </div>
                             <div class="card-body">
                                 {!! Form::open(array('route' => 'country.store','method'=>'POST')) !!}
                                     <div class="form-group">
-                                        <strong>Name:</strong>
-                                        {!! Form::text('CountryName', null, array('placeholder' => 'Please enter the country Name','class' => 'form-control')) !!}
+                                        <strong>{{ __('Basic.Country Name') }}</strong>
+                                        {!! Form::text('CountryName', null, [
+                                            'placeholder' => __('Basic.Please Enter your Country name here!'),
+                                            'class' => 'form-control'
+                                        ]) !!}
+                                        
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('Users.Submit') }}</button>
                                 {!! Form::close() !!}
                             </div>
                         </div>

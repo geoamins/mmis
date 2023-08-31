@@ -7,26 +7,27 @@
             </div>
         <?php endif; ?>
         <div class="card">
-            <div class="card-header">User
+            <div class="card-header"><?php echo e(__('users.User')); ?>
+
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-create')): ?>
                     <span class="float-right">
-                        <a class="btn btn-primary" href="<?php echo e(route('users.index')); ?>">Back</a>
+                        <a class="btn btn-primary" href="<?php echo e(route('users.index')); ?>"><?php echo e(__('users.Back')); ?></a>
                     </span>
                 <?php endif; ?>
             </div>
             <div class="card-body">
                 <div class="lead">
-                    <strong>Name:</strong>
+                    <strong><?php echo e(__('users.Name')); ?>:</strong>
                     <?php echo e($user->name); ?>
 
                 </div>
                 <div class="lead">
-                    <strong>Email:</strong>
+                    <strong><?php echo e(__('users.Email')); ?>:</strong>
                     <?php echo e($user->email); ?>
 
                 </div>
                 <div class="lead">
-                    <strong>Password:</strong>
+                    <strong><?php echo e(__('users.Password')); ?>:</strong>
                     ********
                 </div>
             </div>

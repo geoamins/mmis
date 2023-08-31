@@ -12,9 +12,10 @@
             </div>
         <?php endif; ?>
         <div class="card">
-            <div class="card-header">Create user
+            <div class="card-header"><?php echo e(__('users.Create user')); ?>
+
                 <span class="float-right">
-                    <a class="btn btn-primary" href="<?php echo e(route('users.index')); ?>">Users</a>
+                    <a class="btn btn-primary" href="<?php echo e(route('users.index')); ?>"><?php echo e(__('users.Back')); ?></a>
                 </span>
             </div>
 
@@ -22,37 +23,37 @@
                 <?php echo Form::open(array('route' => 'users.store','method'=>'POST' ,'enctype'=>'Multipart/form-data')); ?>
 
                     <div class="form-group">
-                        <strong>Name:</strong>
+                        <strong><?php echo e(__('users.Name')); ?>:</strong>
                         <?php echo Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')); ?>
 
                     </div>
                     <div class="form-group">
-                        <strong>Email:</strong>
+                        <strong><?php echo e(__('users.Email')); ?>:</strong>
                         <?php echo Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')); ?>
 
                     </div>
 
                     <div class="form-group">
-                        <strong>Password:</strong>
+                        <strong><?php echo e(__('users.Password')); ?>:</strong>
                         <?php echo Form::password('password', array('placeholder' => 'Password','class' => 'form-control')); ?>
 
                     </div>
                     <div class="form-group">
-                        <strong>Confirm Password:</strong>
+                        <strong><?php echo e(__('users.Confirm Password')); ?>:</strong>
                         <?php echo Form::password('password_confirmation', array('placeholder' => 'Confirm Password','class' => 'form-control')); ?>
 
                     </div>
                     <div class="form-group">
-                        <strong>Image:</strong>
+                        <strong><?php echo e(__('users.Image')); ?>:</strong>
                         <?php echo Form::file('image', array('placeholder' => 'image','class' => 'form-control')); ?>
 
                     </div>
                     <div class="form-group">
-                        <strong>Role:</strong>
+                        <strong><?php echo e(__('users.Roles')); ?>:</strong>
                         <?php echo Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')); ?>
 
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary"><?php echo e(__('users.Submit')); ?></button>
                 <?php echo Form::close(); ?>
 
             </div>
