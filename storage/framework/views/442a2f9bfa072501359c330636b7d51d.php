@@ -38,6 +38,12 @@
             border: 1px solid black;
         }
 
+        .pic img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .right input{
             margin-top: 10px;
         }
@@ -1101,9 +1107,10 @@ unset($__errorArgs, $__bag); ?>
                     <div class="second">
                         <p>Class</p>
                         <select id="" name="ClassID">
-                            <option value="">Select Class</option>
-                            <option value="1">Class 1</option>
-                            <option value="2">Class 2</option>
+                            <option value="<?php echo e($data->ClassID); ?>"><?php echo e($data->ClassName); ?></option>
+                            <?php $__currentLoopData = $classes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $class): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($class->ClassID); ?>"><?php echo e($class->ClassName); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                         <span>
                             <?php $__errorArgs = ['ClassID'];
@@ -1122,9 +1129,10 @@ unset($__errorArgs, $__bag); ?>
                     <div class="third">
                         <p>Section</p>
                         <select id="" name="SectionID">
-                            <option value="">Select Section</option>
-                            <option value="1">A</option>
-                            <option value="2">B</option>
+                            <option value="<?php echo e($data->SectionID); ?>"><?php echo e($data->SectionName); ?></option>
+                            <?php $__currentLoopData = $sections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $section): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($section->SectionID); ?>"><?php echo e($section->SectionName); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                         <span>
                             <?php $__errorArgs = ['SectionID'];
@@ -1209,7 +1217,7 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                            <p class="text-danger"><?php echo e($message); ?></p>
+                            <p class="text-danger"><?php echo e('Additional Education is Required'); ?></p>
                             <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -1218,15 +1226,15 @@ unset($__errorArgs, $__bag); ?>
                         </span>
                     </div>
                     <div class="second">
-                        <p>Monthly Fees</p>
-                        <input type="text" name="monthlyfee">
+                        <p>Asri Education</p>
+                        <input type="text" name="AsriEdu">
                         <span>
-                            <?php $__errorArgs = ['monthlyfee'];
+                            <?php $__errorArgs = ['AsriEdu'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                            <p class="text-danger"><?php echo e($message); ?></p>
+                            <p class="text-danger"><?php echo e('Asri Education is Required'); ?></p>
                             <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -1255,8 +1263,8 @@ unset($__errorArgs, $__bag); ?>
                 </div>
                 <div class="feediscount">
                     <div class="first">
-                        <p>Fee Discount</p>
-                        <input type="text" name="feediscount">
+                        <p>Monthly Fee</p>
+                        <input type="text" name="monthlyfee">
                         <?php $__errorArgs = ['feediscount'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -1330,9 +1338,9 @@ unset($__errorArgs, $__bag); ?>
 
             <div class="right">
                 <div class="pic">
-                    <center>Picture Here</center>
+                    <img src="<?php echo e(asset('images/'.$data->Image)); ?>" alt="">
                 </div>
-                <input type="file" name="image">
+                <input type="file" name="Image">
 
             </div>
         </div>

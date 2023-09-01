@@ -11,7 +11,6 @@
         *{
             padding: 0px;
             margin: 0px;
-            /* font-family: poppins; */
         }
         .dob{
             display: flex;
@@ -25,18 +24,21 @@
         }
         .formbody .left{
             width: 80%;
-            /* background-color: aqua; */
         }
         .formbody .right{
             width: 20%;
-            /* height: 200px;
-            background-color: aliceblue; */
         }
 
         .pic{
             width: 55%;
             height: 180px;
             border: 1px solid black;
+        }
+
+        #imagePreview{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .right input{
@@ -684,7 +686,7 @@
 </head>
 
 <body>
-    <form action="<?php echo e(route('student.store')); ?>" method="POST">
+    <form action="<?php echo e(route('student.store')); ?>" method="POST" enctype="multipart/form-data">
         <?php echo csrf_field(); ?>
     <div class="form">
             <h1>
@@ -697,6 +699,7 @@
                 <div class="name">
                     <div class="first">
                         <p>Registration No</p>
+                        
                         <input type="text" name="RegistrationNo" value="<?php echo e(old('RegistrationNo')); ?>">
                             <?php $__errorArgs = ['RegistrationNo'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -893,7 +896,7 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                            <p class="text-danger"><?php echo e('Father Mobile No is requiresd'); ?></p>
+                            <p class="text-danger"><?php echo e('Father Mobile No is required'); ?></p>
                             <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -1097,8 +1100,9 @@ unset($__errorArgs, $__bag); ?>
                         <p>Class</p>
                         <select id="" name="ClassID">
                             <option value="">Select Class</option>
-                            <option value="1">New Addmission</option>
-                            <option value="2">Promotion</option>
+                            <?php $__currentLoopData = $classes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $class): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($class->ClassID); ?>"><?php echo e($class->ClassName); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                         <span>
                             <?php $__errorArgs = ['ClassID'];
@@ -1118,8 +1122,9 @@ unset($__errorArgs, $__bag); ?>
                         <p>Section</p>
                         <select id="" name="SectionID">
                             <option value="">Select Section</option>
-                            <option value="1">A</option>
-                            <option value="2">B</option>
+                            <?php $__currentLoopData = $sections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $section): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($section->SectionID); ?>"><?php echo e($section->SectionName); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                         <span>
                             <?php $__errorArgs = ['SectionID'];
@@ -1214,8 +1219,21 @@ unset($__errorArgs, $__bag); ?>
                         </span>
                     </div>
                     <div class="second">
-                        <p>Monthly Fees</p>
-                        <input type="text" name="monthlyfee">
+                        <p>Asri Education</p>
+                        <input type="text" name="AsriEdu">
+                        <span>
+                            <?php $__errorArgs = ['AsriEdu'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <p class="text-danger"><?php echo e('Asri Edu is Required'); ?></p>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+
+                        </span>
                     </div>
                     <div class="third">
                         <p>Attached brother</p>
@@ -1225,8 +1243,8 @@ unset($__errorArgs, $__bag); ?>
                 </div>
                 <div class="feediscount">
                     <div class="first">
-                        <p>Fee Discount</p>
-                        <input type="text" name="feediscount">
+                        <p>Monthly Fee</p>
+                        <input type="text" name="monthlyfee">
                     </div>
                     <div class="second">
                         <p>Total Fee</p>
@@ -1280,10 +1298,21 @@ unset($__errorArgs, $__bag); ?>
 
             <div class="right">
                 <div class="pic">
-                    <center>Picture Here</center>
+                    <img id="imagePreview" src="" alt="">
                 </div>
-                <input type="file" name="image">
-
+                <input type="file" name="Image" onchange="previewImage()" id="imageInput">
+                <span>
+                    <?php $__errorArgs = ['Image'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <p class="text-danger"><?php echo e('Image is Required'); ?></p>
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                </span>
             </div>
         </div>
     </div>
@@ -1293,20 +1322,34 @@ unset($__errorArgs, $__bag); ?>
 </html>
 
 <script>
-$(document).ready(function(){
-    $('#Country').change(function(){
-        let CountryID = $(this).val();
-        $.ajax({
-            url: '/getProvinces',
-            type: 'post',
-            data: 'CountryID='+CountryID+
-            '&_token=<?php echo e(csrf_token()); ?>'
-            success: function(result){
-                $('#Province').html(result)
+    $(document).ready(function() {
+    $('#imageInput').on('change', function() {
+        var file = $(this)[0].files[0];
+        if (file) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#imagePreview').attr('src', e.target.result);
             }
-        })
-    })
-})
+
+            reader.readAsDataURL(file);
+        }
+    });
+});
+// $(document).ready(function(){
+//     $('#Country').change(function(){
+//         let CountryID = $(this).val();
+//         $.ajax({
+//             url: '/getProvinces',
+//             type: 'post',
+//             data: 'CountryID='+CountryID+
+//             '&_token=<?php echo e(csrf_token()); ?>'
+//             success: function(result){
+//                 $('#Province').html(result)
+//             }
+//         })
+//     })
+// })
 </script>
 
 <?php $__env->stopSection(); ?>

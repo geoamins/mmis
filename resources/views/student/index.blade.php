@@ -45,6 +45,7 @@
                     </div>
                     <div class="col-md-6 text-right">
                         <a class="btn btn-primary" href="{{ route('student.create') }}">New Student</a>
+                        <a class="btn btn-primary" href="{{ route('StudentPDFReport') }}">Export PDF</a>
                     </div>
                 </div>
 

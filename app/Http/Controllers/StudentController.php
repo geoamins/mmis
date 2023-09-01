@@ -12,8 +12,8 @@ use App\Models\Session;
 use App\Models\StudentType;
 use App\Models\Classes;
 use App\Models\Sections;
-use Barryvdh\DomPDF\PDF;
 use Alert;
+use PDF;
 
 class StudentController extends Controller
 {
@@ -98,6 +98,7 @@ class StudentController extends Controller
             // 'AddlEdu' => 'required',
             // 'DOSLC' => 'required',
             // 'ReasonSLC' => 'required',
+            'Image' => 'required'
         ]);
 
         $ImageName = time().'.'.$request->Image->extension();
@@ -278,6 +279,39 @@ class StudentController extends Controller
 
         return redirect()->route('student.index')
             ->with('success', 'Student deleted successfully');
+    }
+
+    public function createPDFReport() {
+        $data = StudentMaster::leftjoin('setup_country','setup_country.CountryID','=','studentmaster.CountryID')
+        ->leftjoin('setup_province','setup_province.ProvinceID','=','studentmaster.ProvinceID')
+        ->leftjoin('setup_district','setup_district.DistrictID','=','studentmaster.DistrictID')
+        ->leftjoin('setup_department','setup_department.DeptID','=','studentmaster.DeptID')
+        ->leftjoin('setup_session','setup_session.SessionID','=','studentmaster.SessionID')
+        ->leftjoin('setup_student_type','setup_student_type.StudentTypeID','=','studentmaster.StudentTypeID')
+        ->leftjoin('setup_class','setup_class.ClassID','=','studentmaster.ClassID')
+        ->leftjoin('setup_section','setup_section.SectionID','=','studentmaster.SectionID')
+        ->get();
+
+        $pdf = PDF::loadView('student.studentdata', array('data' => $data));
+
+        return $pdf->download('StudentReport.pdf');
+    }
+
+    public function studentFormPDF(string $id) {
+        $data = StudentMaster::leftjoin('setup_country','setup_country.CountryID','=','studentmaster.CountryID')
+        ->leftjoin('setup_province','setup_province.ProvinceID','=','studentmaster.ProvinceID')
+        ->leftjoin('setup_district','setup_district.DistrictID','=','studentmaster.DistrictID')
+        ->leftjoin('setup_department','setup_department.DeptID','=','studentmaster.DeptID')
+        ->leftjoin('setup_session','setup_session.SessionID','=','studentmaster.SessionID')
+        ->leftjoin('setup_student_type','setup_student_type.StudentTypeID','=','studentmaster.StudentTypeID')
+        ->leftjoin('setup_class','setup_class.ClassID','=','studentmaster.ClassID')
+        ->leftjoin('setup_section','setup_section.SectionID','=','studentmaster.SectionID')
+        ->find($id);
+
+        $pdfname = $data->StudentName.'.pdf';
+        $pdf = PDF::loadView('student.studentformpdf', array('data' => $data));
+
+        return $pdf->download($pdfname);
     }
 
     // public function PDFgenerater(string $id){
