@@ -44,7 +44,7 @@
             <td><?php echo e($student->FatherName); ?></td>
             <td><?php echo e($student->GuardianName); ?></td>
             <td><?php echo e($student->ClassName); ?></td>
-            <td><?php echo e($student->SessionName); ?></td>
+            <td><?php echo e($student->SessionTitle); ?></td>
         </tr>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </table>

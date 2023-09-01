@@ -34,7 +34,7 @@ Route::get('/', function () {
 });
 
 Route::get('/check', function () {
-    return view('student.studentdata');
+    return view('student.studentformpdf');
 });
 
 Auth::routes();
