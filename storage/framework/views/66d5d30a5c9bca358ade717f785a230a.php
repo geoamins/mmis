@@ -1,4 +1,5 @@
 
+<?php $locale = session()->get('locale'); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>Madrasa System </title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="<?php echo e(asset('../../asset/vendors/bootstrap/dist/css/bootstrap.min.css')); ?>">
@@ -72,13 +73,13 @@
                   <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-home"></i> <?php echo e(__('sidebar.User Configuration')); ?> <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('user-list')): ?>
-                        <li><a href="<?php echo e(route('users.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Users</a></li>
+                        <li><a href="<?php echo e(route('users.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>"><?php echo e(__('users.User')); ?></a></li>
                       <?php endif; ?>
                       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-list')): ?>
-                        <li ><a href="<?php echo e(route('roles.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'roleslist' ? 'active' : '') : ''); ?>">Roles</a></li>
+                        <li ><a href="<?php echo e(route('roles.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'roleslist' ? 'active' : '') : ''); ?>"><?php echo e(__('users.Roles')); ?></a></li>
                       <?php endif; ?>
                       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('permission-list')): ?>
-                        <li><a href="<?php echo e(route('permissions.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'permissionlist' ? 'active' : '') : ''); ?>">Permissions</a></li>
+                        <li><a href="<?php echo e(route('permissions.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'permissionlist' ? 'active' : '') : ''); ?>"><?php echo e(__('sidebar.Permissions')); ?></a></li>
                       <?php endif; ?>
                     </ul>
                     <?php endif; ?>
@@ -87,28 +88,28 @@
                   <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-home"></i> <?php echo e(__('sidebar.Basic Setting')); ?> <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('country-list')): ?>
-                        <li><a href="<?php echo e(route('country.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Country Setup</a></li>
+                        <li><a href="<?php echo e(route('country.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>"><?php echo e(__('sidebar.Country Setup')); ?></a></li>
                       <?php endif; ?>
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('province-list')): ?>
-                        <li><a href="<?php echo e(route('province.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Province Setup</a></li>
+                        <li><a href="<?php echo e(route('province.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>"><?php echo e(__('sidebar.Province Setup')); ?></a></li>
                     <?php endif; ?>
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('district-list')): ?>
-                        <li><a href="<?php echo e(route('district.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">District Setup</a></li>
+                        <li><a href="<?php echo e(route('district.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>"><?php echo e(__('sidebar.District Setup')); ?></a></li>
                     <?php endif; ?>
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('department-list')): ?>
-                        <li><a href="<?php echo e(route('department.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Department Setup</a></li>
+                        <li><a href="<?php echo e(route('department.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>"><?php echo e(__('sidebar.Department Setup')); ?></a></li>
                     <?php endif; ?>
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('session-list')): ?>
-                        <li><a href="<?php echo e(route('session.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Sessions Setup</a></li>
+                        <li><a href="<?php echo e(route('session.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>"><?php echo e(__('sidebar.Sessions Setup')); ?></a></li>
                     <?php endif; ?>
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('student-type-list')): ?>
-                        <li><a href="<?php echo e(route('studenttype.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Student Type Setup</a></li>
+                        <li><a href="<?php echo e(route('studenttype.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>"><?php echo e(__('sidebar.Student Type Setup')); ?></a></li>
                     <?php endif; ?>
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('class-list')): ?>
-                        <li><a href="<?php echo e(route('class.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Classes Setup</a></li>
+                        <li><a href="<?php echo e(route('class.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>"><?php echo e(__('sidebar.Classes Setup')); ?></a></li>
                     <?php endif; ?>
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('student-type-list')): ?>
-                        <li><a href="<?php echo e(route('section.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Sections Setup</a></li>
+                        <li><a href="<?php echo e(route('section.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>"><?php echo e(__('sidebar.Sections Setup')); ?></a></li>
                     <?php endif; ?>
                     </ul>
                   </li>
@@ -117,10 +118,10 @@
                   <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-home"></i> <?php echo e(__('sidebar.Student Record')); ?> <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('basic-list')): ?>
-                        <li><a href="<?php echo e(route('student.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Student Registration</a></li>
+                        <li><a href="<?php echo e(route('student.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>"><?php echo e(__('sidebar.Student Registration')); ?></a></li>
                       <?php endif; ?>
                       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('section-list')): ?>
-                        <li><a href="<?php echo e(route('student.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Generate Cards</a></li>
+                        <li><a href="<?php echo e(route('student.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>"><?php echo e(__('sidebar.Generate Cards')); ?></a></li>
                       <?php endif; ?>
                     </ul>
                     <?php endif; ?>
@@ -201,10 +202,21 @@
                   </li>
 
                   <li role="presentation" class="nav-item dropdown open">
-                    <select class="form-control Langchange">
-                        <option value="en" <?php echo e(session()->get('locale') == 'en' ? 'selected' : ''); ?>>English</option>
-                        <option value="ur" <?php echo e(session()->get('locale') == 'ur' ? 'selected' : ''); ?>>Urdu</option>
-                    </select>
+                    
+                    <?php switch($locale):
+                        case ('en'): ?>
+                            <a class="dropdown-item" href="lang/ur">Urdu</a>
+                        <?php break; ?>
+                        <?php case ('ur'): ?>
+                            <a class="dropdown-item" href="lang/en">English</a>
+                        <?php break; ?>
+                        <?php default: ?>
+                            <a class="dropdown-item" href="lang/en">English</a>
+                    <?php endswitch; ?>
+                    <div>
+
+
+                    </div>
                   </li>
                 </ul>
               </nav>
@@ -300,10 +312,7 @@
         })
     </script>
     <script type="text/javascript">
-        var url = "<?php echo e(route('LangChange')); ?>";
-        $(".Langchange").change(function(){
-            window.location.href = url + "?lang="+ $(this).val();
-        });
+        
     </script>
   </body>
 </html>

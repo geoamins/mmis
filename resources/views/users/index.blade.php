@@ -1,3 +1,5 @@
+@php $locale = session()->get('locale'); @endphp
+
 @extends('admin.adminmain', [
     'menu' => 'userconfiguration',
     'sub_menu' => 'userlist'

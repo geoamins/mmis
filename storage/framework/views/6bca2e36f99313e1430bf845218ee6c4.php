@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Rizwan Sarwar | School Management System</title>
+  <title>Madrasa Systems</title>
 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
@@ -91,7 +91,7 @@
       <section class="login_content">
         <form method="POST" action="<?php echo e(route('login')); ?>">
           <?php echo csrf_field(); ?>
-          <h1>Welcome to School Management System</h1>
+          <h1>اسلامی مدرسہ کا نظام<br>Islamic Madrasa System</h1>
           <div class="form-group">
             <label for="email" class="form-label">Email</label>
             <input id="email" type="email" class="form-control <?php $__errorArgs = ['email'];
@@ -142,6 +142,7 @@ unset($__errorArgs, $__bag); ?>
             <button type="submit" class="btn btn-login">Log in</button>
           </div>
         </form>
+        <center><a href="https://bsoft.pk">Bridge Soft Technologies</a></center>
       </section>
     </div>
   </div>
