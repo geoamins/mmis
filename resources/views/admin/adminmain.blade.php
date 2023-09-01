@@ -1,4 +1,5 @@
 
+@php $locale = session()->get('locale'); @endphp
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>Madrasa System </title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{asset('../../asset/vendors/bootstrap/dist/css/bootstrap.min.css')}}">
@@ -203,10 +204,24 @@
                   </li>
 
                   <li role="presentation" class="nav-item dropdown open">
-                    <select class="form-control Langchange">
+                    {{--  <select class="form-control Langchange">
                         <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>English</option>
                         <option value="ur" {{ session()->get('locale') == 'ur' ? 'selected' : '' }}>Urdu</option>
-                    </select>
+                    </select>  --}}
+                    @switch($locale)
+                        @case('en')
+                            <a class="dropdown-item" href="lang/ur">Urdu</a>
+                        @break
+                        @case('ur')
+                            <a class="dropdown-item" href="lang/en">English</a>
+                        @break
+                        @default
+                            <a class="dropdown-item" href="lang/en">English</a>
+                    @endswitch
+                    <div>
+
+
+                    </div>
                   </li>
                 </ul>
               </nav>
@@ -302,10 +317,10 @@
         })
     </script>
     <script type="text/javascript">
-        var url = "{{ route('LangChange') }}";
+        {{--  var url = "{{ route('LangChange') }}";
         $(".Langchange").change(function(){
             window.location.href = url + "?lang="+ $(this).val();
-        });
+        });  --}}
     </script>
   </body>
 </html>
