@@ -11,24 +11,24 @@
             </div>
         @endif
         <div class="card">
-            <div class="card-header">User
+            <div class="card-header">{{ __('users.User') }}
                 @can('role-create')
                     <span class="float-right">
-                        <a class="btn btn-primary" href="{{ route('users.index') }}">Back</a>
+                        <a class="btn btn-primary" href="{{ route('users.index') }}">{{ __('users.Back') }}</a>
                     </span>
                 @endcan
             </div>
             <div class="card-body">
                 <div class="lead">
-                    <strong>Name:</strong>
+                    <strong>{{ __('users.Name') }}:</strong>
                     {{ $user->name }}
                 </div>
                 <div class="lead">
-                    <strong>Email:</strong>
+                    <strong>{{ __('users.Email') }}:</strong>
                     {{ $user->email }}
                 </div>
                 <div class="lead">
-                    <strong>Password:</strong>
+                    <strong>{{ __('users.Password') }}:</strong>
                     ********
                 </div>
             </div>

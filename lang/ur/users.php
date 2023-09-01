@@ -20,11 +20,13 @@ return [
     'Image' => 'تصویر',
     'Action' => 'کارروائی',
     'New User' => 'نیا صارف',
+    'Create User' => 'صارف بنائیں',
     'Users list' => ' صارفین کی فہرست',
     'Search' => 'تلاش کریں۔',
     'Search by name' => 'نام سے تلاش کریں۔',
     'Show' => 'دکھائیں۔',
     'Edit' => 'ترمیم',
+    'Edit User' => 'صارف میں ترمیم کریں۔',
     'Delete' => 'حذف کریں',
     'User' => ' صارف',
     'Password' => 'پاسورڈ',
@@ -38,6 +40,7 @@ return [
     'Edit permission' => 'اجازت میں ترمیم کریں۔',
     'Province Name' => 'صوبے کا نام',
     'Add Province' => ' صوبہ شامل کریں۔ ',
+    'Back' => ' واپس جاو ',
     
 
    

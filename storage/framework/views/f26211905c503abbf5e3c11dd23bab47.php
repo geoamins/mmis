@@ -6,33 +6,35 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title"><?php echo e(__('admin.user-list')); ?></h3>
+            <h3 class="card-title"><?php echo e(__('users.Users list')); ?>
+
+            </h3>
         </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <form action="<?php echo e(route('users.index')); ?>" method="GET" class="form-inline">
                         <div class="input-group">
-                            <input type="text" name="name" class="form-control" placeholder="Search by name">
+                            <input type="text" name="name" class="form-control" placeholder="<?php echo e(__('users.Search by name')); ?>">
                             <div class="input-group-btn">
-                                <button class="btn btn-primary" type="submit">Search</button>
+                                <button class="btn btn-primary" type="submit"><?php echo e(__('users.Search')); ?></button>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="col-md-6 text-right">
-                    <a class="btn btn-primary" href="<?php echo e(route('users.create')); ?>">New User</a>
+                    <a class="btn btn-primary" href="<?php echo e(route('users.create')); ?>"><?php echo e(__('users.New User')); ?></a>
                 </div>
             </div>
             <table class="table table-bordered">
                 <thead class="thead-dark">
                     <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Roles</th>
-                        <th>Image</th>
-                        <th width="280px">Action</th>
+                        <th><?php echo e(__('users.#')); ?></th>
+                        <th><?php echo e(__('users.Name')); ?></th>
+                        <th><?php echo e(__('users.Email')); ?></th>
+                        <th><?php echo e(__('users.Roles')); ?></th>
+                        <th><?php echo e(__('users.Image')); ?></th>
+                        <th width="280px"><?php echo e(__('users.Action')); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,15 +54,15 @@
                                 <img width="50" src="<?php echo e(asset('images/' . $user->image)); ?>" />
                             </td>
                             <td>
-                                <a class="btn btn-success" href="<?php echo e(route('users.show',$user->id)); ?>">Show</a>
+                                <a class="btn btn-success" href="<?php echo e(route('users.show',$user->id)); ?>"><?php echo e(__('users.Show')); ?></a>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('user-edit')): ?>
-                                    <a class="btn btn-primary" href="<?php echo e(route('users.edit',$user->id)); ?>">Edit</a>
+                                    <a class="btn btn-primary" href="<?php echo e(route('users.edit',$user->id)); ?>"><?php echo e(__('users.Edit')); ?></a>
                                 <?php endif; ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('user-delete')): ?>
                                     <?php echo Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']); ?>
 
                                     <input name="_method" type="hidden" value="DELETE">
-                                    <button type="submit" class="btn btn-danger del-roles" data-toggle="tooltip" title='Delete'>Delete</button>
+                                    <button type="submit" class="btn btn-danger del-roles" data-toggle="tooltip" title='Delete'><?php echo e(__('users.Edit')); ?></button>
                                     <?php echo Form::close(); ?>
 
                                 <?php endif; ?>

@@ -20,10 +20,17 @@
         .profile .left{
             text-align: center;
             width: 10%;
-            height: 120px;
-            border: 1px solid black;
+            height: 135px;
+            /* border: 1px solid black; */
             margin: 20px;
         }
+        .left img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
         .profile .right{
             display: flex;
             width: 100%;
@@ -141,7 +148,7 @@
         <hr>
         <div class="profile">
             <div class="left">
-                <p>Profile Pic</p>
+                <img src="<?php echo e(asset('images/'.$data->Image)); ?>" alt="">
             </div>
             <div class="right">
                 <div class="rleft">
@@ -199,7 +206,7 @@
                     <h5>Hijri Year</h5>
                     <p><?php echo e($data->HijriYear); ?></p>
                     <h5>Class</h5>
-                    <p><?php echo e($data->ClassID); ?></p>
+                    <p><?php echo e($data->ClassName); ?></p>
                     <h5>Previous Madrasa</h5>
                     <p><?php echo e($data->PreviousMadrasa); ?></p>
                     <h5>Asri Education</h5>
@@ -217,7 +224,7 @@
                     <h5>Student Type</h5>
                     <p><?php echo e($data->StudentType); ?></p>
                     <h5>Section</h5>
-                    <p><?php echo e($data->SectionID); ?></p>
+                    <p><?php echo e($data->SectionName); ?></p>
                     <h5>Islamic Education</h5>
                     <p><?php echo e($data->IslamicEdu); ?></p>
                     <h5>Addition Education</h5>

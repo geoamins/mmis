@@ -30,6 +30,7 @@
                     </div>
                     <div class="col-md-6 text-right">
                         <a class="btn btn-primary" href="<?php echo e(route('student.create')); ?>">New Student</a>
+                        <a class="btn btn-primary" href="<?php echo e(route('StudentPDFReport')); ?>">Export PDF</a>
                     </div>
                 </div>
 

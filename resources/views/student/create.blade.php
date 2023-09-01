@@ -15,7 +15,6 @@
         *{
             padding: 0px;
             margin: 0px;
-            /* font-family: poppins; */
         }
         .dob{
             display: flex;
@@ -29,18 +28,21 @@
         }
         .formbody .left{
             width: 80%;
-            /* background-color: aqua; */
         }
         .formbody .right{
             width: 20%;
-            /* height: 200px;
-            background-color: aliceblue; */
         }
 
         .pic{
             width: 55%;
             height: 180px;
             border: 1px solid black;
+        }
+
+        #imagePreview{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .right input{
@@ -1099,10 +1101,14 @@
 
             <div class="right">
                 <div class="pic">
-                    <center>Picture Here</center>
+                    <img id="imagePreview" src="" alt="">
                 </div>
-                <input type="file" name="Image">
-
+                <input type="file" name="Image" onchange="previewImage()" id="imageInput">
+                <span>
+                    @error('Image')
+                    <p class="text-danger">{{'Image is Required'}}</p>
+                    @enderror
+                </span>
             </div>
         </div>
     </div>
@@ -1112,20 +1118,34 @@
 </html>
 
 <script>
-$(document).ready(function(){
-    $('#Country').change(function(){
-        let CountryID = $(this).val();
-        $.ajax({
-            url: '/getProvinces',
-            type: 'post',
-            data: 'CountryID='+CountryID+
-            '&_token={{csrf_token()}}'
-            success: function(result){
-                $('#Province').html(result)
+    $(document).ready(function() {
+    $('#imageInput').on('change', function() {
+        var file = $(this)[0].files[0];
+        if (file) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#imagePreview').attr('src', e.target.result);
             }
-        })
-    })
-})
+
+            reader.readAsDataURL(file);
+        }
+    });
+});
+// $(document).ready(function(){
+//     $('#Country').change(function(){
+//         let CountryID = $(this).val();
+//         $.ajax({
+//             url: '/getProvinces',
+//             type: 'post',
+//             data: 'CountryID='+CountryID+
+//             '&_token={{csrf_token()}}'
+//             success: function(result){
+//                 $('#Province').html(result)
+//             }
+//         })
+//     })
+// })
 </script>
 
 @endsection

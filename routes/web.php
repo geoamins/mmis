@@ -35,6 +35,10 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/check', function () {
+    return view('student.studentdata');
+});
+
 Auth::routes();
 Route::get('/dashboard', [dashboard::class, 'dashboard'])->name('dashboard')->middleware(['auth', 'verified']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -51,6 +55,8 @@ Route::resource('class',ClassesController::class);
 Route::resource('section',SectionsController::class);
 
 Route::resource('student',StudentController::class);
+Route::get('/studentdata', [StudentController::class, 'createPDFReport'])->name('StudentPDFReport');
+Route::get('/studentform/{id}', [StudentController::class, 'studentFormPDF']);
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);

@@ -15,7 +15,7 @@ return [
 
     'Add Country' => 'ملک شامل کریں۔',
     'Create Country' => 'ملک بنائیں',
-    'Please Enter your Country name here!' => 'براہ کرم یہاں اپنے ملک کا نام درج کریں!',
+    'Please Enter your Country name here!' => 'براہ کرم یہاں اپنے ملک کا نام درج کریں',
     'Country Name' => 'ملک کا نام',
     'Country List' => 'ممالک کی فہرست',
     'go!' => 'تلاش کریں',
