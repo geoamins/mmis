@@ -15,21 +15,22 @@
             </div>
         <?php endif; ?>
         <div class="card">
-            <div class="card-header">Edit role
+            <div class="card-header"><?php echo e(__('Users.Edit Role')); ?>
+
                 <span class="float-right">
-                    <a class="btn btn-primary" href="<?php echo e(route('roles.index')); ?>">back</a>
+                    <a class="btn btn-primary" href="<?php echo e(route('roles.index')); ?>"><?php echo e(__('Users.Back')); ?></a>
                 </span>
             </div>
             <div class="card-body">
                 <?php echo Form::model($role, ['route' => ['roles.update', $role->id],'method' => 'PATCH']); ?>
 
                     <div class="form-group">
-                        <strong>Name:</strong>
+                        <strong><?php echo e(__('Users.Name')); ?>:</strong>
                         <?php echo Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')); ?>
 
                     </div>
                     <div class="form-group">
-                        <strong>Permission:</strong>
+                        <strong><?php echo e(__('Users.permissions')); ?>:</strong>
                         <br/>
                         <?php $__currentLoopData = $permission; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <label><?php echo e(Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, array('class' => 'name'))); ?>
@@ -38,7 +39,7 @@
                         <br/>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary"><?php echo e(__('Users.Submit')); ?></button>
                 <?php echo Form::close(); ?>
 
             </div>

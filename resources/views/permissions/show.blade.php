@@ -42,14 +42,14 @@
         <!-- general form elements -->
         <div class="card card-primary">
           <div class="card-header with-border">
-            <h3 class="card-title">Show permissions</h3>
+            <h3 class="card-title">{{ __('Users.Show Permission') }}</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
           <form role="form">
             <div class="card-body">
               <div class="form-group">
-                <label for="Name">Name :</label>
+                <label for="Name">{{ __('Users.Name') }} :</label>
                 {{ $permission->name }}
               </div>
             </div>

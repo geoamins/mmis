@@ -21,23 +21,24 @@
                             </div>
                         <?php endif; ?>
                         <div class="card">
-                            <div class="card-header">Create Section
+                            <div class="card-header"><?php echo e(__('Basic.Create Section')); ?>
+
                                 
                             </div>
                             <div class="card-body">
                                 <?php echo Form::open(array('route' => 'section.store','method'=>'POST')); ?>
 
                                     <div class="form-group">
-                                        <strong>Section Name:</strong>
-                                        <?php echo Form::text('SectionName', null, array('placeholder' => 'Enter Section Name','class' => 'form-control')); ?>
+                                        <strong><?php echo e(__('Basic.Section Name')); ?>:</strong>
+                                        <?php echo Form::text('SectionName', null, array('placeholder' => __('Basic.Enter Section name here!') ,'class' => 'form-control')); ?>
 
                                     </div>
                                     <div class="form-group">
 
 
-											<label class="control-label col-md-3 col-sm-3 ">Select Country</label>
+											<label class="control-label col-md-3 col-sm-3 "><?php echo e(__('Basic.Country Name')); ?></label>
                                             <select name="ClassID" class="form-control">
-                                                <option>Choose option</option>
+                                                <option><?php echo e(__('Basic.Chooses Option')); ?></option>
                                                 <?php $__currentLoopData = $classes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $class): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                                                         <option value="<?php echo e($class->ClassID); ?>"><?php echo e($class->ClassName); ?></option>
@@ -48,7 +49,7 @@
 
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary"><?php echo e(__('Users.Submit')); ?></button>
                                 <?php echo Form::close(); ?>
 
                             </div>

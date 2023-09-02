@@ -27,18 +27,22 @@ return [
     'Show' => 'Show',
     'Edit' => 'Edit',
     'Edit User' => 'Edit User',
+    'Edit Role' => 'Edit Role',
     'Delete' => 'Delete',
     'User' => 'User',
     'Back' => 'Back',
     'Password' => 'Password',
     'Confirm Password' => 'Confirm Password',
     'super' => 'super',
-    'Create user' => 'Create user',
+    'Create Role' => 'Create Role',
     'Submit' => 'Submit',
     'New Role' => 'New Role',
     'Friendly Title' => 'Friendly Title',
     'New Permission' => 'New Permission',
+    'Show Permission' => 'Show Permission',
     'Edit permission' => 'Edit permission',
+    'Create Permission' => 'Create Permission',
+    'permissions' => 'permissions',
     
 
 

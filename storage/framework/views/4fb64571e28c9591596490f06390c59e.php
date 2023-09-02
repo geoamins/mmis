@@ -11,21 +11,22 @@
             </div>
         <?php endif; ?>
         <div class="card">
-            <div class="card-header">Role
+            <div class="card-header"><?php echo e(__('Users.Roles')); ?>
+
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-create')): ?>
                     <span class="float-right">
-                        <a class="btn btn-primary" href="<?php echo e(route('roles.index')); ?>">Back</a>
+                        <a class="btn btn-primary" href="<?php echo e(route('roles.index')); ?>"><?php echo e(__('Users.Back')); ?></a>
                     </span>
                 <?php endif; ?>
             </div>
             <div class="card-body">
                 <div class="lead">
-                    <strong>Name:</strong>
+                    <strong><?php echo e(__('Users.Name')); ?>:</strong>
                     <?php echo e($role->name); ?>
 
                 </div>
                 <div class="lead">
-                    <strong>Permissions:</strong>
+                    <strong><?php echo e(__('Users.permissions')); ?>:</strong>
                     <?php if(!empty($rolePermissions)): ?>
                         <?php $__currentLoopData = $rolePermissions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $permission): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <label class="badge badge-success"><?php echo e($permission->name); ?></label>

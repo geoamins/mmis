@@ -1,4 +1,5 @@
 
+<?php $locale = session()->get('locale'); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>Madrasa System </title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="<?php echo e(asset('../../asset/vendors/bootstrap/dist/css/bootstrap.min.css')); ?>">
@@ -201,10 +202,21 @@
                   </li>
 
                   <li role="presentation" class="nav-item dropdown open">
-                    <select class="form-control Langchange">
-                        <option value="en" <?php echo e(session()->get('locale') == 'en' ? 'selected' : ''); ?>>English</option>
-                        <option value="ur" <?php echo e(session()->get('locale') == 'ur' ? 'selected' : ''); ?>>Urdu</option>
-                    </select>
+                    
+                    <?php switch($locale):
+                        case ('en'): ?>
+                            <a class="dropdown-item" href="lang/ur">Urdu</a>
+                        <?php break; ?>
+                        <?php case ('ur'): ?>
+                            <a class="dropdown-item" href="lang/en">English</a>
+                        <?php break; ?>
+                        <?php default: ?>
+                            <a class="dropdown-item" href="lang/en">English</a>
+                    <?php endswitch; ?>
+                    <div>
+
+
+                    </div>
                   </li>
                 </ul>
               </nav>
@@ -300,10 +312,7 @@
         })
     </script>
     <script type="text/javascript">
-        var url = "<?php echo e(route('LangChange')); ?>";
-        $(".Langchange").change(function(){
-            window.location.href = url + "?lang="+ $(this).val();
-        });
+        
     </script>
   </body>
 </html>

@@ -21,23 +21,30 @@
                             </div>
                         <?php endif; ?>
                         <div class="card">
-                            <div class="card-header"><?php echo e(__('Basic.Create Student Type')); ?>
+                            <div class="card-header"><?php echo e(__('Users.Create Role')); ?>
 
-                                
+                                <span class="float-right">
+                                    <a class="btn btn-primary" href="<?php echo e(route('roles.index')); ?>"><?php echo e(__('Users.Back')); ?></a>
+                                </span>
                             </div>
                             <div class="card-body">
-                                <?php echo Form::open(array('route' => 'studenttype.store','method'=>'POST')); ?>
+                                <?php echo Form::open(array('route' => 'roles.store','method'=>'POST')); ?>
 
                                     <div class="form-group">
-                                        <strong><?php echo e(__('Basic.Student Type')); ?>:</strong>
-                                        <?php echo Form::text('StudentType', null, array('placeholder' => __('Basic.Enter Student Type Here!') ,'class' => 'form-control')); ?>
+                                        <strong><?php echo e(__('Users.Name')); ?>:</strong>
+                                        <?php echo Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')); ?>
 
                                     </div>
                                     <div class="form-group">
+                                        <strong><?php echo e(__('Users.permissions')); ?>:</strong>
+                                        <br/>
+                                        <?php $__currentLoopData = $permission; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <label><?php echo e(Form::checkbox('permission[]', $value->id, false, array('class' => 'name'))); ?>
 
-
+                                            <?php echo e($value->name); ?></label>
+                                        <br/>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </div>
-
                                     <button type="submit" class="btn btn-primary"><?php echo e(__('Users.Submit')); ?></button>
                                 <?php echo Form::close(); ?>
 
@@ -53,4 +60,4 @@
 <?php echo $__env->make('admin.adminmain', [
     'menu' => 'userconfiguration',
     'sub_menu' => 'roleslist'
-], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\mmis\resources\views/basic/studenttype/create.blade.php ENDPATH**/ ?>
+], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\mmis\resources\views/roles/create.blade.php ENDPATH**/ ?>
