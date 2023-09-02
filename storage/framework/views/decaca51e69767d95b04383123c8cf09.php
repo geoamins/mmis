@@ -66,7 +66,6 @@
             border-radius: 4px
         }
         .personal{
-            width: 100%;
             height: 20px;
             background-color: green;
             color: white;
@@ -156,7 +155,7 @@
             justify-content: space-between;
             height: 40px;
             width: 100%;
-            margin-top: 50px;
+            margin-top: 70px;
         }
         .signature .left{
             display: flex;
@@ -170,9 +169,20 @@
             height: 20px;
             border-top: 1px solid green;
         }
+
+        .main{
+            display: flex;
+        }
+
+        .btn button{
+            margin-left: 20px;
+        }
     </style>
 </head>
 <body>
+    <div class="main">
+
+
         <div class="form">
             <div class="header">
                 <div class="logo">
@@ -184,7 +194,7 @@
                     <p>Affiliated With: Village Post office Yarhussain Swabi Kpk</p>
                 </div>
                 <div class="img">
-                    <img src="<?php echo e(asset('images/1693533814.jpg')); ?>" alt="">
+                    <img src="<?php echo e(asset('images/'.$data->Image)); ?>" alt="">
                 </div>
             </div>
             <div class="admissionformtitle">
@@ -201,7 +211,7 @@
                         <p>Registration No</p>
                     </div>
                     <div class="data">
-                        <p>26000</p>
+                        <p><?php echo e($data->RegistrationNo); ?></p>
                     </div>
                 </div>
                 <div class="right">
@@ -209,7 +219,7 @@
                         <p>Full Name</p>
                     </div>
                     <div class="data">
-                        <p>Rizwan Sarwar</p>
+                        <p><?php echo e($data->StudentName); ?></p>
                     </div>
                 </div>
 
@@ -220,7 +230,7 @@
                         <p>CNIC</p>
                     </div>
                     <div class="data">
-                        <p>26000</p>
+                        <p><?php echo e($data->SCNIC); ?></p>
                     </div>
                 </div>
                 <div class="right">
@@ -228,7 +238,7 @@
                         <p>Date of Birth</p>
                     </div>
                     <div class="data">
-                        <p>Rizwan Sarwar</p>
+                        <p><?php echo e($data->DOB); ?></p>
                     </div>
                 </div>
 
@@ -239,7 +249,7 @@
                         <p>Gender</p>
                     </div>
                     <div class="data">
-                        <p>26000</p>
+                        <p><?php echo e($data->GenderID); ?></p>
                     </div>
                 </div>
                 <div class="right">
@@ -247,7 +257,7 @@
                         <p>Father Name</p>
                     </div>
                     <div class="data">
-                        <p>Rizwan Sarwar</p>
+                        <p><?php echo e($data->FatherName); ?></p>
                     </div>
                 </div>
 
@@ -259,7 +269,7 @@
                         <p>Father CNIC</p>
                     </div>
                     <div class="data">
-                        <p>26000</p>
+                        <p><?php echo e($data->FCNIC); ?></p>
                     </div>
                 </div>
                 <div class="right">
@@ -267,7 +277,7 @@
                         <p>Father Mobile</p>
                     </div>
                     <div class="data">
-                        <p>Rizwan Sarwar</p>
+                        <p><?php echo e($data->FMobile); ?></p>
                     </div>
                 </div>
 
@@ -278,7 +288,7 @@
                         <p>District</p>
                     </div>
                     <div class="data">
-                        <p>26000</p>
+                        <p><?php echo e($data->DistrictID); ?></p>
                     </div>
                 </div>
                 <div class="right">
@@ -286,7 +296,7 @@
                         <p>Province</p>
                     </div>
                     <div class="data">
-                        <p>Rizwan Sarwar</p>
+                        <p><?php echo e($data->ProvinceID); ?></p>
                     </div>
                 </div>
 
@@ -297,7 +307,7 @@
                         <p>Country</p>
                     </div>
                     <div class="data">
-                        <p>26000</p>
+                        <p><?php echo e($data->CountryID); ?></p>
                     </div>
                 </div>
 
@@ -309,7 +319,7 @@
                         <p>Present Address</p>
                     </div>
                     <div class="data">
-                        <p>26000</p>
+                        <p><?php echo e($data->CurrentAddress); ?></p>
                     </div>
                 </div>
 
@@ -320,7 +330,7 @@
                         <p>Permanent Address</p>
                     </div>
                     <div class="data">
-                        <p>26000</p>
+                        <p><?php echo e($data->PermanentAddress); ?></p>
                     </div>
                 </div>
 
@@ -334,7 +344,7 @@
                         <p>Admission Session</p>
                     </div>
                     <div class="data">
-                        <p>26000</p>
+                        <p><?php echo e($data->SessionTitle); ?></p>
                     </div>
                 </div>
                 <div class="right">
@@ -342,7 +352,7 @@
                         <p>Admission Date</p>
                     </div>
                     <div class="data">
-                        <p>Rizwan Sarwar</p>
+                        <p><?php echo e($data->AdmissionDate); ?></p>
                     </div>
                 </div>
 
@@ -353,7 +363,7 @@
                         <p>Previous Madrasa</p>
                     </div>
                     <div class="data">
-                        <p>26000</p>
+                        <p><?php echo e($data->PreviousMadrasa); ?></p>
                     </div>
                 </div>
                 <div class="right">
@@ -361,7 +371,7 @@
                         <p>Islamic Education</p>
                     </div>
                     <div class="data">
-                        <p>Rizwan Sarwar</p>
+                        <p><?php echo e($data->IslamicEdu); ?></p>
                     </div>
                 </div>
 
@@ -373,7 +383,7 @@
                         <p>Asri Education</p>
                     </div>
                     <div class="data">
-                        <p>26000</p>
+                        <p><?php echo e($data->AsriEdu); ?></p>
                     </div>
                 </div>
                 <div class="right">
@@ -381,7 +391,7 @@
                         <p>Additional Education</p>
                     </div>
                     <div class="data">
-                        <p>Rizwan Sarwar</p>
+                        <p><?php echo e($data->AddlEdu); ?></p>
                     </div>
                 </div>
 
@@ -405,7 +415,7 @@
                         <p>Guardian Name</p>
                     </div>
                     <div class="data">
-                        <p>26000</p>
+                        <p><?php echo e($data->GuardianName); ?></p>
                     </div>
                 </div>
                 <div class="right">
@@ -413,7 +423,7 @@
                         <p>Relation</p>
                     </div>
                     <div class="data">
-                        <p>Rizwan Sarwar</p>
+                        <p><?php echo e($data->GuardianRelation); ?></p>
                     </div>
                 </div>
 
@@ -477,7 +487,7 @@
                         <p>Struckoff Date</p>
                     </div>
                     <div class="data">
-                        <p>26000</p>
+                        <p><?php echo e($data->DOSLC); ?></p>
                     </div>
                 </div>
                 <div class="right">
@@ -485,7 +495,7 @@
                         <p>Struckoff Reason</p>
                     </div>
                     <div class="data">
-                        <p>Rizwan Sarwar</p>
+                        <p><?php echo e($data->ReasonSLC); ?></p>
                     </div>
                 </div>
 
@@ -502,6 +512,7 @@
             </div>
 
         </div>
+    </div>
 
 </body>
 <script>

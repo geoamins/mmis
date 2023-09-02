@@ -1,3 +1,6 @@
+<?php $locale = session()->get('locale'); ?>
+
+
 <?php $__env->startSection('contents'); ?>
 <section class="content-header">
     

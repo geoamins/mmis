@@ -25,7 +25,7 @@
 </head>
 <body>
     <center><h3>Mardrasa Anwar Ul Quran</h3></center>
-    <p>Student Details: All Class</p>
+    <p>Student Details: All Classes</p>
     <table class="tb">
         <tr>
             <th>Reg No</th>

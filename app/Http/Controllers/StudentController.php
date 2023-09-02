@@ -326,10 +326,10 @@ class StudentController extends Controller
         ->leftjoin('setup_section','setup_section.SectionID','=','studentmaster.SectionID')
         ->find($id);
 
-        $pdfname = $data->StudentName.'.pdf';
-        $pdf = PDF::loadView('student.studentformpdf', array('data' => $data));
+        // $pdfname = $data->StudentName.'.pdf';
+        // $pdf = PDF::loadView('student.studentformpdf', array('data' => $data));
 
-        return $pdf->download($pdfname);
+        return view('student.studentformpdf',compact('data'));
     }
 
     // public function PDFgenerater(string $id){
