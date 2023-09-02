@@ -16,6 +16,8 @@ return [
     'Add Country' => 'ملک شامل کریں۔',
     'Create Country' => 'ملک بنائیں',
     'Please Enter your Country name here!' => 'براہ کرم یہاں اپنے ملک کا نام درج کریں',
+    'Please Enter your Province name here!' => 'براہ کرم یہاں اپنے صوبے کا نام درج کریں',
+    'Please Enter your District name here!' => 'براہ کرم یہاں اپنے ضلع کا نام درج کریں',
     'Country Name' => 'ملک کا نام',
     'Country List' => 'ممالک کی فہرست',
     'go!' => 'تلاش کریں',
@@ -41,7 +43,7 @@ return [
     'Session Title' => '  سیشن کا عنوان  ',
     'Add Session' => '   سیشن شامل کریں۔',
     'Create Session' => 'سیشن بنائیں',
-    'Enter Session Name Here!' => ' یہاں سیشن کا نام درج کریں!',
+    'Enter Session Name Here!' => ' یہاں سیشن کا نام درج کریں',
     'Edit Session' => ' سیشن میں ترمیم کریں۔',
     'Student Type List' => ' طالب علم کی قسم کی فہرست',
     'Student Type' => 'طالب علم کی قسم',
@@ -61,6 +63,8 @@ return [
     'Create Section' => ' سیکشن بنائیں',
     'Enter Section name here!' => ' سیکشن کا نام یہاں درج کریں',
     'Edit Section' => ' سیکشن میں ترمیم کریں۔',
+    'Choose Option' => 'اختیار کا انتخاب کریں',
+    'Chooses Option' => '  انتخاب کریں',
 
 ];
 

@@ -25,7 +25,7 @@
                             </div>
                         @endif
                         <div class="card">
-                            <div class="card-header">Create Section
+                            <div class="card-header">{{ __('Basic.Create Section') }}
                                 {{--  <span class="float-right">
                                     <a class="btn btn-primary" href="{{ route('roles.index') }}">Province</a>
                                 </span>  --}}
@@ -33,15 +33,15 @@
                             <div class="card-body">
                                 {!! Form::open(array('route' => 'section.store','method'=>'POST')) !!}
                                     <div class="form-group">
-                                        <strong>Section Name:</strong>
-                                        {!! Form::text('SectionName', null, array('placeholder' => 'Enter Section Name','class' => 'form-control')) !!}
+                                        <strong>{{ __('Basic.Section Name') }}:</strong>
+                                        {!! Form::text('SectionName', null, array('placeholder' => __('Basic.Enter Section name here!') ,'class' => 'form-control')) !!}
                                     </div>
                                     <div class="form-group">
 
 
-											<label class="control-label col-md-3 col-sm-3 ">Select Country</label>
+											<label class="control-label col-md-3 col-sm-3 ">{{ __('Basic.Country Name') }}</label>
                                             <select name="ClassID" class="form-control">
-                                                <option>Choose option</option>
+                                                <option>{{ __('Basic.Chooses Option') }}</option>
                                                 @foreach ($classes as $class)
 
                                                         <option value="{{ $class->ClassID }}">{{ $class->ClassName }}</option>
@@ -52,7 +52,7 @@
 
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('Users.Submit') }}</button>
                                 {!! Form::close() !!}
                             </div>
                         </div>

@@ -25,7 +25,7 @@
 </head>
 <body>
     <center><h3>Mardrasa Anwar Ul Quran</h3></center>
-    <p>Student Details: All Class</p>
+    <p>Student Details: All Classes</p>
     <table class="tb">
         <tr>
             <th>Reg No</th>
@@ -44,7 +44,7 @@
             <td><?php echo e($student->FatherName); ?></td>
             <td><?php echo e($student->GuardianName); ?></td>
             <td><?php echo e($student->ClassName); ?></td>
-            <td><?php echo e($student->SessionName); ?></td>
+            <td><?php echo e($student->SessionTitle); ?></td>
         </tr>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </table>

@@ -16,6 +16,8 @@ return [
     'Add Country' => 'Add Country',
     'Create Country' => 'Create Country',
     'Please Enter your Country name here!' => 'Please Enter your Country name here!',
+    'Please Enter your Province name here!' => 'Please Enter your Province name here!',
+    'Please Enter your District name here!' => 'Please Enter your District name here!',
     'Country Name' => 'Country Name',
     'Country List' => 'Country List',
     'go!' => 'go!',
@@ -61,6 +63,8 @@ return [
     'Create Section' => 'Create Section',
     'Enter Section name here!' => 'Enter Section name here!',
     'Edit Section' => 'Edit Section',
+    'Choose Option' => 'Choose Option',
+    'Chooses Option' => 'Chooses Option',
 
 
     

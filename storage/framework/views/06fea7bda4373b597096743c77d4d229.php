@@ -36,17 +36,18 @@
             <th>Class</th>
             <th>Session</th>
         </tr>
-        @foreach ($data as $student)
+        <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <tr>
-            <td>{{$student->RegistrationNo}}</td>
-            <td>{{$student->StudentName}}</td>
-            <td>{{$student->SCNIC}}</td>
-            <td>{{$student->FatherName}}</td>
-            <td>{{$student->GuardianName}}</td>
-            <td>{{$student->ClassName}}</td>
-            <td>{{$student->SessionTitle}}</td>
+            <td><?php echo e($student->RegistrationNo); ?></td>
+            <td><?php echo e($student->StudentName); ?></td>
+            <td><?php echo e($student->SCNIC); ?></td>
+            <td><?php echo e($student->FatherName); ?></td>
+            <td><?php echo e($student->GuardianName); ?></td>
+            <td><?php echo e($student->ClassName); ?></td>
+            <td><?php echo e($student->SessionTitle); ?></td>
         </tr>
-        @endforeach
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </table>
 </body>
 </html>
+<?php /**PATH C:\xampp\htdocs\mmis\resources\views/student/studentdata.blade.php ENDPATH**/ ?>

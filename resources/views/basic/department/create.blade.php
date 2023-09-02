@@ -25,7 +25,7 @@
                             </div>
                         @endif
                         <div class="card">
-                            <div class="card-header">Create Department
+                            <div class="card-header">{{ __('Basic.Create Department') }}
                                 {{--  <span class="float-right">
                                     <a class="btn btn-primary" href="{{ route('roles.index') }}">Province</a>
                                 </span>  --}}
@@ -33,15 +33,16 @@
                             <div class="card-body">
                                 {!! Form::open(array('route' => 'department.store','method'=>'POST')) !!}
                                     <div class="form-group">
-                                        <strong>Department Name:</strong>
-                                        {!! Form::text('DepartmentName', null, array('placeholder' => 'Enter Department Name','class' => 'form-control')) !!}
+                                        <strong>{{ __('Basic.Department Name') }}:</strong>
+                                        {!! Form::text('DepartmentName', null, array('placeholder' => __('Basic.Enter Department Name here!'), 'class' => 'form-control')) !!}
+
                                     </div>
                                     <div class="form-group">
 
 
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('Users.Submit') }}</button>
                                 {!! Form::close() !!}
                             </div>
                         </div>

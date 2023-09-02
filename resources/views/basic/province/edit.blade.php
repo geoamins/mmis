@@ -19,9 +19,9 @@
             </div>
         @endif
         <div class="card">
-            <div class="card-header">Edit Province
+            <div class="card-header">{{ __('Basic.Edit Province') }}
                 <span class="float-right">
-                    <a class="btn btn-primary" href="{{ route('province.index') }}">back</a>
+                    <a class="btn btn-primary" href="{{ route('province.index') }}">{{ __('Users.Back') }}</a>
                 </span>
             </div>
 
@@ -30,15 +30,15 @@
                     {{csrf_field()}}
                     {{method_field('put')}}
 
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Province Name
-                        <span class="required">*</span>
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">{{ __('Basic.Province Name') }}
+                        <span class="required"></span>
                     </label>
                     <div class="col-md-6 col-sm-6 ">
-                        <input type="text" value="{{ $data->ProvinceName }}" name="ProvinceName" placeholder="Enter the Province Name" class="form-control ">
+                        <input type="text" value="{{ $data->ProvinceName }}" name="ProvinceName" placeholder="{{ __('Basic.Please Enter your Province name here!') }}" class="form-control ">
 
                     </div>
                     <div class="col-md-3 col-sm-3 ">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">{{ __('Users.Submit') }}</button>
                     </div>
 
 

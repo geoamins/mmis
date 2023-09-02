@@ -21,23 +21,27 @@
                             </div>
                         <?php endif; ?>
                         <div class="card">
-                            <div class="card-header">Create District
+                            <div class="card-header"><?php echo e(__('Basic.Create District')); ?>
+
                                 
                             </div>
                             <div class="card-body">
                                 <?php echo Form::open(array('route' => 'district.store','method'=>'POST')); ?>
 
                                     <div class="form-group">
-                                        <strong>District Name:</strong>
-                                        <?php echo Form::text('DistrictName', null, array('placeholder' => 'Enter District Name','class' => 'form-control')); ?>
+                                        <strong><?php echo e(__('Basic.District Name')); ?>:</strong>
+                                        <?php
+$placeholderText = __('Basic.Please Enter your District name here!');
+echo Form::text('DistrictName', null, array('placeholder' => $placeholderText, 'class' => 'form-control'));
+?>
 
                                     </div>
                                     <div class="form-group">
 
 
-											<label class="control-label col-md-3 col-sm-3 ">Select Province</label>
+											<label class="control-label col-md-3 col-sm-3 "><?php echo e(__('Basic.Select Province')); ?></label>
                                             <select name="ProvinceID" class="form-control">
-                                                <option>Choose option</option>
+                                                <option><?php echo e(__('Basic.Choose Option')); ?></option>
                                                 <?php $__currentLoopData = $provinces; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $province): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                                                         <option value="<?php echo e($province->ProvinceID); ?>"><?php echo e($province->ProvinceName); ?></option>
@@ -48,7 +52,7 @@
 
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary"><?php echo e(__('Users.Submit')); ?></button>
                                 <?php echo Form::close(); ?>
 
                             </div>
