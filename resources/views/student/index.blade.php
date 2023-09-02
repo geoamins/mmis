@@ -72,13 +72,13 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>{{ __('Users.#') }}</th>
-                        <th>{{ __('Student.Registrtaion No') }}</th>
+                        <th>{{ __('Student.Registration No') }}</th>
                         <th>{{ __('Student.Student Name') }}</th>
                         <th>{{ __('Student.Father Name') }}</th>
                         <th>{{ __('Student.Guardian Name') }}</th>
                         <th>{{ __('Student.Admission Date') }}</th>
                         <th>{{ __('Student.CNIC') }}</th>
-                        <th width="280px">{{ __('Users.Actions') }}</th>
+                        <th width="280px">{{ __('Users.Action') }}</th>
                     </tr>
                 </thead>
                 <tbody>

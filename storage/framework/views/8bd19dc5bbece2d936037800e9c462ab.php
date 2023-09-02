@@ -45,13 +45,13 @@
                 <thead class="thead-dark">
                     <tr>
                         <th><?php echo e(__('Users.#')); ?></th>
-                        <th><?php echo e(__('Student.Registrtaion No')); ?></th>
+                        <th><?php echo e(__('Student.Registration No')); ?></th>
                         <th><?php echo e(__('Student.Student Name')); ?></th>
                         <th><?php echo e(__('Student.Father Name')); ?></th>
                         <th><?php echo e(__('Student.Guardian Name')); ?></th>
                         <th><?php echo e(__('Student.Admission Date')); ?></th>
                         <th><?php echo e(__('Student.CNIC')); ?></th>
-                        <th width="280px"><?php echo e(__('Users.Actions')); ?></th>
+                        <th width="280px"><?php echo e(__('Users.Action')); ?></th>
                     </tr>
                 </thead>
                 <tbody>

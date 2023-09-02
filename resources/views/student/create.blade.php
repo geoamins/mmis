@@ -694,15 +694,15 @@
         @csrf
     <div class="form">
             <h1>
-                Registration Form
+                {{ __('Student.Registration Form') }}
             </h1>
-            <p> Fill out the form carefully for registration</p>
+            <p>{{ __('Student.Fill out the form carefully for registration') }}</p>
         <div class="formbody">
             <div class="left">
 
                 <div class="name">
                     <div class="first">
-                        <p>Registration No</p>
+                        <p>{{ __('Student.Registration No') }}</p>
                         {{-- @php
                             $RegNo = $LastRegNo->RegistrationNo + 1;
                         @endphp --}}
@@ -713,7 +713,7 @@
 
                     </div>
                     <div class="second">
-                        <p>Student Name</p>
+                        <p>{{ __('Student.Student Name') }}</p>
                         <input type="text" name="StudentName" value="{{old('StudentName')}}">
                         <span>
                             @error('StudentName')
@@ -723,7 +723,7 @@
                         </span>
                     </div>
                     <div class="third">
-                        <p>CNIC</p>
+                        <p>{{ __('Student.CNIC') }}</p>
                         <input type="text" name="SCNIC" value="{{old('SCNIC')}}">
                         <span>
                             @error('SCNIC')
@@ -736,7 +736,7 @@
 
                 <div class="registration">
                     <div class="first">
-                        <p>DOB</p>
+                        <p>{{ __('Student.DOB') }}</p>
                         <input type="date" name="DOB" value="{{old('DOB')}}">
                         <span>
                             @error('DOB')
@@ -747,11 +747,11 @@
                     </div>
 
                     <div class="second">
-                        <p>Gender</p>
+                        <p>{{ __('Student.Gender') }}</p>
                         <select id="" name="GenderID">
-                            <option value="">Select Gender</option>
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
+                            <option value="">{{ __('Student.Select Gender') }}</option>
+                            <option value="1">{{ __('Student.Male') }}</option>
+                            <option value="2">{{ __('Student.Female') }}</option>
                         </select>
                         <span>
                             @error('GenderID')
@@ -762,9 +762,9 @@
                     </div>
 
                     <div class="third">
-                        <p>Department</p>
+                        <p>{{ __('Basic.Department Name') }}</p>
                         <select id="" name="DeptID">
-                            <option value="">Select Dept</option>
+                            <option value="">{{ __('Student.Select Department') }}</option>
                             @foreach ($departments as $department)
                             <option value="{{$department->DeptID}}">{{$department->DepartmentName}}</option>
                             @endforeach
@@ -780,7 +780,7 @@
 
                 <div class="age">
                     <div class="first">
-                        <p>Father Name</p>
+                        <p>{{ __('Student.Father Name') }}</p>
                         <input type="text" name="FatherName" value="{{old('FatherName')}}">
                         <span>
                             @error('FatherName')
@@ -790,7 +790,7 @@
                         </span>
                     </div>
                     <div class="second">
-                        <p>Father CNIC</p>
+                        <p>{{ __('Student.Father CNIC') }}</p>
                         <input type="text" name="FCNIC" value="{{old('FCNIC')}}">
                         <span>
                             @error('FCNIC')
@@ -800,7 +800,7 @@
                         </span>
                     </div>
                     <div class="third">
-                        <p>Guardian Name</p>
+                        <p>{{ __('Student.Guardian Name') }}</p>
                         <input type="text" name="GuardianName" value="{{old('GuardianName')}}">
                         <span>
                             @error('GuardianName')
@@ -814,7 +814,7 @@
 
                 <div class="contactno">
                     <div class="first">
-                        <p>Guardian Relation</p>
+                        <p>{{ __('Student.Guardian Relation') }}</p>
                         <input type="text" name="GuardianRelation" value="{{old('GuardianRelation')}}">
                         <span>
                             @error('GuardianRelation')
@@ -824,7 +824,7 @@
                         </span>
                     </div>
                     <div class="second">
-                        <p>Father Mobile</p>
+                        <p>{{ __('Student.Father Mobile') }}</p>
                         <input type="text" name="FMobile" value="{{old('FMobile')}}">
                         <span>
                             @error('FMobile')
@@ -837,7 +837,7 @@
                 </div>
 
                 <div class="address">
-                    <p>Current Address</p>
+                    <p>{{ __('Student.Current Address') }}</p>
                     <input id="addressfield" type="text" name="CurrentAddress" value="{{old('CurrentAddress')}}">
                     <span>
                         @error('CurrentAddress')
@@ -846,7 +846,7 @@
 
                     </span>
 
-                    <p>Permanent Address</p>
+                    <p>{{ __('Student.Permanent Address') }}</p>
                     <input id="addressfield" type="text" name="PermanentAddress" value="{{old('PermanentAddress')}}">
                     <span>
                         @error('PermanentAddress')
@@ -859,9 +859,9 @@
 
                 <div class="country">
                     <div class="first">
-                        <p>Country</p>
+                        <p>{{ __('Basic.Country Name') }}</p>
                         <select clas id="Country" name="CountryID">
-                            <option value="">Select Country</option>
+                            <option value="">{{ __('Student.Select Country Name') }}</option>
                             @foreach ($countries as $country)
                             <option value="{{$country->CountryID}}">{{$country->CountryName}}</option>
                             @endforeach
@@ -875,9 +875,9 @@
                         </span>
                     </div>
                     <div class="second">
-                        <p>Province</p>
+                        <p>{{ __('Basic.Province Name') }}</p>
                         <select id="Province" name="ProvinceID">
-                            <option value="">Select Province</option>
+                            <option value="">{{ __('Basic.Select Province') }}</option>
                             @foreach ($provinces as $province)
                             <option value="{{$province->ProvinceID}}">{{$province->ProvinceName}}</option>
                             @endforeach
@@ -890,9 +890,9 @@
                         </span>
                     </div>
                     <div class="third">
-                        <p>District</p>
+                        <p>{{ __('Basic.District Name') }}</p>
                         <select id="District" name="DistrictID">
-                            <option value="">Select District</option>
+                            <option value="">{{ __('Student.Select District') }}</option>
                             @foreach ($districts as $district)
                             <option value="{{$district->DistrictID}}">{{$district->DistrictName}}</option>
                             @endforeach
@@ -908,9 +908,9 @@
 
                 <div class="session">
                     <div class="first">
-                        <p>Admission Session</p>
+                        <p>{{ __('Student.Admission Session') }}</p>
                         <select id="" name="SessionID">
-                            <option value="">Select Session</option>
+                            <option value="">{{ __('Student.Select Session') }}</option>
                             @foreach ($sessions as $session)
                             <option value="{{$session->SessionID}}">{{$session->SessionTitle}}</option>
                             @endforeach
@@ -924,7 +924,7 @@
                     </div>
 
                     <div class="second">
-                        <p>Admission Date</p>
+                        <p>{{ __('Student.Admission Date') }}</p>
                         <input type="date" name="AdmissionDate" value="{{old('AdmissionDate')}}">
                         <span>
                             @error('AdmissionDate')
@@ -934,7 +934,7 @@
                         </span>
                     </div>
                     <div class="third">
-                        <p>Hajri Year</p>
+                        <p>{{ __('Student.Hajri Year') }}</p>
                         <input type="text" name="HijriYear" value="{{old('HijriYear')}}">
                         <span>
                             @error('HijriYear')
@@ -947,9 +947,9 @@
 
                 <div class="description">
                     <div class="first">
-                        <p>Student Type</p>
+                        <p>{{ __('Basic.Student Type') }}</p>
                         <select id="" name="StudentTypeID">
-                            <option value="">Select Student Type</option>
+                            <option value="">{{ __('Student.Select Student Type') }}</option>
                             @foreach ($studenttypes as $studenttype)
                             <option value="{{$studenttype->StudentTypeID}}">{{$studenttype->StudentType}}</option>
                             @endforeach
@@ -963,9 +963,9 @@
                         </span>
                     </div>
                     <div class="second">
-                        <p>Class</p>
+                        <p>{{ __('Basic.Class Name') }}</p>
                         <select id="" name="ClassID">
-                            <option value="">Select Class</option>
+                            <option value="">{{ __('Student.Select Class') }}</option>
                             @foreach ($classes as $class)
                                 <option value="{{$class->ClassID}}">{{$class->ClassName}}</option>
                             @endforeach
@@ -978,9 +978,9 @@
                         </span>
                     </div>
                     <div class="third">
-                        <p>Section</p>
+                        <p>{{ __('Basic.Section Name') }}</p>
                         <select id="" name="SectionID">
-                            <option value="">Select Section</option>
+                            <option value="">{{ __('Student.Select Section') }}</option>
                             @foreach ($sections as $section)
                                 <option value="{{$section->SectionID}}">{{$section->SectionName}}</option>
                             @endforeach
@@ -996,9 +996,9 @@
                 </div>
                 <div class="resident">
                     <div class="first">
-                        <p>Hostel Status</p>
+                        <p>{{ __('Student.Hostel Status') }}</p>
                         <select id="" name="HostelStatus">
-                            <option value="">Hostel Status</option>
+                            <option value="">{{ __('Student.Select Hostel Status') }}</option>
                             <option value="1">Yes</option>
                             <option value="0">No</option>
                         </select>
@@ -1010,7 +1010,7 @@
                         </span>
                     </div>
                     <div class="second">
-                        <p>Previous Madrassa</p>
+                        <p>{{ __('Student.Previous Madrassa') }}</p>
                         <input type="text" name="PreviousMadrasa" value="{{old('PreviousMadrasa')}}">
                         <span>
                             @error('PreviousMadrasa')
@@ -1020,7 +1020,7 @@
                         </span>
                     </div>
                     <div class="third">
-                        <p>Islamic Education</p>
+                        <p>{{ __('Student.Islamic Education') }}</p>
                         <input type="text" name="IslamicEdu" value="{{old('IslamicEdu')}}">
                         <span>
                             @error('IslamicEdu')
@@ -1033,7 +1033,7 @@
                 </div>
                 <div class="additionalability">
                     <div class="first">
-                        <p>Additional Education</p>
+                        <p>{{ __('Student.Additional Education') }}</p>
                         <input type="text" name="AddlEdu" value="{{old('AddlEdu')}}">
                         <span>
                             @error('AddlEdu')
@@ -1043,7 +1043,7 @@
                         </span>
                     </div>
                     <div class="second">
-                        <p>Asri Education</p>
+                        <p>{{ __('Student.Asri Education') }}</p>
                         <input type="text" name="AsriEdu">
                         <span>
                             @error('AsriEdu')
@@ -1053,22 +1053,22 @@
                         </span>
                     </div>
                     <div class="third">
-                        <p>Attached brother</p>
+                        <p>{{ __('Student.Attached brother') }}</p>
                         <input type="text" name="attachedbrother">
                     </div>
 
                 </div>
                 <div class="feediscount">
                     <div class="first">
-                        <p>Monthly Fee</p>
+                        <p>{{ __('Student.Monthly Fee') }}</p>
                         <input type="text" name="monthlyfee">
                     </div>
                     <div class="second">
-                        <p>Total Fee</p>
+                        <p>{{ __('Student.Total Fee') }}</p>
                         <input type="text" name="totalfee">
                     </div>
                     <div class="third">
-                        <p>DOSLC</p>
+                        <p>{{ __('Student.DOSLC') }}</p>
                         <input type="date" name="DOSLC" value="{{old('DOSLC')}}">
                         <span>
                             @error('DOSLC')
@@ -1081,7 +1081,7 @@
                 </div>
                 <div class="reason">
                     <div class="first">
-                        <p>Reason For DOSLC</p>
+                        <p>{{ __('Student.Reason For DOSLC') }}</p>
                         <input type="text" name="ReasonSLC" value="{{old('ReasonSLC')}}">
                         <span>
                             @error('ReasonSLC')
@@ -1093,7 +1093,7 @@
                 </div>
 
                 <div class="buttons">
-                    <button class="btn btn-primary" type="submit">Save Data</button>
+                    <button class="btn btn-primary" type="submit">{{ __('Student.Save') }}</button>
                 </div>
 
 

@@ -147,8 +147,8 @@
 
 <body>
     <div class="main">
-        <h1>Student Detail</h1>
-        <p>You can update if following detail have any error</p>
+        <h1>{{ __('student.Student Detail') }}</h1>
+        <p>{{ __('student.You can update if following detail have any error') }}</p>
         <hr>
         <div class="profile">
             <div class="left">
@@ -156,39 +156,39 @@
             </div>
             <div class="right">
                 <div class="rleft">
-                   <h5>Registration No</h5>
+                   <h5>{{ __('student.Registration No') }}</h5>
                     <p>{{$data->RegistrationNo}}</p>
-                    <h5>Student CNIC</h5>
+                    <h5>{{ __('student.CNIC') }}</h5>
                     <p>{{$data->SCNIC}}</p>
-                    <h5>Gender</h5>
+                    <h5>{{ __('student.Gender') }}</h5>
                     @if ($data->GenderID == 1)
-                        <p>Male</p>
+                        <p>{{ __('student.Male') }}</p>
                     @elseif($data->GenderID == 2)
-                        <p>Female</p>
+                        <p>{{ __('student.Female') }}</p>
                     @endif
-                    <h5>Father Name</h5>
+                    <h5>{{ __('student.Father Name') }}</h5>
                     <p>{{$data->FatherName}}</p>
-                    <h5>Father Mobile</h5>
+                    <h5>{{ __('student.Father Mobile') }}</h5>
                     <p>{{$data->FMobile}}</p>
-                    <h5>Permanent Address</h5>
+                    <h5>{{ __('student.Permanent Address') }}</h5>
                     <p>{{$data->PermanentAddress}}</p>
-                    <h5>Province</h5>
+                    <h5>{{ __('Basic.Province Name') }}</h5>
                     <p>{{$data->ProvinceName}}</p>
                 </div>
                 <div class="rright">
-                    <h5>Full Name</h5>
+                    <h5>{{ __('student.Full Name') }}</h5>
                     <p>{{$data->StudentName}}</p>
-                    <h5>Date of Birth</h5>
+                    <h5>{{ __('student.DOB') }}</h5>
                     <p>{{$data->DOB}}</p>
-                    <h5>Department</h5>
+                    <h5>{{ __('Basic.Department Name') }}</h5>
                     <p>{{$data->DepartmentName}}</p>
-                    <h5>Father CNIC</h5>
+                    <h5>{{ __('student.Father CNIC') }}</h5>
                     <p>{{$data->FCNIC}}</p>
-                    <h5>Current Address</h5>
+                    <h5>{{ __('student.Current Address') }}</h5>
                     <p>{{$data->CurrentAddress}}</p>
-                    <h5>Country</h5>
+                    <h5>{{ __('Basic.Country Name') }}</h5>
                     <p>{{$data->CountryName}}</p>
-                    <h5>District</h5>
+                    <h5>{{ __('Basic.District Name') }}</h5>
                     <p>{{$data->DistrictName}}</p>
 
 
@@ -201,37 +201,37 @@
 
         <div class="admissiondetail">
             <div class="left">
-                <h2>Admission Detail</h2>
+                <h2>{{ __('student.Admission Detail') }}</h2>
             </div>
             <div class="right">
                 <div class="rleft">
-                    <h5>Admission Session</h5>
+                    <h5>{{ __('student.Admission Session') }}</h5>
                     <p>{{$data->SessionTitle}}</p>
-                    <h5>Hijri Year</h5>
+                    <h5>{{ __('student.Hajri Year') }}</h5>
                     <p>{{$data->HijriYear}}</p>
-                    <h5>Class</h5>
+                    <h5>{{ __('Basic.Class Name') }}</h5>
                     <p>{{$data->ClassName}}</p>
-                    <h5>Previous Madrasa</h5>
+                    <h5>{{ __('student.Previous Madrassa') }}</h5>
                     <p>{{$data->PreviousMadrasa}}</p>
-                    <h5>Asri Education</h5>
+                    <h5>{{ __('student.Asri Education') }}</h5>
                     <p>{{$data->AsriEdu}}</p>
-                    <h5>Hostel Status</h5>
+                    <h5>{{ __('student.Hostel Status') }}</h5>
                     @if ($data->HostelStatus == 1)
-                        <p>Resident</p>
+                        <p>{{ __('student.Resident') }}</p>
                     @elseif($data->HostelStatus == 0)
-                        <p>Non Resident</p>
+                        <p>{{ __('student.Non Resident') }}</p>
                     @endif
                 </div>
                 <div class="rright">
-                    <h5>Admission Date</h5>
+                    <h5>{{ __('student.Admission Date') }}</h5>
                     <p>{{$data->AdmissionDate}}</p>
-                    <h5>Student Type</h5>
+                    <h5>{{ __('Basic.Student Type') }}</h5>
                     <p>{{$data->StudentType}}</p>
-                    <h5>Section</h5>
+                    <h5>{{ __('Basic.Section Name') }}</h5>
                     <p>{{$data->SectionName}}</p>
-                    <h5>Islamic Education</h5>
+                    <h5>{{ __('student.Islamic Education') }}</h5>
                     <p>{{$data->IslamicEdu}}</p>
-                    <h5>Addition Education</h5>
+                    <h5>{{ __('student.Additional Education') }}</h5>
                     <p>{{$data->AddlEdu}}</p>
 
                 </div>
@@ -240,19 +240,19 @@
         <hr>
         <div class="guardiandetail">
             <div class="left">
-                <h2>Guardian Detail</h2>
+                <h2>{{ __('student.Guardian Detail') }}</h2>
             </div>
             <div class="right">
                 <div class="rleft">
-                    <h5>Father Name</h5>
+                    <h5>{{ __('student.Father Name') }}</h5>
                     <p>{{$data->FatherName}}</p>
-                    <h5>Guardian Name</h5>
+                    <h5>{{ __('student.Guardian Name') }}</h5>
                     <p>{{$data->GuardianName}}</p>
                 </div>
                 <div class="rright">
-                    <h5>Father CNIC</h5>
+                    <h5>{{ __('student.Father CNIC') }}</h5>
                     <p>{{$data->FCNIC  }}</p>
-                    <h5>Relation with Guardian</h5>
+                    <h5>{{ __('student.Guardian Relation') }}</h5>
                     <p>{{$data->GuardianRelation}}</p>
                 </div>
             </div>
@@ -260,23 +260,23 @@
         <hr>
         <div class="otherdetail">
             <div class="left">
-                <h2>Other Detail</h2>
+                <h2>{{ __('student.Other Detail') }}</h2>
             </div>
             <div class="right">
                 <div class="rleft">
-                    <h5>Monthly Fee</h5>
+                    <h5>{{ __('student.Monthly Fee') }}</h5>
                     <p>{{$data->StudentName}}</p>
-                    <h5>Fee Discount</h5>
+                    <h5>{{ __('student.Fee Discount') }}</h5>
                     <p>{{$data->StudentName}}</p>
-                    <h5>Struck Off Date</h5>
+                    <h5>{{ __('student.Struck Off Date') }}</h5>
                     <p>{{$data->DOSLC}}</p>
                 </div>
                 <div class="rright">
-                    <h5>Attached Brother</h5>
+                    <h5>{{ __('student.Attached brother') }}</h5>
                     <p>{{$data->StudentName}}</p>
-                    <h5>Total Fee</h5>
+                    <h5>{{ __('student.Total Fee') }}</h5>
                     <p>{{$data->StudentName}}</p>
-                    <h5>Struck Off Reason</h5>
+                    <h5>{{ __('student.Struck Off Reason') }}</h5>
                     <p>{{$data->ReasonSLC}}</p>
                 </div>
             </div>
