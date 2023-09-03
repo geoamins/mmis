@@ -331,6 +331,19 @@ class StudentController extends Controller
 
         return view('student.studentformpdf',compact('data'));
     }
+    public function studentIDCard(string $id) {
+        $data = StudentMaster::leftjoin('setup_country','setup_country.CountryID','=','studentmaster.CountryID')
+        ->leftjoin('setup_province','setup_province.ProvinceID','=','studentmaster.ProvinceID')
+        ->leftjoin('setup_district','setup_district.DistrictID','=','studentmaster.DistrictID')
+        ->leftjoin('setup_department','setup_department.DeptID','=','studentmaster.DeptID')
+        ->leftjoin('setup_session','setup_session.SessionID','=','studentmaster.SessionID')
+        ->leftjoin('setup_student_type','setup_student_type.StudentTypeID','=','studentmaster.StudentTypeID')
+        ->leftjoin('setup_class','setup_class.ClassID','=','studentmaster.ClassID')
+        ->leftjoin('setup_section','setup_section.SectionID','=','studentmaster.SectionID')
+        ->find($id);
+
+        return view('student.studentcard',compact('data'));
+    }
 
     // public function PDFgenerater(string $id){
     //     dd('heelo');

@@ -138,12 +138,36 @@
         .otherdetail .rright p{
             margin-bottom: 15px;
         }
+
+        .btnheader{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btnheader button{
+            width: 90px;
+            height: 45px;
+            border: none;
+            background-color: green;
+            color: white;
+            font-weight: bold;
+        }
+
+        .btnheader button a{
+            color: white;
+        }
     </style>
 </head>
 
 <body>
     <div class="main">
-        <h1>Student Detail</h1>
+        <div class="btnheader">
+            <h1>Student Detail</h1>
+            <div class="buttons">
+                <button><a href="<?php echo e(route('StudentPDFForm', $data->StudentID)); ?>">Print Form</a></button>
+                <button><a href="<?php echo e(route('StudentIDCard', $data->StudentID)); ?>">Print Card</a></button>
+            </div>
+        </div>
         <p>You can update if following detail have any error</p>
         <hr>
         <div class="profile">

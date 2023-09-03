@@ -36,7 +36,7 @@ Route::get('/', function () {
 });
 
 Route::get('/check', function () {
-    return view('student.studentformpdf');
+    return view('student.studentcard');
 });
 
 Auth::routes();
@@ -57,6 +57,7 @@ Route::resource('section',SectionsController::class);
 Route::resource('student',StudentController::class);
 Route::get('/studentdata', [StudentController::class, 'createPDFReport'])->name('StudentPDFReport');
 Route::get('/studentformpdf/{id}', [StudentController::class, 'studentFormPDF'])->name('StudentPDFForm');
+Route::get('/studentidcard/{id}', [StudentController::class, 'studentIDCard'])->name('StudentIDCard');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);

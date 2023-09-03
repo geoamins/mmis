@@ -1047,7 +1047,7 @@
                     </div>
                     <div class="second">
                         <p>Asri Education</p>
-                        <input type="text" name="AsriEdu">
+                        <input type="text" name="AsriEdu" value="{{$data->AsriEdu}}">
                         <span>
                             @error('AsriEdu')
                             <p class="text-danger">{{'Asri Education is Required'}}</p>

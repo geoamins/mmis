@@ -1227,7 +1227,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                     <div class="second">
                         <p>Asri Education</p>
-                        <input type="text" name="AsriEdu">
+                        <input type="text" name="AsriEdu" value="<?php echo e($data->AsriEdu); ?>">
                         <span>
                             <?php $__errorArgs = ['AsriEdu'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

@@ -249,7 +249,11 @@
                         <p>Gender</p>
                     </div>
                     <div class="data">
-                        <p>{{$data->GenderID}}</p>
+                    @if ($data->GenderID == 1)
+                        <p>Male</p>
+                    @elseif($data->GenderID == 2)
+                        <p>Female</p>
+                    @endif
                     </div>
                 </div>
                 <div class="right">
@@ -288,7 +292,7 @@
                         <p>District</p>
                     </div>
                     <div class="data">
-                        <p>{{$data->DistrictID}}</p>
+                        <p>{{$data->DistrictName}}</p>
                     </div>
                 </div>
                 <div class="right">
@@ -296,7 +300,7 @@
                         <p>Province</p>
                     </div>
                     <div class="data">
-                        <p>{{$data->ProvinceID}}</p>
+                        <p>{{$data->ProvinceName}}</p>
                     </div>
                 </div>
 
@@ -307,7 +311,7 @@
                         <p>Country</p>
                     </div>
                     <div class="data">
-                        <p>{{$data->CountryID}}</p>
+                        <p>{{$data->CountryName}}</p>
                     </div>
                 </div>
 

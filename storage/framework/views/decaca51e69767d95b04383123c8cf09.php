@@ -249,7 +249,11 @@
                         <p>Gender</p>
                     </div>
                     <div class="data">
-                        <p><?php echo e($data->GenderID); ?></p>
+                    <?php if($data->GenderID == 1): ?>
+                        <p>Male</p>
+                    <?php elseif($data->GenderID == 2): ?>
+                        <p>Female</p>
+                    <?php endif; ?>
                     </div>
                 </div>
                 <div class="right">
@@ -288,7 +292,7 @@
                         <p>District</p>
                     </div>
                     <div class="data">
-                        <p><?php echo e($data->DistrictID); ?></p>
+                        <p><?php echo e($data->DistrictName); ?></p>
                     </div>
                 </div>
                 <div class="right">
@@ -296,7 +300,7 @@
                         <p>Province</p>
                     </div>
                     <div class="data">
-                        <p><?php echo e($data->ProvinceID); ?></p>
+                        <p><?php echo e($data->ProvinceName); ?></p>
                     </div>
                 </div>
 
@@ -307,7 +311,7 @@
                         <p>Country</p>
                     </div>
                     <div class="data">
-                        <p><?php echo e($data->CountryID); ?></p>
+                        <p><?php echo e($data->CountryName); ?></p>
                     </div>
                 </div>
 
