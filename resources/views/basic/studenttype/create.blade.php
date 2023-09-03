@@ -25,7 +25,7 @@
                             </div>
                         @endif
                         <div class="card">
-                            <div class="card-header">Create Student Type
+                            <div class="card-header">{{ __('Basic.Create Student Type') }}
                                 {{--  <span class="float-right">
                                     <a class="btn btn-primary" href="{{ route('roles.index') }}">Province</a>
                                 </span>  --}}
@@ -33,15 +33,15 @@
                             <div class="card-body">
                                 {!! Form::open(array('route' => 'studenttype.store','method'=>'POST')) !!}
                                     <div class="form-group">
-                                        <strong>Student Type:</strong>
-                                        {!! Form::text('StudentType', null, array('placeholder' => 'Enter Student Type Name','class' => 'form-control')) !!}
+                                        <strong>{{ __('Basic.Student Type') }}:</strong>
+                                        {!! Form::text('StudentType', null, array('placeholder' => __('Basic.Enter Student Type Here!') ,'class' => 'form-control')) !!}
                                     </div>
                                     <div class="form-group">
 
 
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('Users.Submit') }}</button>
                                 {!! Form::close() !!}
                             </div>
                         </div>

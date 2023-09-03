@@ -19,9 +19,9 @@
             </div>
         @endif
         <div class="card">
-            <div class="card-header">Edit Session
+            <div class="card-header">{{ __('Basic.Edit Session') }}
                 <span class="float-right">
-                    <a class="btn btn-primary" href="{{ route('session.index') }}">back</a>
+                    <a class="btn btn-primary" href="{{ route('session.index') }}">{{ __('Users.Back') }}</a>
                 </span>
             </div>
 
@@ -30,7 +30,7 @@
                     {{csrf_field()}}
                     {{method_field('put')}}
 
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Session Name
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">{{ __('Basic.Session Title') }}
                         <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 ">
@@ -38,7 +38,7 @@
 
                     </div>
                     <div class="col-md-3 col-sm-3 ">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">{{ __('Users.Submit') }}</button>
                     </div>
 
 

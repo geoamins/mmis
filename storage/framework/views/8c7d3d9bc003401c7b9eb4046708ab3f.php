@@ -13,14 +13,14 @@
         <!-- general form elements -->
         <div class="card card-primary">
           <div class="card-header with-border">
-            <h3 class="card-title">Show permissions</h3>
+            <h3 class="card-title"><?php echo e(__('Users.Show Permission')); ?></h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
           <form role="form">
             <div class="card-body">
               <div class="form-group">
-                <label for="Name">Name :</label>
+                <label for="Name"><?php echo e(__('Users.Name')); ?> :</label>
                 <?php echo e($permission->name); ?>
 
               </div>

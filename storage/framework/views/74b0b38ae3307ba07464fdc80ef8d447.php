@@ -21,19 +21,20 @@
                             </div>
                         <?php endif; ?>
                         <div class="card">
-                            <div class="card-header">Create Class
+                            <div class="card-header"><?php echo e(__('Basic.Create Class')); ?>
+
                                 
                             </div>
                             <div class="card-body">
                                 <?php echo Form::open(array('route' => 'class.store','method'=>'POST')); ?>
 
                                     <div class="form-group">
-                                        <strong>Class Name:</strong>
-                                        <?php echo Form::text('ClassName', null, array('placeholder' => 'Enter the Class Name','class' => 'form-control')); ?>
+                                        <strong><?php echo e(__('Basic.Class Name')); ?>:</strong>
+                                        <?php echo Form::text('ClassName', null, array('placeholder' =>  __('Basic.Enter your Class name here!') ,'class' => 'form-control')); ?>
 
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary"><?php echo e(__('Users.Submit')); ?></button>
                                 <?php echo Form::close(); ?>
 
                             </div>

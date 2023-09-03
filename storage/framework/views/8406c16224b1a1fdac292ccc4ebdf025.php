@@ -3,11 +3,11 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h6 class="card-title">Roles</h6>
+            <h6 class="card-title"><?php echo e(__('Users.Roles')); ?></h6>
             <div class="card-tools">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-create')): ?>
                     <span class="float-right" style="float: right;">
-                        <a class="btn btn-primary" href="<?php echo e(route('roles.create')); ?>">New Role</a>
+                        <a class="btn btn-primary" href="<?php echo e(route('roles.create')); ?>"><?php echo e(__('Users.New Role')); ?></a>
                     </span>
                 <?php endif; ?>
             </div>
@@ -16,9 +16,9 @@
             <table id="myTable" class="table table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th width="280px">Action</th>
+                        <th><?php echo e(__('Users.#')); ?></th>
+                        <th><?php echo e(__('Users.Name')); ?></th>
+                        <th width="280px"><?php echo e(__('Users.Action')); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,9 +27,9 @@
                             <td><?php echo e($role->id); ?></td>
                             <td><?php echo e($role->name); ?></td>
                             <td>
-                                <a class="btn btn-success" href="<?php echo e(route('roles.show',$role->id)); ?>">Show</a>
+                                <a class="btn btn-success" href="<?php echo e(route('roles.show',$role->id)); ?>"><?php echo e(__('Users.Show')); ?></a>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-edit')): ?>
-                                    <a class="btn btn-primary" href="<?php echo e(route('roles.edit',$role->id)); ?>">Edit</a>
+                                    <a class="btn btn-primary" href="<?php echo e(route('roles.edit',$role->id)); ?>"><?php echo e(__('Users.Edit')); ?></a>
                                 <?php endif; ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-delete')): ?>
                                     <?php echo Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']); ?>
@@ -37,7 +37,7 @@
                                     
 
                                     <input name="_method" type="hidden" value="DELETE">
-                                    <button type="submit" class="btn btn-danger del-roles" data-toggle="tooltip" title='Delete'>Delete</button>
+                                    <button type="submit" class="btn btn-danger del-roles" data-toggle="tooltip" title='Delete'><?php echo e(__('Users.Delete')); ?></button>
                                     <?php echo Form::close(); ?>
 
                                 <?php endif; ?>

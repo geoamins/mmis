@@ -3,7 +3,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h6 class="card-title"><?php echo e(__('Basic.Session List')); ?></h6>
+            <h6 class="card-title">Session List</h6>
 
             <div class="card-tools">
                 <div class="title_right">
@@ -11,9 +11,9 @@
                         <div class="col-md-5 col-sm-5  form-group pull-right top_search">
                             <div class="input-group">
 
-                                    <input type="text" name="search" class="form-control" placeholder="<?php echo e(__('Basic.Search for')); ?>">
+                                    <input type="text" name="search" class="form-control" placeholder="Search for...">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-primary"  type="submit"><?php echo e(__('Users.Search')); ?></button>
+                                        <button class="btn btn-primary"  type="submit">Search!</button>
                                     </span>
 
                             </div>
@@ -23,7 +23,7 @@
 
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('session-create')): ?>
                     <span class="float-right" style="float: right;">
-                        <a class="btn btn-primary" href="<?php echo e(route('session.create')); ?>"><?php echo e(__('Basic.Add Session')); ?></a>
+                        <a class="btn btn-primary" href="<?php echo e(route('session.create')); ?>">Add Session</a>
                     </span>
                 <?php endif; ?>
             </div>
@@ -34,9 +34,9 @@
             <table id="myTable" class="table table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th><?php echo e(__('Users.#')); ?></th>
-                        <th><?php echo e(__('Basic.Session Title')); ?></th>
-                        <th width="280px"><?php echo e(__('Users.Action')); ?></th>
+                        <th>#</th>
+                        <th>Session Title</th>
+                        <th width="280px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,7 +47,7 @@
                             <td>
                                 
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('session-edit')): ?>
-                                    <a class="btn btn-primary" href="<?php echo e(route('session.edit', $session->SessionID)); ?>"><?php echo e(__('Users.Edit')); ?></a>
+                                    <a class="btn btn-primary" href="<?php echo e(route('session.edit', $session->SessionID)); ?>">Edit</a>
                                 <?php endif; ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('session-delete')): ?>
 
@@ -55,7 +55,7 @@
 
 
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button type="submit" class="btn btn-danger del-roles" data-toggle="tooltip" title='Delete'><?php echo e(__('Users.Delete')); ?></button>
+                                        <button type="submit" class="btn btn-danger del-roles" data-toggle="tooltip" title='Delete'>Delete</button>
                                     <?php echo Form::close(); ?>
 
 
@@ -85,4 +85,4 @@
 <?php echo $__env->make('admin.adminmain', [
     'menu' => 'userconfiguration',
     'sub_menu' => 'roleslist'
-], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\mmis\resources\views/basic/session/index.blade.php ENDPATH**/ ?>
+], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\wamp64\www\mmis\resources\views/basic/session/index.blade.php ENDPATH**/ ?>

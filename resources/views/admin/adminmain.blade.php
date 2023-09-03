@@ -30,7 +30,7 @@
     {{-- <link href="../build/css/custom.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{asset('../../asset/build/css/custom.min.css')}}">
   </head>
-
+  {{--  dir="{{ ($locale='ur'?'rtl':'ltr') }}"   --}}
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
@@ -220,7 +220,6 @@
                     @endswitch
                     <div>
 
-
                     </div>
                   </li>
                 </ul>
@@ -233,15 +232,10 @@
 
         <div class="content-wrapper">
 
-
-
             <!-- Content Header (Page header) -->
 
             <div class="right_col" role="main">
                 <div class="col-md-12 col-sm-12">
-
-
-
 
                   <div class="clearfix"></div>
                   @yield('contents')

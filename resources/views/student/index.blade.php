@@ -7,7 +7,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h6 class="card-title">Student List</h6>
+            <h6 class="card-title">{{ __('Student.Student List') }}</h6>
 
             <div class="card-tools">
                 <div class="title_right">
@@ -30,22 +30,22 @@
                     <div class="col-md-6">
                         <form action="{{ route('student.index') }}" method="GET" class="form-inline">
                             <div class="input-group">
-                                <input type="text" name="search" class="form-control" placeholder="Search by name">
+                                <input type="text" name="search" class="form-control" placeholder="{{ __('Student.Search by Student name!') }}">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-primary" type="submit">Search</button>
+                                    <button class="btn btn-primary" type="submit">{{ __('Users.Search') }}</button>
                                 </div>
                             </div>
                             <div class="input-group">
-                                <input type="text" name="searchbyrollno" class="form-control" placeholder="Search by Roll No">
+                                <input type="text" name="searchbyrollno" class="form-control" placeholder="{{ __('Student.Search by Roll no!') }}">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-secondary" type="submit">Search</button>
+                                    <button class="btn btn-secondary" type="submit">{{ __('Users.Search') }}</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="col-md-6 text-right">
-                        <a class="btn btn-primary" href="{{ route('student.create') }}">New Student</a>
-                        <a class="btn btn-primary" href="{{ route('StudentPDFReport') }}">Export PDF</a>
+                        <a class="btn btn-primary" href="{{ route('student.create') }}">{{ __('Student.New Student') }}</a>
+                        <a class="btn btn-primary" href="{{ route('StudentPDFReport') }}">{{ __('Student.Export Pdf') }}</a>
                     </div>
                 </div>
 
@@ -71,14 +71,14 @@
             <table id="myTable" class="table table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th>#</th>
-                        <th>Registration No</th>
-                        <th>Student Name</th>
-                        <th>Father Name</th>
-                        <th>Guardian Name</th>
-                        <th>Admission Date</th>
-                        <th>CNIC</th>
-                        <th width="280px">Action</th>
+                        <th>{{ __('Users.#') }}</th>
+                        <th>{{ __('Student.Registration No') }}</th>
+                        <th>{{ __('Student.Student Name') }}</th>
+                        <th>{{ __('Student.Father Name') }}</th>
+                        <th>{{ __('Student.Guardian Name') }}</th>
+                        <th>{{ __('Student.Admission Date') }}</th>
+                        <th>{{ __('Student.CNIC') }}</th>
+                        <th width="280px">{{ __('Users.Action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,17 +93,17 @@
                             <td>{{ $student->SCNIC }}</td>
                             <td>
                                 @can('student-list')
-                                 <a class="btn btn-success" href="{{ route('student.show',$student->StudentID) }}">Show</a>
+                                 <a class="btn btn-success" href="{{ route('student.show',$student->StudentID) }}">{{ __('Users.Show') }}</a>
                                  @endcan
                                 @can('student-edit')
-                                    <a class="btn btn-primary" href="{{ route('student.edit', $student->StudentID) }}">Edit</a>
+                                    <a class="btn btn-primary" href="{{ route('student.edit', $student->StudentID) }}">{{ __('Users.Edit') }}</a>
                                 @endcan
                                 @can('student-delete')
 
                                     {!! Form::open(['method' => 'DELETE','route' => ['student.destroy', $student->StudentID],'style'=>'display:inline']) !!}
 
                                     <input name="_method" type="hidden" value="DELETE">
-                                    <button type="submit" class="btn btn-danger del-roles" data-toggle="tooltip" title='Delete'>Delete</button>
+                                    <button type="submit" class="btn btn-danger del-roles" data-toggle="tooltip" title='Delete'>{{ __('Users.Delete') }}</button>
                                     {!! Form::close() !!}
 
                                     {{--  <form action="{{ url('/basic', $data->CountryID) }}" method="post">

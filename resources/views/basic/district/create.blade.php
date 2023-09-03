@@ -25,7 +25,7 @@
                             </div>
                         @endif
                         <div class="card">
-                            <div class="card-header">Create District
+                            <div class="card-header">{{ __('Basic.Create District') }}
                                 {{--  <span class="float-right">
                                     <a class="btn btn-primary" href="{{ route('roles.index') }}">Province</a>
                                 </span>  --}}
@@ -33,15 +33,19 @@
                             <div class="card-body">
                                 {!! Form::open(array('route' => 'district.store','method'=>'POST')) !!}
                                     <div class="form-group">
-                                        <strong>District Name:</strong>
-                                        {!! Form::text('DistrictName', null, array('placeholder' => 'Enter District Name','class' => 'form-control')) !!}
+                                        <strong>{{ __('Basic.District Name') }}:</strong>
+                                        <?php
+$placeholderText = __('Basic.Please Enter your District name here!');
+echo Form::text('DistrictName', null, array('placeholder' => $placeholderText, 'class' => 'form-control'));
+?>
+
                                     </div>
                                     <div class="form-group">
 
 
-											<label class="control-label col-md-3 col-sm-3 ">Select Province</label>
+											<label class="control-label col-md-3 col-sm-3 ">{{ __('Basic.Select Province') }}</label>
                                             <select name="ProvinceID" class="form-control">
-                                                <option>Choose option</option>
+                                                <option>{{ __('Basic.Choose Option') }}</option>
                                                 @foreach ($provinces as $province)
 
                                                         <option value="{{ $province->ProvinceID }}">{{ $province->ProvinceName }}</option>
@@ -52,7 +56,7 @@
 
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('Users.Submit') }}</button>
                                 {!! Form::close() !!}
                             </div>
                         </div>

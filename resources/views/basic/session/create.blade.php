@@ -25,7 +25,7 @@
                             </div>
                         @endif
                         <div class="card">
-                            <div class="card-header">Create Session
+                            <div class="card-header">{{ __('Basic.Create Session') }}
                                 {{--  <span class="float-right">
                                     <a class="btn btn-primary" href="{{ route('roles.index') }}">Province</a>
                                 </span>  --}}
@@ -33,15 +33,15 @@
                             <div class="card-body">
                                 {!! Form::open(array('route' => 'session.store','method'=>'POST')) !!}
                                     <div class="form-group">
-                                        <strong>Session Title:</strong>
-                                        {!! Form::text('SessionTitle', null, array('placeholder' => 'Enter Session Name','class' => 'form-control')) !!}
+                                        <strong>{{ __('Basic.Session Title') }}:</strong>
+                                        {!! Form::text('SessionTitle', null, array('placeholder' =>  __('Basic.Enter Session Name Here!') ,'class' => 'form-control')) !!}
                                     </div>
                                     <div class="form-group">
 
 
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('Users.Submit') }}</button>
                                 {!! Form::close() !!}
                             </div>
                         </div>

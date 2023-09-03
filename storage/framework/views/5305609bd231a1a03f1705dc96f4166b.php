@@ -3,11 +3,11 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h6 class="card-title"><?php echo e(__('Basic.District List')); ?></h6>
+            <h6 class="card-title"><?php echo e(__('Basic.Sections List')); ?></h6>
 
             <div class="card-tools">
                 <div class="title_right">
-                    <form action="<?php echo e(route('district.index')); ?>" method="GET">
+                    <form action="<?php echo e(route('section.index')); ?>" method="GET">
                         <div class="col-md-5 col-sm-5  form-group pull-right top_search">
                             <div class="input-group">
 
@@ -21,9 +21,9 @@
                     </form>
                 </div>
 
-                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('district-create')): ?>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('section-create')): ?>
                     <span class="float-right" style="float: right;">
-                        <a class="btn btn-primary" href="<?php echo e(route('district.create')); ?>"><?php echo e(__('Basic.Add District')); ?></a>
+                        <a class="btn btn-primary" href="<?php echo e(route('section.create')); ?>"><?php echo e(__('Basic.Add Section')); ?></a>
                     </span>
                 <?php endif; ?>
             </div>
@@ -35,25 +35,25 @@
                 <thead class="thead-dark">
                     <tr>
                         <th><?php echo e(__('Users.#')); ?></th>
-                        <th><?php echo e(__('Basic.District Name')); ?></th>
-                        <th><?php echo e(__('Basic.Province Name')); ?></th>
+                        <th><?php echo e(__('Basic.Section Name')); ?></th>
+                        <th><?php echo e(__('Basic.Class Name')); ?></th>
                         <th width="280px"><?php echo e(__('Users.Action')); ?></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $district): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $section): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
-                            <td><?php echo e($district->DistrictID); ?></td>
-                            <td><?php echo e($district->DistrictName); ?></td>
-                            <td><?php echo e($district->ProvinceName); ?></td>
+                            <td><?php echo e($section->SectionID); ?></td>
+                            <td><?php echo e($section->SectionName); ?></td>
+                            <td><?php echo e($section->ClassName); ?></td>
                             <td>
                                 
-                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('district-edit')): ?>
-                                    <a class="btn btn-primary" href="<?php echo e(route('district.edit', $district->DistrictID)); ?>"><?php echo e(__('Users.Edit')); ?></a>
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('section-edit')): ?>
+                                    <a class="btn btn-primary" href="<?php echo e(route('section.edit', $section->SectionID)); ?>"><?php echo e(__('Users.Edit')); ?></a>
                                 <?php endif; ?>
-                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('district-delete')): ?>
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('section-delete')): ?>
 
-                                    <?php echo Form::open(['method' => 'DELETE','route' => ['district.destroy', $district->DistrictID],'style'=>'display:inline']); ?>
+                                    <?php echo Form::open(['method' => 'DELETE','route' => ['section.destroy', $section->SectionID],'style'=>'display:inline']); ?>
 
 
                                         <input name="_method" type="hidden" value="DELETE">
@@ -87,4 +87,4 @@
 <?php echo $__env->make('admin.adminmain', [
     'menu' => 'userconfiguration',
     'sub_menu' => 'roleslist'
-], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\mmis\resources\views/basic/district/index.blade.php ENDPATH**/ ?>
+], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\wamp64\www\mmis\resources\views/basic/sections/index.blade.php ENDPATH**/ ?>
