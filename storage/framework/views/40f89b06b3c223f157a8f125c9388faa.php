@@ -30,7 +30,7 @@
     
     <link rel="stylesheet" href="<?php echo e(asset('../../asset/build/css/custom.min.css')); ?>">
   </head>
-
+  
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
@@ -215,7 +215,6 @@
                     <?php endswitch; ?>
                     <div>
 
-
                     </div>
                   </li>
                 </ul>
@@ -228,15 +227,10 @@
 
         <div class="content-wrapper">
 
-
-
             <!-- Content Header (Page header) -->
 
             <div class="right_col" role="main">
                 <div class="col-md-12 col-sm-12">
-
-
-
 
                   <div class="clearfix"></div>
                   <?php echo $__env->yieldContent('contents'); ?>

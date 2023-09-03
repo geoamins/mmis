@@ -696,15 +696,16 @@
 
     <div class="form">
             <h1>
-                Update Student
+                <?php echo e(__('student.Update Student')); ?>
+
             </h1>
-            <p> Fill out the form carefully for registration</p>
+            <p> <?php echo e(__('student.Fill out the form carefully for registration')); ?></p>
         <div class="formbody">
             <div class="left">
 
                 <div class="name">
                     <div class="first">
-                        <p>Registration No</p>
+                        <p><?php echo e(__('student.Registration No')); ?></p>
                         <input type="text" name="RegistrationNo" value="<?php echo e($data->RegistrationNo); ?>" >
                             <?php $__errorArgs = ['RegistrationNo'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -719,7 +720,7 @@ unset($__errorArgs, $__bag); ?>
 
                     </div>
                     <div class="second">
-                        <p>Student Name</p>
+                        <p><?php echo e(__('student.Student Name')); ?></p>
                         <input type="text" name="StudentName" value="<?php echo e($data->StudentName); ?>">
                         <span>
                             <?php $__errorArgs = ['StudentName'];
@@ -736,7 +737,7 @@ unset($__errorArgs, $__bag); ?>
                         </span>
                     </div>
                     <div class="third">
-                        <p>CNIC</p>
+                        <p><?php echo e(__('student.CNIC')); ?></p>
                         <input type="text" name="SCNIC" value="<?php echo e($data->SCNIC); ?>">
                         <span>
                             <?php $__errorArgs = ['SCNIC'];
@@ -756,7 +757,7 @@ unset($__errorArgs, $__bag); ?>
 
                 <div class="registration">
                     <div class="first">
-                        <p>DOB</p>
+                        <p><?php echo e(__('student.DOB')); ?></p>
                         <input type="date" name="DOB" value="<?php echo e($data->DOB); ?>">
                         <span>
                             <?php $__errorArgs = ['DOB'];
@@ -774,13 +775,13 @@ unset($__errorArgs, $__bag); ?>
                     </div>
 
                     <div class="second">
-                        <p>Gender</p>
+                        <p><?php echo e(__('student.Gender')); ?></p>
                         <select id="" name="GenderID">
                             <option value="<?php echo e($data->GenderID); ?>"><?php echo e($data->GenderID = 1 ? 'Male' : 'Female'); ?></option>
                             <?php if($data->GenderID = 1): ?>
-                            <option value="2">Female</option>
+                            <option value="2"><?php echo e(__('student.Female')); ?></option>
                             <?php else: ?>
-                            <option value="1">Male</option>
+                            <option value="1"><?php echo e(__('student.Male')); ?></option>
                             <?php endif; ?>
                         </select>
                         <span>
@@ -789,7 +790,7 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                            <p class="text-danger"><?php echo e('Please select Gender'); ?></p>
+                            <p class="text-danger"><?php echo e(__('student.Select Gender')); ?></p>
                             <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -799,7 +800,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
 
                     <div class="third">
-                        <p>Department</p>
+                        <p><?php echo e(__('Basic.Department Name')); ?></p>
                         <select id="" name="DeptID">
                             <option value="<?php echo e($data->DeptID); ?>"><?php echo e($data->DepartmentName); ?></option>
                             <?php $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $department): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -824,7 +825,7 @@ unset($__errorArgs, $__bag); ?>
 
                 <div class="age">
                     <div class="first">
-                        <p>Father Name</p>
+                        <p><?php echo e(__('student.Father Name')); ?></p>
                         <input type="text" name="FatherName" value="<?php echo e($data->FatherName); ?>">
                         <span>
                             <?php $__errorArgs = ['FatherName'];
@@ -841,7 +842,7 @@ unset($__errorArgs, $__bag); ?>
                         </span>
                     </div>
                     <div class="second">
-                        <p>Father CNIC</p>
+                        <p><?php echo e(__('student.Father CNIC')); ?></p>
                         <input type="text" name="FCNIC" value="<?php echo e($data->FCNIC); ?>">
                         <span>
                             <?php $__errorArgs = ['FCNIC'];
@@ -858,7 +859,7 @@ unset($__errorArgs, $__bag); ?>
                         </span>
                     </div>
                     <div class="third">
-                        <p>Guardian Name</p>
+                        <p><?php echo e(__('student.Guardian Name')); ?></p>
                         <input type="text" name="GuardianName" value="<?php echo e($data->GuardianName); ?>">
                         <span>
                             <?php $__errorArgs = ['GuardianName'];
@@ -879,7 +880,7 @@ unset($__errorArgs, $__bag); ?>
 
                 <div class="contactno">
                     <div class="first">
-                        <p>Guardian Relation</p>
+                        <p><?php echo e(__('student.Guardian Relation')); ?></p>
                         <input type="text" name="GuardianRelation" value="<?php echo e($data->GuardianRelation); ?>">
                         <span>
                             <?php $__errorArgs = ['GuardianRelation'];
@@ -896,7 +897,7 @@ unset($__errorArgs, $__bag); ?>
                         </span>
                     </div>
                     <div class="second">
-                        <p>Father Mobile</p>
+                        <p><?php echo e(__('student.Father Mobile')); ?></p>
                         <input type="text" name="FMobile" value="<?php echo e($data->FMobile); ?>">
                         <span>
                             <?php $__errorArgs = ['FMobile'];
@@ -916,7 +917,7 @@ unset($__errorArgs, $__bag); ?>
                 </div>
 
                 <div class="address">
-                    <p>Current Address</p>
+                    <p><?php echo e(__('student.Current Address')); ?></p>
                     <input id="addressfield" type="text" name="CurrentAddress" value="<?php echo e($data->CurrentAddress); ?>">
                     <span>
                         <?php $__errorArgs = ['CurrentAddress'];
@@ -932,7 +933,7 @@ unset($__errorArgs, $__bag); ?>
 
                     </span>
 
-                    <p>Permanent Address</p>
+                    <p><?php echo e(__('student.Permanent Address')); ?></p>
                     <input id="addressfield" type="text" name="PermanentAddress" value="<?php echo e($data->PermanentAddress); ?>">
                     <span>
                         <?php $__errorArgs = ['PermanentAddress'];
@@ -952,7 +953,7 @@ unset($__errorArgs, $__bag); ?>
 
                 <div class="country">
                     <div class="first">
-                        <p>Country</p>
+                        <p><?php echo e(__('Basic.Country Name')); ?></p>
                         <select clas id="" name="CountryID">
                             <option value="<?php echo e($data->CountryID); ?>"><?php echo e($data->CountryName); ?></option>
                             <?php $__currentLoopData = $countries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -975,7 +976,7 @@ unset($__errorArgs, $__bag); ?>
                         </span>
                     </div>
                     <div class="second">
-                        <p>Province</p>
+                        <p><?php echo e(__('Basic.Province Name')); ?></p>
                         <select id="" name="ProvinceID">
                             <option value="<?php echo e($data->ProvinceID); ?>"><?php echo e($data->ProvinceName); ?></option>
                             <?php $__currentLoopData = $provinces; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $province): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -998,7 +999,7 @@ unset($__errorArgs, $__bag); ?>
                         </span>
                     </div>
                     <div class="third">
-                        <p>District</p>
+                        <p><?php echo e(__('Basic.District Name')); ?></p>
                         <select id="" name="DistrictID">
                             <option value="<?php echo e($data->DistrictID); ?>"><?php echo e($data->DistrictName); ?></option>
                             <?php $__currentLoopData = $districts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $district): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -1023,7 +1024,7 @@ unset($__errorArgs, $__bag); ?>
 
                 <div class="session">
                     <div class="first">
-                        <p>Admission Session</p>
+                        <p><?php echo e(__('student.Admission Session')); ?></p>
                         <select id="" name="SessionID">
                             <option value="<?php echo e($data->SessionID); ?>"><?php echo e($data->SessionTitle); ?></option>
                             <?php $__currentLoopData = $sessions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $session): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -1046,7 +1047,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
 
                     <div class="second">
-                        <p>Admission Date</p>
+                        <p><?php echo e(__('student.Admission Date')); ?></p>
                         <input type="date" name="AdmissionDate" value="<?php echo e($data->AdmissionDate); ?>">
                         <span>
                             <?php $__errorArgs = ['AdmissionDate'];
@@ -1063,7 +1064,7 @@ unset($__errorArgs, $__bag); ?>
                         </span>
                     </div>
                     <div class="third">
-                        <p>Hajri Year</p>
+                        <p><?php echo e(__('student.Hajri Year')); ?></p>
                         <input type="text" name="HijriYear" value="<?php echo e($data->HijriYear); ?>">
                         <span>
                             <?php $__errorArgs = ['HijriYear'];
@@ -1083,7 +1084,7 @@ unset($__errorArgs, $__bag); ?>
 
                 <div class="description">
                     <div class="first">
-                        <p>Student Type</p>
+                        <p><?php echo e(__('Basic.Student Type')); ?></p>
                         <select id="" name="StudentTypeID">
                             <option value="<?php echo e($data->StudentTypeID); ?>"><?php echo e($data->StudentType); ?></option>
                             <?php $__currentLoopData = $studenttypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $studenttype): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -1105,7 +1106,7 @@ unset($__errorArgs, $__bag); ?>
                         </span>
                     </div>
                     <div class="second">
-                        <p>Class</p>
+                        <p><?php echo e(__('Basic.Class Name')); ?></p>
                         <select id="" name="ClassID">
                             <option value="<?php echo e($data->ClassID); ?>"><?php echo e($data->ClassName); ?></option>
                             <?php $__currentLoopData = $classes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $class): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -1127,7 +1128,7 @@ unset($__errorArgs, $__bag); ?>
                         </span>
                     </div>
                     <div class="third">
-                        <p>Section</p>
+                        <p><?php echo e(__('Basic.Section Name')); ?></p>
                         <select id="" name="SectionID">
                             <option value="<?php echo e($data->SectionID); ?>"><?php echo e($data->SectionName); ?></option>
                             <?php $__currentLoopData = $sections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $section): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -1152,10 +1153,10 @@ unset($__errorArgs, $__bag); ?>
                 </div>
                 <div class="resident">
                     <div class="first">
-                        <p>Hostel Status</p>
+                        <p><?php echo e(__('student.Hostel Status')); ?></p>
                         <select id="" name="HostelStatus">
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
+                            <option value="1"><?php echo e(__('student.Yes')); ?></option>
+                            <option value="0"><?php echo e(__('student.No')); ?></option>
                         </select>
                         <span>
                             <?php $__errorArgs = ['HostelStatus'];
@@ -1172,7 +1173,7 @@ unset($__errorArgs, $__bag); ?>
                         </span>
                     </div>
                     <div class="second">
-                        <p>Previous Madrassa</p>
+                        <p><?php echo e(__('student.Previous Madrassa')); ?></p>
                         <input type="text" name="PreviousMadrasa" value="<?php echo e($data->PreviousMadrasa); ?>">
                         <span>
                             <?php $__errorArgs = ['PreviousMadrasa'];
@@ -1189,7 +1190,7 @@ unset($__errorArgs, $__bag); ?>
                         </span>
                     </div>
                     <div class="third">
-                        <p>Islamic Education</p>
+                        <p><?php echo e(__('student.Islamic Education')); ?></p>
                         <input type="text" name="IslamicEdu" value="<?php echo e($data->IslamicEdu); ?>">
                         <span>
                             <?php $__errorArgs = ['IslamicEdu'];
@@ -1209,7 +1210,7 @@ unset($__errorArgs, $__bag); ?>
                 </div>
                 <div class="additionalability">
                     <div class="first">
-                        <p>Additional Education</p>
+                        <p><?php echo e(__('student.Additional Education')); ?></p>
                         <input type="text" name="AddlEdu" value="<?php echo e($data->AddlEdu); ?>">
                         <span>
                             <?php $__errorArgs = ['AddlEdu'];
@@ -1226,7 +1227,7 @@ unset($__errorArgs, $__bag); ?>
                         </span>
                     </div>
                     <div class="second">
-                        <p>Asri Education</p>
+                        <p><?php echo e(__('student.Asri Education')); ?></p>
                         <input type="text" name="AsriEdu" value="<?php echo e($data->AsriEdu); ?>">
                         <span>
                             <?php $__errorArgs = ['AsriEdu'];
@@ -1243,7 +1244,7 @@ unset($__errorArgs, $__bag); ?>
                         </span>
                     </div>
                     <div class="third">
-                        <p>Attached brother</p>
+                        <p><?php echo e(__('student.Attached brother')); ?></p>
                         <input type="text" name="attachedbrother">
                         <span>
                             <?php $__errorArgs = ['attachedbrother'];
@@ -1263,7 +1264,7 @@ unset($__errorArgs, $__bag); ?>
                 </div>
                 <div class="feediscount">
                     <div class="first">
-                        <p>Monthly Fee</p>
+                        <p><?php echo e(__('student.Monthly Fee')); ?></p>
                         <input type="text" name="monthlyfee">
                         <?php $__errorArgs = ['feediscount'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -1277,7 +1278,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
                     <div class="second">
-                        <p>Total Fee</p>
+                        <p><?php echo e(__('student.Total Fee')); ?></p>
                         <input type="text" name="totalfee">
                         <?php $__errorArgs = ['totalfee'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -1291,7 +1292,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
                     <div class="third">
-                        <p>DOSLC</p>
+                        <p><?php echo e(__('student.DOSLC')); ?></p>
                         <input type="date" name="DOSLC" value="<?php echo e($data->DOSLC); ?>">
                         <span>
                             <?php $__errorArgs = ['DOSLC'];
@@ -1311,7 +1312,7 @@ unset($__errorArgs, $__bag); ?>
                 </div>
                 <div class="reason">
                     <div class="first">
-                        <p>Reason For DOSLC</p>
+                        <p><?php echo e(__('student.Reason For DOSLC')); ?></p>
                         <input type="text" name="ReasonSLC" value="<?php echo e($data->ReasonSLC); ?>">
                         <span>
                             <?php $__errorArgs = ['ReasonSLC'];
@@ -1330,7 +1331,7 @@ unset($__errorArgs, $__bag); ?>
                 </div>
 
                 <div class="buttons">
-                    <button class="btn btn-primary" type="submit">Save Data</button>
+                    <button class="btn btn-primary" type="submit"><?php echo e(__('student.Save')); ?></button>
                 </div>
 
 
