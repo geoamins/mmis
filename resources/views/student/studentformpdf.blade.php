@@ -406,7 +406,12 @@
                         <p>Hostel Resident</p>
                     </div>
                     <div class="data">
-                        <p>26000</p>
+                        @if ($data->HostelStatus == 0)
+                        <p>Non - Resident</p>
+                    @elseif($data->HostelStatus == 1)
+                        <p>Resident</p>
+                    @endif
+
                     </div>
                 </div>
             </div>

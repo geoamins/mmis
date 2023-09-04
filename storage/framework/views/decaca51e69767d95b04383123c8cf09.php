@@ -406,7 +406,12 @@
                         <p>Hostel Resident</p>
                     </div>
                     <div class="data">
-                        <p>26000</p>
+                        <?php if($data->HostelStatus == 0): ?>
+                        <p>Non - Resident</p>
+                    <?php elseif($data->HostelStatus == 1): ?>
+                        <p>Resident</p>
+                    <?php endif; ?>
+
                     </div>
                 </div>
             </div>
