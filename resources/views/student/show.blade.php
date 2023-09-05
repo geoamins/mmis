@@ -184,13 +184,13 @@
 <body>
     <div class="main">
         <div class="btnheader">
-            <h1>Student Detail</h1>
+            <h1>{{ __('student.Student Detail') }}</h1>
             <div class="buttons">
-                <button><a href="{{route('StudentPDFForm', $data->StudentID)}}">Print Form</a></button>
-                <button><a href="{{route('StudentIDCard', $data->StudentID)}}">Print Card</a></button>
+                <button><a href="{{route('StudentPDFForm', $data->StudentID)}}">{{ __('student.Print Form') }}</a></button>
+                <button><a href="{{route('StudentIDCard', $data->StudentID)}}">{{ __('student.Print Card') }}</a></button>
             </div>
         </div>
-        <p>You can update if following detail have any error</p>
+        <p>{{ __('student.You can update if following detail have any error') }}</p>
         <hr>
         <div class="profile">
             <div class="left">
