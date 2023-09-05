@@ -63,7 +63,33 @@
             border: .1px solid black;
             margin-top: 4px;
             border-radius: 4px;
+            background-image: url({{asset('images/IDCardBack.png')}});
+            background-size: cover;
         }
+
+        .idcarddataback{
+            display: flex;
+            margin: 8px;
+            margin-top: 90px;
+        }
+
+        .idcarddataback .name{
+            margin-top: 0;
+            width: 40%;
+        }
+        .idcarddataback .name p{
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .idcarddataback .data{
+            width: 60%;
+        }
+        .idcarddataback .data p{
+            font-size: 10px;
+        }
+
+
 
     </style>
 </head>
@@ -96,6 +122,20 @@
 
     </div>
     <div class="back">
+        <div class="idcarddataback">
+            <div class="name">
+                <p>Validity</p>
+                <p>Contact</p>
+                <p>Present Address</p>
+                <p>Permanent Address</p>
+            </div>
+            <div class="data">
+                <p><b>: </b>{{'10-08-2003'}}</p>
+                <p><b>: </b>{{$data->FMobile}}</p>
+                <p><b>: </b>{{$data->CurrentAddress}}</p>
+                <p><b>: </b>{{$data->PermanentAddress}}</p>
+            </div>
+        </div>
 
     </div>
 </body>

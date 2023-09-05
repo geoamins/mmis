@@ -87,7 +87,7 @@
             width: 100%;
             height: 35px;
             border: none;
-            background-color: rgb(232, 231, 231);
+            background-color: rgb(190, 190, 190);
             padding-left: 8px;
             padding-right: 8px;
             border-radius: 4px;
@@ -706,7 +706,7 @@
                         @php
                             $RegistrationNo = $LastRegNo + 1;
                         @endphp
-                        <input type="text" name="RegistrationNo" value="{{$RegistrationNo}}">
+                        <input type="text" name="RegistrationNo" value="{{$RegistrationNo}}" readonly>
                             @error('RegistrationNo')
                             <p class="text-danger">{{'Registration No is Required'}}</p>
                             @enderror
