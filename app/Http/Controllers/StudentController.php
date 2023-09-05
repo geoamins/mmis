@@ -58,7 +58,16 @@ class StudentController extends Controller
         $studenttypes = StudentType::all();
         $classes = Classes::all();
         $sections = Sections::all();
-        $LastRegNo = StudentMaster::get()->last();
+
+
+        if(empty(StudentMaster::get()->last())){
+            $LastRegNo = 22600;
+        }
+        elseif(!empty(StudentMaster::get()->last())){
+            $LastReg = StudentMaster::orderBy('StudentID','ASC')->get()->last();
+            $LastRegNo = $LastReg->RegistrationNo;
+        }
+
         return view('student.create',compact('countries','provinces','districts','departments','sessions','studenttypes','classes','sections','LastRegNo'));
     }
 
@@ -67,32 +76,31 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-
         $validated = $request->validate([
-            // 'RegistrationNo' => 'required',
-            // 'StudentName' => 'required',
-            // 'SCNIC' => 'required',
-            // 'DOB' => 'required',
-            // 'GenderID' => 'required',
-            // 'DeptID' => 'required',
-            // 'FatherName' => 'required',
-            // 'FCNIC' => 'required',
-            // 'GuardianName' => 'required',
-            // 'GuardianRelation' => 'required',
-            // 'FMobile' => 'required',
-            // 'CurrentAddress' => 'required',
-            // 'PermanentAddress' => 'required',
-            // 'CountryID' => 'required',
-            // 'ProvinceID' => 'required',
-            // 'DistrictID' => 'required',
-            // 'SessionID' => 'required',
-            // 'AdmissionDate' => 'required',
-            // 'HijriYear' => 'required',
-            // 'StudentTypeID' => 'required',
-            // 'ClassID' => 'required',
-            // 'SectionID' => 'required',
-            // 'HostelStatus' => 'required',
-            // 'PreviousMadrasa' => 'required',
+            'RegistrationNo' => 'required',
+            'StudentName' => 'required',
+            'SCNIC' => 'required',
+            'DOB' => 'required',
+            'GenderID' => 'required',
+            'DeptID' => 'required',
+            'FatherName' => 'required',
+            'FCNIC' => 'required',
+            'GuardianName' => 'required',
+            'GuardianRelation' => 'required',
+            'FMobile' => 'required',
+            'CurrentAddress' => 'required',
+            'PermanentAddress' => 'required',
+            'CountryID' => 'required',
+            'ProvinceID' => 'required',
+            'DistrictID' => 'required',
+            'SessionID' => 'required',
+            'AdmissionDate' => 'required',
+            'HijriYear' => 'required',
+            'StudentTypeID' => 'required',
+            'ClassID' => 'required',
+            'SectionID' => 'required',
+            'HostelStatus' => 'required',
+            'PreviousMadrasa' => 'required',
             // 'IslamicEdu' => 'required',
             // 'AsriEdu' => 'required',
             // 'AddlEdu' => 'required',
@@ -103,8 +111,6 @@ class StudentController extends Controller
 
         $ImageName = time().'.'.$request->Image->extension();
         $request->Image->move(public_path('images'), $ImageName);
-
-        // $LastRegNo = StudentMaster::get()->last();
 
         StudentMaster::create([
             'RegistrationNo' => $request->RegistrationNo,
@@ -344,20 +350,4 @@ class StudentController extends Controller
 
         return view('student.studentcard',compact('data'));
     }
-
-    // public function PDFgenerater(string $id){
-    //     dd('heelo');
-    //     $data = StudentMaster::leftjoin('setup_country','setup_country.CountryID','=','studentmaster.CountryID')
-    //     ->leftjoin('setup_province','setup_province.ProvinceID','=','studentmaster.ProvinceID')
-    //     ->leftjoin('setup_district','setup_district.DistrictID','=','studentmaster.DistrictID')
-    //     ->leftjoin('setup_department','setup_department.DeptID','=','studentmaster.DeptID')
-    //     ->leftjoin('setup_session','setup_session.SessionID','=','studentmaster.SessionID')
-    //     ->leftjoin('setup_student_type','setup_student_type.StudentTypeID','=','studentmaster.StudentTypeID')
-    //     ->leftjoin('setup_class','setup_class.ClassID','=','studentmaster.ClassID')
-    //     ->leftjoin('setup_section','setup_section.SectionID','=','studentmaster.SectionID')
-    //     ->find($id);
-
-    //     $pdf = PDF::loadView('student.show', $data);
-    //     return $pdf->download('pdfview.pdf');
-    // }
 }

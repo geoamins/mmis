@@ -165,7 +165,7 @@
             width: 75%;
             height: 38px;
             padding: 8px;
-            border: 1px solid black;
+            /* border: 1px solid black; */
             border-radius: 3px;
             margin-bottom: 6px;
             background-color: rgb(239, 239, 239);

@@ -700,8 +700,10 @@
                 <div class="name">
                     <div class="first">
                         <p><?php echo e(__('Student.Registration No')); ?></p>
-                        
-                        <input type="text" name="RegistrationNo" value="<?php echo e(old('RegistrationNo')); ?>">
+                        <?php
+                            $RegistrationNo = $LastRegNo + 1;
+                        ?>
+                        <input type="text" name="RegistrationNo" value="<?php echo e($RegistrationNo); ?>">
                             <?php $__errorArgs = ['RegistrationNo'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

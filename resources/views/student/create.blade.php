@@ -703,10 +703,10 @@
                 <div class="name">
                     <div class="first">
                         <p>{{ __('Student.Registration No') }}</p>
-                        {{-- @php
-                            $RegNo = $LastRegNo->RegistrationNo + 1;
-                        @endphp --}}
-                        <input type="text" name="RegistrationNo" value="{{old('RegistrationNo')}}">
+                        @php
+                            $RegistrationNo = $LastRegNo + 1;
+                        @endphp
+                        <input type="text" name="RegistrationNo" value="{{$RegistrationNo}}">
                             @error('RegistrationNo')
                             <p class="text-danger">{{'Registration No is Required'}}</p>
                             @enderror
