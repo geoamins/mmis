@@ -544,7 +544,6 @@
 
 </body>
 <script>
-
     function printDiv(divName){
         var printContents = document.getElementById(divName).outerHTML;
         var originalContents = document.body.innerHTML;

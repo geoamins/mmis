@@ -350,4 +350,49 @@ class StudentController extends Controller
 
         return view('student.studentcard',compact('data'));
     }
+
+    public function studentReportIndex(Request $request)
+    {
+        $departments = Department::all();
+        $sessions = Session::all();
+        $classes = Classes::all();
+        $sections = Sections::all();
+
+
+        if(!empty($request->query('ClassID'))){
+
+            $classid = $request->query('ClassID');
+            $sectionid = $request->query('SectionID');
+            $departmentid = $request->query('DepartmentID');
+            $sessionid = $request->query('SessionID');
+
+            $data = StudentMaster::where('studentmaster.ClassID','=',$classid)
+            ->orWhere('studentmaster.SectionID','=',$sectionid)
+            ->orWhere('studentmaster.DeptID','=',$departmentid)
+            ->orWhere('studentmaster.SessionID','=',$sessionid)
+            ->leftjoin('setup_country','setup_country.CountryID','=','studentmaster.CountryID')
+            ->leftjoin('setup_province','setup_province.ProvinceID','=','studentmaster.ProvinceID')
+            ->leftjoin('setup_district','setup_district.DistrictID','=','studentmaster.DistrictID')
+            ->leftjoin('setup_department','setup_department.DeptID','=','studentmaster.DeptID')
+            ->leftjoin('setup_session','setup_session.SessionID','=','studentmaster.SessionID')
+            ->leftjoin('setup_student_type','setup_student_type.StudentTypeID','=','studentmaster.StudentTypeID')
+            ->leftjoin('setup_class','setup_class.ClassID','=','studentmaster.ClassID')
+            ->leftjoin('setup_section','setup_section.SectionID','=','studentmaster.SectionID')
+            ->orderBy('StudentID','DESC')->paginate(10);
+        }else{
+            $data = StudentMaster::leftjoin('setup_country','setup_country.CountryID','=','studentmaster.CountryID')
+            ->leftjoin('setup_province','setup_province.ProvinceID','=','studentmaster.ProvinceID')
+            ->leftjoin('setup_district','setup_district.DistrictID','=','studentmaster.DistrictID')
+            ->leftjoin('setup_department','setup_department.DeptID','=','studentmaster.DeptID')
+            ->leftjoin('setup_session','setup_session.SessionID','=','studentmaster.SessionID')
+            ->leftjoin('setup_student_type','setup_student_type.StudentTypeID','=','studentmaster.StudentTypeID')
+            ->leftjoin('setup_class','setup_class.ClassID','=','studentmaster.ClassID')
+            ->leftjoin('setup_section','setup_section.SectionID','=','studentmaster.SectionID')
+            ->orderBy('StudentID','DESC')->paginate(10);
+        }
+
+        return view('report.student.index', compact('data','departments','sessions','classes','sections'));
+    }
+
+
 }

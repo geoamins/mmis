@@ -860,7 +860,7 @@
                 <div class="country">
                     <div class="first">
                         <p>{{ __('Basic.Country Name') }}</p>
-                        <select clas id="Country" name="CountryID">
+                        <select id="Country" name="CountryID">
                             <option value="">{{ __('Student.Select Country Name') }}</option>
                             @foreach ($countries as $country)
                             <option value="{{$country->CountryID}}">{{$country->CountryName}}</option>

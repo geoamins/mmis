@@ -85,7 +85,7 @@
                     @endcan
                   </li>
                   @canany(['basic-list'])
-                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> {{ __('sidebar.Basic Setting') }} <span class="fa fa-chevron-down"></span></a>
+                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-cog"></i> {{ __('sidebar.Basic Setting') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       @can('country-list')
                         <li><a href="{{ route('country.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Country Setup')}}</a></li>
@@ -114,25 +114,30 @@
                     </ul>
                   </li>
 
-                  @canany(['basic-list'])
-                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> {{ __('sidebar.Student Record') }} <span class="fa fa-chevron-down"></span></a>
+                  @canany(['student-list'])
+                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-users"></i> {{ __('sidebar.Student Record') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      @can('basic-list')
+                      @can('student-list')
                         <li><a href="{{ route('student.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Student Registration')}}</a></li>
                       @endcan
-                      @can('section-list')
+                      @can('student-list')
                         <li><a href="{{ route('student.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Generate Cards')}}</a></li>
                       @endcan
                     </ul>
                     @endcan
                   </li>
 
+                  @canany(['student-list'])
+                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-search"></i>Reports<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      @can('student-list')
+                        <li><a href="{{ route('StudentReport') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Students Report</a></li>
+                      @endcan
+                    </ul>
+                    @endcan
+                  </li>
+
                   @endcan
-
-
-
-
-
 
                   {{-- <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li> --}}
                 </ul>

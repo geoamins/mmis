@@ -85,7 +85,7 @@
                     <?php endif; ?>
                   </li>
                   <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['basic-list'])): ?>
-                  <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-home"></i> <?php echo e(__('sidebar.Basic Setting')); ?> <span class="fa fa-chevron-down"></span></a>
+                  <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-cog"></i> <?php echo e(__('sidebar.Basic Setting')); ?> <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('country-list')): ?>
                         <li><a href="<?php echo e(route('country.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>"><?php echo e(__('sidebar.Country Setup')); ?></a></li>
@@ -114,25 +114,30 @@
                     </ul>
                   </li>
 
-                  <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['basic-list'])): ?>
-                  <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-home"></i> <?php echo e(__('sidebar.Student Record')); ?> <span class="fa fa-chevron-down"></span></a>
+                  <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['student-list'])): ?>
+                  <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-users"></i> <?php echo e(__('sidebar.Student Record')); ?> <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('basic-list')): ?>
+                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('student-list')): ?>
                         <li><a href="<?php echo e(route('student.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>"><?php echo e(__('sidebar.Student Registration')); ?></a></li>
                       <?php endif; ?>
-                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('section-list')): ?>
+                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('student-list')): ?>
                         <li><a href="<?php echo e(route('student.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>"><?php echo e(__('sidebar.Generate Cards')); ?></a></li>
                       <?php endif; ?>
                     </ul>
                     <?php endif; ?>
                   </li>
 
+                  <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['student-list'])): ?>
+                  <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-search"></i>Reports<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('student-list')): ?>
+                        <li><a href="<?php echo e(route('StudentReport')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Students Report</a></li>
+                      <?php endif; ?>
+                    </ul>
+                    <?php endif; ?>
+                  </li>
+
                   <?php endif; ?>
-
-
-
-
-
 
                   
                 </ul>
