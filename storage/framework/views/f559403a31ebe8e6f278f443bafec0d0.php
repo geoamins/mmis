@@ -948,7 +948,7 @@ unset($__errorArgs, $__bag); ?>
                 <div class="country">
                     <div class="first">
                         <p><?php echo e(__('Basic.Country Name')); ?></p>
-                        <select clas id="Country" name="CountryID">
+                        <select id="country-dd" name="CountryID">
                             <option value=""><?php echo e(__('Student.Select Country Name')); ?></option>
                             <?php $__currentLoopData = $countries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option value="<?php echo e($country->CountryID); ?>"><?php echo e($country->CountryName); ?></option>
@@ -971,7 +971,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                     <div class="second">
                         <p><?php echo e(__('Basic.Province Name')); ?></p>
-                        <select id="Province" name="ProvinceID">
+                        <select id="province-dd" name="ProvinceID">
                             <option value=""><?php echo e(__('Basic.Select Province')); ?></option>
                             <?php $__currentLoopData = $provinces; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $province): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option value="<?php echo e($province->ProvinceID); ?>"><?php echo e($province->ProvinceName); ?></option>
@@ -993,7 +993,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                     <div class="third">
                         <p><?php echo e(__('Basic.District Name')); ?></p>
-                        <select id="District" name="DistrictID">
+                        <select id="district-dd" name="DistrictID">
                             <option value=""><?php echo e(__('Student.Select District')); ?></option>
                             <?php $__currentLoopData = $districts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $district): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option value="<?php echo e($district->DistrictID); ?>"><?php echo e($district->DistrictName); ?></option>
@@ -1325,6 +1325,7 @@ unset($__errorArgs, $__bag); ?>
 </html>
 
 <script>
+
     $(document).ready(function() {
     $('#imageInput').on('change', function() {
         var file = $(this)[0].files[0];
@@ -1338,21 +1339,48 @@ unset($__errorArgs, $__bag); ?>
             reader.readAsDataURL(file);
         }
     });
+
+    $('#country-dd').on('change', function () {
+                var CountryID = this.value;
+                $("#province-dd").html('');
+                $.ajax({
+                    url: "<?php echo e(url('api/fetch-states')); ?>",
+                    type: "post",
+                    data: {
+                        CountryID: CountryID,
+                        _token: '<?php echo e(csrf_token()); ?>'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#province-dd').html('<option value="">Select State</option>');
+                        $.each(result.states, function (key, value) {
+                            $("#province-dd").append('<option value="' + value
+                                .ProvinceID + '">' + value.ProvinceName + '</option>');
+                        });
+                    }
+                });
+            });
+    $('#province-dd').on('change', function () {
+                var ProvinceID = this.value;
+                $("#district-dd").html('');
+                $.ajax({
+                    url: "<?php echo e(url('api/fetch-cities')); ?>",
+                    type: "post",
+                    data: {
+                        ProvinceID: ProvinceID,
+                        _token: '<?php echo e(csrf_token()); ?>'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#district-dd').html('<option value="">Select District</option>');
+                        $.each(result.cities, function (key, value) {
+                            $("#district-dd").append('<option value="' + value
+                                .DistrictID + '">' + value.DistrictName + '</option>');
+                        });
+                    }
+                });
+            });
 });
-// $(document).ready(function(){
-//     $('#Country').change(function(){
-//         let CountryID = $(this).val();
-//         $.ajax({
-//             url: '/getProvinces',
-//             type: 'post',
-//             data: 'CountryID='+CountryID+
-//             '&_token=<?php echo e(csrf_token()); ?>'
-//             success: function(result){
-//                 $('#Province').html(result)
-//             }
-//         })
-//     })
-// })
 </script>
 
 <?php $__env->stopSection(); ?>

@@ -359,14 +359,15 @@ class StudentController extends Controller
         $sections = Sections::all();
 
 
-        if(!empty($request->query('ClassID'))){
+        if(!empty($request->query('ClassID')) || !empty($request->query('SectionID') || !empty($request->query('DeptID'))) || !empty($request->query('SessionID'))){
 
             $classid = $request->query('ClassID');
             $sectionid = $request->query('SectionID');
-            $departmentid = $request->query('DepartmentID');
+            $departmentid = $request->query('DeptID');
             $sessionid = $request->query('SessionID');
 
-            $data = StudentMaster::where('studentmaster.ClassID','=',$classid)
+
+            $data = StudentMaster::orWhere('studentmaster.ClassID','=',$classid)
             ->orWhere('studentmaster.SectionID','=',$sectionid)
             ->orWhere('studentmaster.DeptID','=',$departmentid)
             ->orWhere('studentmaster.SessionID','=',$sessionid)

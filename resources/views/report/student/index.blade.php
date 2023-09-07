@@ -114,7 +114,7 @@
                 <div class="check">
                     <div class="first">
                         <p>Class Name</p>
-                        <select id="ClassID" name="ClassID">
+                        <select id="class-dd" name="ClassID">
                             <option value="">Select Class Name</option>
                             @foreach ($classes as $class)
                             <option value="{{$class->ClassID}}">{{$class->ClassName}}</option>
@@ -124,7 +124,7 @@
                     </div>
                     <div class="second">
                         <p>Section Name</p>
-                        <select id="SectionName" name="SectionID">
+                        <select id="section-dd" name="SectionID">
                             <option value="">Select Section Name</option>
                             @foreach ($sections as $section)
                             <option value="{{$section->SectionID}}">{{$section->SectionName}}</option>
@@ -133,10 +133,10 @@
                     </div>
                     <div class="third">
                         <p>Department Name</p>
-                        <select id="DepartmentName" name="DepartmentID">
+                        <select id="DepartmentName" name="DeptID">
                             <option value="">Select Department Name</option>
                             @foreach ($departments as $department)
-                            <option value="{{$department->DepartmentID}}">{{$department->DepartmentName}}</option>
+                            <option value="{{$department->DeptID}}">{{$department->DepartmentName}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -194,7 +194,7 @@
 </div>
 
 @endsection
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     function printDiv(divName){
         var printContents = document.getElementById(divName).outerHTML;
@@ -207,6 +207,31 @@
         document.body.innerHTML = originalContents;
 
         }
+
+        $(document).ready(function () {
+           $('#class-dd').on('change', function () {
+                var ClassID = this.value;
+                $("#section-dd").html('');
+                $.ajax({
+                    url: "{{url('api/fetch-sections')}}",
+                    type: "post",
+                    data: {
+                        ClassID: ClassID,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#section-dd').html('<option value="">Select Section</option>');
+                        $.each(result.sections, function (key, value) {
+                            $("#section-dd").append('<option value="' + value
+                                .SectionID + '">' + value.SectionName + '</option>');
+                        });
+                    }
+                });
+            });
+        });
+
+
 </script>
 
 @section('scripts')

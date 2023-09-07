@@ -860,7 +860,7 @@
                 <div class="country">
                     <div class="first">
                         <p>{{ __('Basic.Country Name') }}</p>
-                        <select id="Country" name="CountryID">
+                        <select id="country-dd" name="CountryID">
                             <option value="">{{ __('Student.Select Country Name') }}</option>
                             @foreach ($countries as $country)
                             <option value="{{$country->CountryID}}">{{$country->CountryName}}</option>
@@ -876,7 +876,7 @@
                     </div>
                     <div class="second">
                         <p>{{ __('Basic.Province Name') }}</p>
-                        <select id="Province" name="ProvinceID">
+                        <select id="province-dd" name="ProvinceID">
                             <option value="">{{ __('Basic.Select Province') }}</option>
                             @foreach ($provinces as $province)
                             <option value="{{$province->ProvinceID}}">{{$province->ProvinceName}}</option>
@@ -891,7 +891,7 @@
                     </div>
                     <div class="third">
                         <p>{{ __('Basic.District Name') }}</p>
-                        <select id="District" name="DistrictID">
+                        <select id="district-dd" name="DistrictID">
                             <option value="">{{ __('Student.Select District') }}</option>
                             @foreach ($districts as $district)
                             <option value="{{$district->DistrictID}}">{{$district->DistrictName}}</option>
@@ -1118,6 +1118,7 @@
 </html>
 
 <script>
+
     $(document).ready(function() {
     $('#imageInput').on('change', function() {
         var file = $(this)[0].files[0];
@@ -1131,21 +1132,48 @@
             reader.readAsDataURL(file);
         }
     });
+
+    $('#country-dd').on('change', function () {
+                var CountryID = this.value;
+                $("#province-dd").html('');
+                $.ajax({
+                    url: "{{url('api/fetch-states')}}",
+                    type: "post",
+                    data: {
+                        CountryID: CountryID,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#province-dd').html('<option value="">Select State</option>');
+                        $.each(result.states, function (key, value) {
+                            $("#province-dd").append('<option value="' + value
+                                .ProvinceID + '">' + value.ProvinceName + '</option>');
+                        });
+                    }
+                });
+            });
+    $('#province-dd').on('change', function () {
+                var ProvinceID = this.value;
+                $("#district-dd").html('');
+                $.ajax({
+                    url: "{{url('api/fetch-cities')}}",
+                    type: "post",
+                    data: {
+                        ProvinceID: ProvinceID,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#district-dd').html('<option value="">Select District</option>');
+                        $.each(result.cities, function (key, value) {
+                            $("#district-dd").append('<option value="' + value
+                                .DistrictID + '">' + value.DistrictName + '</option>');
+                        });
+                    }
+                });
+            });
 });
-// $(document).ready(function(){
-//     $('#Country').change(function(){
-//         let CountryID = $(this).val();
-//         $.ajax({
-//             url: '/getProvinces',
-//             type: 'post',
-//             data: 'CountryID='+CountryID+
-//             '&_token={{csrf_token()}}'
-//             success: function(result){
-//                 $('#Province').html(result)
-//             }
-//         })
-//     })
-// })
 </script>
 
 @endsection

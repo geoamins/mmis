@@ -97,4 +97,10 @@ class DistrictController extends Controller
         return redirect()->route('district.index')
             ->with('success', 'District deleted successfully');
     }
+
+    public function fetchCities(Request $request)
+    {
+        $data['cities'] = District::where("ProvinceID",$request->ProvinceID)->get(["DistrictID", "DistrictName"]);
+        return response()->json($data);
+    }
 }

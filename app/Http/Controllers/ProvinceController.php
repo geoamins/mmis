@@ -96,8 +96,9 @@ class ProvinceController extends Controller
             ->with('success', 'Province deleted successfully');
     }
 
-    // public function getProvinces(Request $request){
-    //     $CountryID = $request->post('CountryID');
-    //     $provinces = Province::where('')
-    // }
+    public function fetchState(Request $request)
+    {
+        $data['states'] = Province::where("CountryID",$request->CountryID)->get(["ProvinceID", "ProvinceName"]);
+        return response()->json($data);
+    }
 }

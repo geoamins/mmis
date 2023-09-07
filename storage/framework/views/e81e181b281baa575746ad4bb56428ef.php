@@ -15,9 +15,10 @@
             </div>
         <?php endif; ?>
         <div class="card">
-            <div class="card-header">Edit Department
+            <div class="card-header"><?php echo e(__('Basic.Edit Department')); ?>
+
                 <span class="float-right">
-                    <a class="btn btn-primary" href="<?php echo e(route('department.index')); ?>">back</a>
+                    <a class="btn btn-primary" href="<?php echo e(route('department.index')); ?>"><?php echo e(__('Users.Back')); ?></a>
                 </span>
             </div>
 
@@ -28,7 +29,8 @@
                     <?php echo e(method_field('put')); ?>
 
 
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Department Name
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name"><?php echo e(__('Basic.Department Name')); ?>
+
                         <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 ">
@@ -36,7 +38,7 @@
 
                     </div>
                     <div class="col-md-3 col-sm-3 ">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary"><?php echo e(__('Users.Submit')); ?></button>
                     </div>
 
 
