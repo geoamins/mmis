@@ -12,8 +12,7 @@ use App\Models\Session;
 use App\Models\StudentType;
 use App\Models\Classes;
 use App\Models\Sections;
-use Alert;
-use PDF;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class StudentController extends Controller
 {
@@ -22,25 +21,23 @@ class StudentController extends Controller
      */
     function __construct()
     {
-         $this->middleware('permission:student-list|student-create|student-edit|student-delete', ['only' => ['index','store']]);
-         $this->middleware('permission:student-create', ['only' => ['create','store']]);
-         $this->middleware('permission:student-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:student-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:student-list|student-create|student-edit|student-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:student-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:student-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:student-delete', ['only' => ['destroy']]);
     }
 
     public function index(Request $request)
     {
 
-        if(!empty($request->query('search'))){
-            $search=$request->query('search');
-            $data=StudentMaster::where('StudentName','like','%'.$search.'%')->orderBy('StudentID','DESC')->paginate(5);
-        }
-        elseif(!empty($request->query('searchbyrollno'))){
-            $search=$request->query('searchbyrollno');
-            $data=StudentMaster::where('RegistrationNo','=',$search)->orderBy('StudentID','DESC')->paginate(5);
-        }
-        else{
-            $data=StudentMaster::orderBy('StudentID','DESC')->paginate(5);
+        if (!empty($request->query('search'))) {
+            $search = $request->query('search');
+            $data = StudentMaster::where('StudentName', 'like', '%' . $search . '%')->orderBy('StudentID', 'DESC')->paginate(5);
+        } elseif (!empty($request->query('searchbyrollno'))) {
+            $search = $request->query('searchbyrollno');
+            $data = StudentMaster::where('RegistrationNo', '=', $search)->orderBy('StudentID', 'DESC')->paginate(5);
+        } else {
+            $data = StudentMaster::orderBy('StudentID', 'DESC')->paginate(5);
         }
         return view('student.index', compact('data'));
     }
@@ -60,15 +57,14 @@ class StudentController extends Controller
         $sections = Sections::all();
 
 
-        if(empty(StudentMaster::get()->last())){
+        if (empty(StudentMaster::get()->last())) {
             $LastRegNo = 22600;
-        }
-        elseif(!empty(StudentMaster::get()->last())){
-            $LastReg = StudentMaster::orderBy('StudentID','ASC')->get()->last();
+        } elseif (!empty(StudentMaster::get()->last())) {
+            $LastReg = StudentMaster::orderBy('StudentID', 'ASC')->get()->last();
             $LastRegNo = $LastReg->RegistrationNo;
         }
 
-        return view('student.create',compact('countries','provinces','districts','departments','sessions','studenttypes','classes','sections','LastRegNo'));
+        return view('student.create', compact('countries', 'provinces', 'districts', 'departments', 'sessions', 'studenttypes', 'classes', 'sections', 'LastRegNo'));
     }
 
     /**
@@ -109,7 +105,7 @@ class StudentController extends Controller
             'Image' => 'required'
         ]);
 
-        $ImageName = time().'.'.$request->Image->extension();
+        $ImageName = time() . '.' . $request->Image->extension();
         $request->Image->move(public_path('images'), $ImageName);
 
         StudentMaster::create([
@@ -145,8 +141,6 @@ class StudentController extends Controller
             'Image' => $ImageName,
         ]);
 
-        Alert::toast('You\'ve Successfully Registered', 'success');
-
         return redirect()->route('student.index')
             ->with('success', 'Student created successfully.');
     }
@@ -157,15 +151,15 @@ class StudentController extends Controller
     public function show(string $id)
     {
         // $data = StudentMaster::find($id);
-        $data = StudentMaster::leftjoin('setup_country','setup_country.CountryID','=','studentmaster.CountryID')
-        ->leftjoin('setup_province','setup_province.ProvinceID','=','studentmaster.ProvinceID')
-        ->leftjoin('setup_district','setup_district.DistrictID','=','studentmaster.DistrictID')
-        ->leftjoin('setup_department','setup_department.DeptID','=','studentmaster.DeptID')
-        ->leftjoin('setup_session','setup_session.SessionID','=','studentmaster.SessionID')
-        ->leftjoin('setup_student_type','setup_student_type.StudentTypeID','=','studentmaster.StudentTypeID')
-        ->leftjoin('setup_class','setup_class.ClassID','=','studentmaster.ClassID')
-        ->leftjoin('setup_section','setup_section.SectionID','=','studentmaster.SectionID')
-        ->find($id);
+        $data = StudentMaster::leftjoin('setup_country', 'setup_country.CountryID', '=', 'studentmaster.CountryID')
+            ->leftjoin('setup_province', 'setup_province.ProvinceID', '=', 'studentmaster.ProvinceID')
+            ->leftjoin('setup_district', 'setup_district.DistrictID', '=', 'studentmaster.DistrictID')
+            ->leftjoin('setup_department', 'setup_department.DeptID', '=', 'studentmaster.DeptID')
+            ->leftjoin('setup_session', 'setup_session.SessionID', '=', 'studentmaster.SessionID')
+            ->leftjoin('setup_student_type', 'setup_student_type.StudentTypeID', '=', 'studentmaster.StudentTypeID')
+            ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
+            ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
+            ->find($id);
 
         return view('student.show', compact('data'));
     }
@@ -174,15 +168,15 @@ class StudentController extends Controller
     {
 
         // $data = StudentMaster::find($id);
-        $data = StudentMaster::leftjoin('setup_country','setup_country.CountryID','=','studentmaster.CountryID')
-        ->leftjoin('setup_province','setup_province.ProvinceID','=','studentmaster.ProvinceID')
-        ->leftjoin('setup_district','setup_district.DistrictID','=','studentmaster.DistrictID')
-        ->leftjoin('setup_department','setup_department.DeptID','=','studentmaster.DeptID')
-        ->leftjoin('setup_session','setup_session.SessionID','=','studentmaster.SessionID')
-        ->leftjoin('setup_student_type','setup_student_type.StudentTypeID','=','studentmaster.StudentTypeID')
-        ->leftjoin('setup_class','setup_class.ClassID','=','studentmaster.ClassID')
-        ->leftjoin('setup_section','setup_section.SectionID','=','studentmaster.SectionID')
-        ->find($id->id);
+        $data = StudentMaster::leftjoin('setup_country', 'setup_country.CountryID', '=', 'studentmaster.CountryID')
+            ->leftjoin('setup_province', 'setup_province.ProvinceID', '=', 'studentmaster.ProvinceID')
+            ->leftjoin('setup_district', 'setup_district.DistrictID', '=', 'studentmaster.DistrictID')
+            ->leftjoin('setup_department', 'setup_department.DeptID', '=', 'studentmaster.DeptID')
+            ->leftjoin('setup_session', 'setup_session.SessionID', '=', 'studentmaster.SessionID')
+            ->leftjoin('setup_student_type', 'setup_student_type.StudentTypeID', '=', 'studentmaster.StudentTypeID')
+            ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
+            ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
+            ->find($id->id);
 
         return response()->json($data);
         // return view('student.show', compact('data'));
@@ -194,15 +188,15 @@ class StudentController extends Controller
     public function edit(string $id)
     {
         // $data = StudentMaster::find($id);
-        $data = StudentMaster::leftjoin('setup_country','setup_country.CountryID','=','studentmaster.CountryID')
-        ->leftjoin('setup_province','setup_province.ProvinceID','=','studentmaster.ProvinceID')
-        ->leftjoin('setup_district','setup_district.DistrictID','=','studentmaster.DistrictID')
-        ->leftjoin('setup_department','setup_department.DeptID','=','studentmaster.DeptID')
-        ->leftjoin('setup_session','setup_session.SessionID','=','studentmaster.SessionID')
-        ->leftjoin('setup_student_type','setup_student_type.StudentTypeID','=','studentmaster.StudentTypeID')
-        ->leftjoin('setup_class','setup_class.ClassID','=','studentmaster.ClassID')
-        ->leftjoin('setup_section','setup_section.SectionID','=','studentmaster.SectionID')
-        ->find($id);
+        $data = StudentMaster::leftjoin('setup_country', 'setup_country.CountryID', '=', 'studentmaster.CountryID')
+            ->leftjoin('setup_province', 'setup_province.ProvinceID', '=', 'studentmaster.ProvinceID')
+            ->leftjoin('setup_district', 'setup_district.DistrictID', '=', 'studentmaster.DistrictID')
+            ->leftjoin('setup_department', 'setup_department.DeptID', '=', 'studentmaster.DeptID')
+            ->leftjoin('setup_session', 'setup_session.SessionID', '=', 'studentmaster.SessionID')
+            ->leftjoin('setup_student_type', 'setup_student_type.StudentTypeID', '=', 'studentmaster.StudentTypeID')
+            ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
+            ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
+            ->find($id);
 
         $countries = Country::all();
         $provinces = Province::all();
@@ -213,7 +207,7 @@ class StudentController extends Controller
         $classes = Classes::all();
         $sections = Sections::all();
 
-        return view('student.edit',compact('data','countries','provinces','districts','departments','sessions','studenttypes','classes','sections'));
+        return view('student.edit', compact('data', 'countries', 'provinces', 'districts', 'departments', 'sessions', 'studenttypes', 'classes', 'sections'));
     }
 
     /**
@@ -249,8 +243,8 @@ class StudentController extends Controller
             'IslamicEdu' => 'required',
             'AsriEdu' => 'required',
             'AddlEdu' => 'required',
-        //     'DOSLC' => 'required',
-        //     'ReasonSLC' => 'required',
+            //     'DOSLC' => 'required',
+            //     'ReasonSLC' => 'required',
         ]);
 
         $data = StudentMaster::find($id);
@@ -305,104 +299,134 @@ class StudentController extends Controller
             ->with('success', 'Student deleted successfully');
     }
 
-    public function createPDFReport() {
-        $data = StudentMaster::leftjoin('setup_country','setup_country.CountryID','=','studentmaster.CountryID')
-        ->leftjoin('setup_province','setup_province.ProvinceID','=','studentmaster.ProvinceID')
-        ->leftjoin('setup_district','setup_district.DistrictID','=','studentmaster.DistrictID')
-        ->leftjoin('setup_department','setup_department.DeptID','=','studentmaster.DeptID')
-        ->leftjoin('setup_session','setup_session.SessionID','=','studentmaster.SessionID')
-        ->leftjoin('setup_student_type','setup_student_type.StudentTypeID','=','studentmaster.StudentTypeID')
-        ->leftjoin('setup_class','setup_class.ClassID','=','studentmaster.ClassID')
-        ->leftjoin('setup_section','setup_section.SectionID','=','studentmaster.SectionID')
-        ->get();
+    public function createPDFReport()
+    {
+        $data = StudentMaster::leftjoin('setup_country', 'setup_country.CountryID', '=', 'studentmaster.CountryID')
+            ->leftjoin('setup_province', 'setup_province.ProvinceID', '=', 'studentmaster.ProvinceID')
+            ->leftjoin('setup_district', 'setup_district.DistrictID', '=', 'studentmaster.DistrictID')
+            ->leftjoin('setup_department', 'setup_department.DeptID', '=', 'studentmaster.DeptID')
+            ->leftjoin('setup_session', 'setup_session.SessionID', '=', 'studentmaster.SessionID')
+            ->leftjoin('setup_student_type', 'setup_student_type.StudentTypeID', '=', 'studentmaster.StudentTypeID')
+            ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
+            ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
+            ->get();
 
         $pdf = PDF::loadView('student.studentdata', array('data' => $data));
 
         return $pdf->download('StudentReport.pdf');
     }
 
-    public function studentFormPDF(string $id) {
-        $data = StudentMaster::leftjoin('setup_country','setup_country.CountryID','=','studentmaster.CountryID')
-        ->leftjoin('setup_province','setup_province.ProvinceID','=','studentmaster.ProvinceID')
-        ->leftjoin('setup_district','setup_district.DistrictID','=','studentmaster.DistrictID')
-        ->leftjoin('setup_department','setup_department.DeptID','=','studentmaster.DeptID')
-        ->leftjoin('setup_session','setup_session.SessionID','=','studentmaster.SessionID')
-        ->leftjoin('setup_student_type','setup_student_type.StudentTypeID','=','studentmaster.StudentTypeID')
-        ->leftjoin('setup_class','setup_class.ClassID','=','studentmaster.ClassID')
-        ->leftjoin('setup_section','setup_section.SectionID','=','studentmaster.SectionID')
-        ->find($id);
+    public function studentFormPDF(string $id)
+    {
+        $data = StudentMaster::leftjoin('setup_country', 'setup_country.CountryID', '=', 'studentmaster.CountryID')
+            ->leftjoin('setup_province', 'setup_province.ProvinceID', '=', 'studentmaster.ProvinceID')
+            ->leftjoin('setup_district', 'setup_district.DistrictID', '=', 'studentmaster.DistrictID')
+            ->leftjoin('setup_department', 'setup_department.DeptID', '=', 'studentmaster.DeptID')
+            ->leftjoin('setup_session', 'setup_session.SessionID', '=', 'studentmaster.SessionID')
+            ->leftjoin('setup_student_type', 'setup_student_type.StudentTypeID', '=', 'studentmaster.StudentTypeID')
+            ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
+            ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
+            ->find($id);
 
         // $pdfname = $data->StudentName.'.pdf';
         // $pdf = PDF::loadView('student.studentformpdf', array('data' => $data));
 
-        return view('student.studentformpdf',compact('data'));
+        return view('student.studentformpdf', compact('data'));
     }
-    public function studentIDCard(string $id) {
-        $data = StudentMaster::leftjoin('setup_country','setup_country.CountryID','=','studentmaster.CountryID')
-        ->leftjoin('setup_province','setup_province.ProvinceID','=','studentmaster.ProvinceID')
-        ->leftjoin('setup_district','setup_district.DistrictID','=','studentmaster.DistrictID')
-        ->leftjoin('setup_department','setup_department.DeptID','=','studentmaster.DeptID')
-        ->leftjoin('setup_session','setup_session.SessionID','=','studentmaster.SessionID')
-        ->leftjoin('setup_student_type','setup_student_type.StudentTypeID','=','studentmaster.StudentTypeID')
-        ->leftjoin('setup_class','setup_class.ClassID','=','studentmaster.ClassID')
-        ->leftjoin('setup_section','setup_section.SectionID','=','studentmaster.SectionID')
-        ->find($id);
+    public function studentIDCard(string $id)
+    {
+        $data = StudentMaster::leftjoin('setup_country', 'setup_country.CountryID', '=', 'studentmaster.CountryID')
+            ->leftjoin('setup_province', 'setup_province.ProvinceID', '=', 'studentmaster.ProvinceID')
+            ->leftjoin('setup_district', 'setup_district.DistrictID', '=', 'studentmaster.DistrictID')
+            ->leftjoin('setup_department', 'setup_department.DeptID', '=', 'studentmaster.DeptID')
+            ->leftjoin('setup_session', 'setup_session.SessionID', '=', 'studentmaster.SessionID')
+            ->leftjoin('setup_student_type', 'setup_student_type.StudentTypeID', '=', 'studentmaster.StudentTypeID')
+            ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
+            ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
+            ->find($id);
 
-        return view('student.studentcard',compact('data'));
+        return view('student.studentcard', compact('data'));
     }
 
     public function studentReportIndex(Request $request)
     {
+        $countries = Country::all();
+        $provinces = Province::all();
+        $districts = District::all();
         $departments = Department::all();
         $sessions = Session::all();
         $classes = Classes::all();
         $sections = Sections::all();
+        $students = StudentMaster::all();
 
+        $query = StudentMaster::query()
+            ->leftjoin('setup_country', 'setup_country.CountryID', '=', 'studentmaster.CountryID')
+            ->leftjoin('setup_province', 'setup_province.ProvinceID', '=', 'studentmaster.ProvinceID')
+            ->leftjoin('setup_district', 'setup_district.DistrictID', '=', 'studentmaster.DistrictID')
+            ->leftjoin('setup_department', 'setup_department.DeptID', '=', 'studentmaster.DeptID')
+            ->leftjoin('setup_session', 'setup_session.SessionID', '=', 'studentmaster.SessionID')
+            ->leftjoin('setup_student_type', 'setup_student_type.StudentTypeID', '=', 'studentmaster.StudentTypeID')
+            ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
+            ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID');
 
-        if(!empty($request->query('ClassID')) || !empty($request->query('SectionID') || !empty($request->query('DeptID'))) || !empty($request->query('SessionID'))){
+        $query->with('country','province','district','dept', 'session', 'class', 'section');
 
-            $classid = $request->query('ClassID');
-            $sectionid = $request->query('SectionID');
-            $departmentid = $request->query('DeptID');
-            $sessionid = $request->query('SessionID');
-
-
-            $data = StudentMaster::orWhere('studentmaster.ClassID','=',$classid)
-            ->orWhere('studentmaster.SectionID','=',$sectionid)
-            ->orWhere('studentmaster.DeptID','=',$departmentid)
-            ->orWhere('studentmaster.SessionID','=',$sessionid)
-            ->leftjoin('setup_country','setup_country.CountryID','=','studentmaster.CountryID')
-            ->leftjoin('setup_province','setup_province.ProvinceID','=','studentmaster.ProvinceID')
-            ->leftjoin('setup_district','setup_district.DistrictID','=','studentmaster.DistrictID')
-            ->leftjoin('setup_department','setup_department.DeptID','=','studentmaster.DeptID')
-            ->leftjoin('setup_session','setup_session.SessionID','=','studentmaster.SessionID')
-            ->leftjoin('setup_student_type','setup_student_type.StudentTypeID','=','studentmaster.StudentTypeID')
-            ->leftjoin('setup_class','setup_class.ClassID','=','studentmaster.ClassID')
-            ->leftjoin('setup_section','setup_section.SectionID','=','studentmaster.SectionID')
-            ->orderBy('StudentID','DESC')->paginate(10);
-        }else{
-            $data = StudentMaster::leftjoin('setup_country','setup_country.CountryID','=','studentmaster.CountryID')
-            ->leftjoin('setup_province','setup_province.ProvinceID','=','studentmaster.ProvinceID')
-            ->leftjoin('setup_district','setup_district.DistrictID','=','studentmaster.DistrictID')
-            ->leftjoin('setup_department','setup_department.DeptID','=','studentmaster.DeptID')
-            ->leftjoin('setup_session','setup_session.SessionID','=','studentmaster.SessionID')
-            ->leftjoin('setup_student_type','setup_student_type.StudentTypeID','=','studentmaster.StudentTypeID')
-            ->leftjoin('setup_class','setup_class.ClassID','=','studentmaster.ClassID')
-            ->leftjoin('setup_section','setup_section.SectionID','=','studentmaster.SectionID')
-            ->orderBy('StudentID','DESC')->paginate(10);
+        if (!empty($request->query('CountryID'))) {
+            $query->where('studentMaster.CountryID', '=', $request->input('CountryID'));
         }
 
-        return view('report.student.index', compact('data','departments','sessions','classes','sections'));
+        if (!empty($request->query('ProvinceID'))) {
+            $query->whereHas('province', function ($classQuery) use ($request) {
+                $classQuery->where('studentmaster.ProvinceID', '=', $request->input('ProvinceID'));
+            });
+        }
+        if (!empty($request->query('DistrictID'))) {
+            $query->whereHas('district', function ($classQuery) use ($request) {
+                $classQuery->where('studentmaster.DistrictID', '=', $request->input('DistrictID'));
+            });
+        }
+        if (!empty($request->query('DeptID'))) {
+            $query->whereHas('dept', function ($classQuery) use ($request) {
+                $classQuery->where('studentmaster.DeptID', '=', $request->input('DeptID'));
+            });
+        }
+        if (!empty($request->query('SessionID'))) {
+            $query->whereHas('session', function ($classQuery) use ($request) {
+                $classQuery->where('studentmaster.SessionID', '=', $request->input('SessionID'));
+            });
+        }
+        if (!empty($request->query('ClassID'))) {
+            $query->whereHas('class', function ($classQuery) use ($request) {
+                $classQuery->where('studentmaster.ClassID', '=', $request->input('ClassID'));
+            });
+        }
+        if (!empty($request->query('SectionID'))) {
+            $query->whereHas('section', function ($classQuery) use ($request) {
+                $classQuery->where('studentmaster.SectionID', '=', $request->input('SectionID'));
+            });
+        }
+        else {
+            $data = StudentMaster::leftjoin('setup_country', 'setup_country.CountryID', '=', 'studentmaster.CountryID')
+                ->leftjoin('setup_province', 'setup_province.ProvinceID', '=', 'studentmaster.ProvinceID')
+                ->leftjoin('setup_district', 'setup_district.DistrictID', '=', 'studentmaster.DistrictID')
+                ->leftjoin('setup_department', 'setup_department.DeptID', '=', 'studentmaster.DeptID')
+                ->leftjoin('setup_session', 'setup_session.SessionID', '=', 'studentmaster.SessionID')
+                ->leftjoin('setup_student_type', 'setup_student_type.StudentTypeID', '=', 'studentmaster.StudentTypeID')
+                ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
+                ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
+                ->orderBy('StudentID', 'DESC');
+        }
+        $data = $query->orderBy('StudentID', 'DESC')->get();
+
+        return view('report.student.index', compact('data', 'students' , 'countries' , 'provinces' , 'districts' , 'departments', 'sessions', 'classes', 'sections'));
     }
 
     public function fetchStudents(Request $request)
     {
-        $data['student'] = StudentMaster::leftjoin('setup_session','setup_session.SessionID','=','studentmaster.SessionID')
-        ->leftjoin('setup_class','setup_class.ClassID','=','studentmaster.ClassID')
-        ->leftjoin('setup_section','setup_section.SectionID','=','studentmaster.SectionID')
-        ->where("RegistrationNo",$request->RegistrationNo)->get();
+        $data['student'] = StudentMaster::leftjoin('setup_session', 'setup_session.SessionID', '=', 'studentmaster.SessionID')
+            ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
+            ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
+            ->where("RegistrationNo", $request->RegistrationNo)->get();
         return response()->json($data);
     }
-
-
 }
