@@ -36,7 +36,7 @@ Route::get('/', function () {
 });
 
 Route::get('/check', function () {
-    return view('report.student.index');
+    return view('student.singlestudentcard');
 });
 
 Auth::routes();
@@ -59,10 +59,14 @@ Route::get('/studentdata', [StudentController::class, 'createPDFReport'])->name(
 Route::get('/studentformpdf/{id}', [StudentController::class, 'studentFormPDF'])->name('StudentPDFForm');
 Route::get('/studentidcard/{id}', [StudentController::class, 'studentIDCard'])->name('StudentIDCard');
 Route::get('/studentreport', [StudentController::class, 'studentReportIndex'])->name('StudentReport');
+Route::get('/studentcardgenerater', function () {
+    return view('student.singlestudentcard');
+});
 
 Route::post('api/fetch-states', [ProvinceController::class, 'fetchState']);
 Route::post('api/fetch-cities', [DistrictController::class, 'fetchCities']);
 Route::post('api/fetch-sections', [SectionsController::class, 'fetchSections']);
+Route::post('api/fetch-students', [StudentController::class, 'fetchStudents']);
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);

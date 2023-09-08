@@ -395,5 +395,14 @@ class StudentController extends Controller
         return view('report.student.index', compact('data','departments','sessions','classes','sections'));
     }
 
+    public function fetchStudents(Request $request)
+    {
+        $data['student'] = StudentMaster::leftjoin('setup_session','setup_session.SessionID','=','studentmaster.SessionID')
+        ->leftjoin('setup_class','setup_class.ClassID','=','studentmaster.ClassID')
+        ->leftjoin('setup_section','setup_section.SectionID','=','studentmaster.SectionID')
+        ->where("RegistrationNo",$request->RegistrationNo)->get();
+        return response()->json($data);
+    }
+
 
 }
