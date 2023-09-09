@@ -126,7 +126,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h6 class="card-title">Student Dashboard</h6>
+                <h6 class="card-title">Admission Dashboard</h6>
 
                 <div class="tile_count">
                     <div class="col-md-2 col-sm-4  tile_stats_count">
@@ -232,9 +232,9 @@
                         <p>Section Name</p>
                         <select id="section-dd" name="SectionID">
                             <option value="">Select Section Name</option>
-                            @foreach ($sections as $section)
+                            {{-- @foreach ($sections as $section)
                                 <option value="{{ $section->SectionID }}">{{ $section->SectionName }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                     </div>
                     <div class="btn">
@@ -265,9 +265,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $i = 1;
+                        @endphp
                         @foreach ($data as $key => $student)
                             <tr>
-                                <td>{{ $student->StudentID }}</td>
+                                <td>{{ $i++ }}</td>
                                 <td>{{ $student->RegistrationNo }}</td>
                                 <td>{{ $student->StudentName }}</td>
                                 <td>{{ $student->FatherName }}</td>

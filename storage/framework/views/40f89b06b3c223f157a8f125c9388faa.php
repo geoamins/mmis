@@ -127,11 +127,14 @@
                     <?php endif; ?>
                   </li>
 
-                  <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['student-list'])): ?>
+                  <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['report-list'])): ?>
                   <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-search"></i>Reports<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('student-list')): ?>
+                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('report-list')): ?>
                         <li><a href="<?php echo e(route('StudentReport')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Students Report</a></li>
+                      <?php endif; ?>
+                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('report-list')): ?>
+                        <li><a href="<?php echo e(route('StudentAdmissionReport')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Admission Report</a></li>
                       <?php endif; ?>
                     </ul>
                     <?php endif; ?>

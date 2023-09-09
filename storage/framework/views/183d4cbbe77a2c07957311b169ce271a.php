@@ -3,11 +3,11 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h6 class="card-title">Permissions</h6>
+            <h6 class="card-title"><?php echo e(__('Users.permissions')); ?></h6>
             <div class="card-tools">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-create')): ?>
                     <span style="float: right;">
-                        <a class="btn btn-primary" href="<?php echo e(route('permissions.create')); ?>">New Permission</a>
+                        <a class="btn btn-primary" href="<?php echo e(route('permissions.create')); ?>"><?php echo e(__('Users.New Permission')); ?></a>
                     </span>
                 <?php endif; ?>
             </div>
@@ -16,10 +16,10 @@
             <table class="table table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Friendly Title</th>
-                        <th width="280px">Action</th>
+                        <th><?php echo e(__('Users.#')); ?></th>
+                        <th><?php echo e(__('Users.Name')); ?></th>
+                        <th><?php echo e(__('Users.Friendly Title')); ?></th>
+                        <th width="280px"><?php echo e(__('Users.Action')); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,15 +29,15 @@
                             <td><?php echo e($permission->name); ?></td>
                             <td><?php echo e($permission->friendly_title); ?></td>
                             <td>
-                                <a class="btn btn-success" href="<?php echo e(route('permissions.show',$permission->id)); ?>">Show</a>
+                                <a class="btn btn-success" href="<?php echo e(route('permissions.show',$permission->id)); ?>"><?php echo e(__('Users.Show')); ?></a>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-edit')): ?>
-                                    <a class="btn btn-primary" href="<?php echo e(route('permissions.edit',$permission->id)); ?>">Edit</a>
+                                    <a class="btn btn-primary" href="<?php echo e(route('permissions.edit',$permission->id)); ?>"><?php echo e(__('Users.Edit')); ?></a>
                                 <?php endif; ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-delete')): ?>
                                     <?php echo Form::open(['method' => 'DELETE','route' => ['permissions.destroy', $permission->id],'style'=>'display:inline', 'class' => 'del-permissions']); ?>
 
                                     <input name="_method" type="hidden" value="DELETE">
-                                    <button type="submit" class="btn btn-danger del-permissions" data-toggle="tooltip" title='Delete'>Delete</button>
+                                    <button type="submit" class="btn btn-danger del-permissions" data-toggle="tooltip" title='Delete'><?php echo e(__('Users.Delete')); ?></button>
                                     <?php echo Form::close(); ?>
 
                                 <?php endif; ?>

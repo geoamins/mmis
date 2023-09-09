@@ -127,11 +127,14 @@
                     @endcan
                   </li>
 
-                  @canany(['student-list'])
+                  @canany(['report-list'])
                   <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-search"></i>Reports<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      @can('student-list')
+                      @can('report-list')
                         <li><a href="{{ route('StudentReport') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Students Report</a></li>
+                      @endcan
+                      @can('report-list')
+                        <li><a href="{{ route('StudentAdmissionReport') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Admission Report</a></li>
                       @endcan
                     </ul>
                     @endcan
