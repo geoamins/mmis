@@ -127,6 +127,16 @@
                     @endcan
                   </li>
 
+                  @canany(['student-list'])
+                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-users"></i>Attendance<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      @can('student-list')
+                        <li><a href="{{ route('attendance.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Student Attendance</a></li>
+                      @endcan
+                    </ul>
+                    @endcan
+                  </li>
+
                   @canany(['report-list'])
                   <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-search"></i>Reports<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">

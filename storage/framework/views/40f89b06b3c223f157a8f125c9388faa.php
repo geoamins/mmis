@@ -127,6 +127,16 @@
                     <?php endif; ?>
                   </li>
 
+                  <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['student-list'])): ?>
+                  <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-users"></i>Attendance<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('student-list')): ?>
+                        <li><a href="<?php echo e(route('attendance.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Student Attendance</a></li>
+                      <?php endif; ?>
+                    </ul>
+                    <?php endif; ?>
+                  </li>
+
                   <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['report-list'])): ?>
                   <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-search"></i>Reports<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">

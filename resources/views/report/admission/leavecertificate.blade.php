@@ -18,25 +18,50 @@
             width: 11in;
             height: 8.5in;
             background-size: 11in 8.5in;
-            background-image: url({{ asset('images/LeaveCertificate.png') }});
+            background-image: url({{ asset('images/LeaveCertificate.jpeg') }});
         }
 
         .first {
-            width: 500px;
+            direction: rtl;
+            width: 290px;
             display: inline-flex;
             justify-content: space-between;
             font-weight: bold;
-            margin-top: 330px;
-            margin-left: 230px;
+            margin-top: 340px;
+            margin-left: 170px;
         }
 
         .second {
-            width: 500px;
+            width: 350px;
             display: inline-flex;
             justify-content: space-between;
             font-weight: bold;
-            margin-top: 35px;
-            margin-left: 210px;
+            margin-top: 20px;
+            margin-left: 500;
+        }
+        .third {
+            width: 300px;
+            display: inline-flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-top: 16px;
+            margin-left: 580;
+        }
+        .fourth {
+            width: 300px;
+            display: inline-flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-left: 795px;
+        }
+        .fifth {
+            width: 300px;
+            display: inline-flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-top: 170px;
+            margin-left: 770px;
         }
 
         .btn{
@@ -60,15 +85,22 @@
     <div class="main">
         <div class="certificate" id="certificate">
             <div class="first">
-                <p>{{ $data->AdmissionDate }}</p>
-                <p>{{ $data->DOSLC }}</p>
+                <p>{{ $data->StudentName }}</p>
+                <p>{{ $data->FatherName }}</p>
             </div>
             <div class="second">
                 <p>{{ $data->StudentName }}</p>
                 <p>{{ $data->FatherName }}</p>
             </div>
             <div class="third">
-
+                <p>{{ $data->StudentName }}</p>
+                <p>{{ $data->FatherName }}</p>
+            </div>
+            <div class="fourth">
+                <p>{{ $data->StudentName }}</p>
+            </div>
+            <div class="fifth">
+                <p>{{ $data->StudentName }}</p>
             </div>
         </div>
         <div class="btn">

@@ -18,6 +18,7 @@ use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\SectionsController;
 use App\Http\Controllers\LocalizationController;
+use App\Http\Controllers\AttendanceController;
 
 
 /*
@@ -61,6 +62,8 @@ Route::get('/studentidcard/{id}', [StudentController::class, 'studentIDCard'])->
 Route::get('/studentreport', [StudentController::class, 'studentReportIndex'])->name('StudentReport');
 Route::get('/studentadmissionreport', [StudentController::class, 'studentAdmissionReport'])->name('StudentAdmissionReport');
 Route::get('/studentleavecertificate/{id}', [StudentController::class, 'studentLeaveCertificate'])->name('StudentLeaveCertificate');
+
+Route::resource('attendance',AttendanceController::class);
 
 Route::post('api/fetch-states', [ProvinceController::class, 'fetchState']);
 Route::post('api/fetch-cities', [DistrictController::class, 'fetchCities']);
