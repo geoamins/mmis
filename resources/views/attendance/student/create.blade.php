@@ -158,7 +158,7 @@
                             <td>{{ $student->RegistrationNo }}</td>
                             <td>{{ $student->StudentName }}</td>
                             <td>{{ $student->FatherName }}</td>
-                            <td class="date-td">{{ now()->toDateString() }}</td>
+                            <td class="date-td"></td>
                             <td>
                                 <div class="checkbox">
                                     <input type="checkbox" name="Status[{{ $student->StudentID }}]"

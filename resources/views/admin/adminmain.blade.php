@@ -133,6 +133,12 @@
                       @can('student-list')
                         <li><a href="{{ route('attendance.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Student Attendance</a></li>
                       @endcan
+                      @can('student-list')
+                        <li><a href="{{ route('ClassAttReportIndex') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Class Wise Report</a></li>
+                      @endcan
+                      @can('student-list')
+                        <li><a href="{{ route('StudentAttReportIndex') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Student Wise Report</a></li>
+                      @endcan
                     </ul>
                     @endcan
                   </li>
@@ -141,7 +147,7 @@
                   <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-search"></i>Reports<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       @can('report-list')
-                        <li><a href="{{ route('StudentReport') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Students Report</a></li>
+                        <li><a href="{{ route('StudentReportIndex') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Students Report</a></li>
                       @endcan
                       @can('report-list')
                         <li><a href="{{ route('StudentAdmissionReport') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Admission Report</a></li>

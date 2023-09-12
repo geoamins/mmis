@@ -59,11 +59,16 @@ Route::resource('student',StudentController::class);
 Route::get('/studentdata', [StudentController::class, 'createPDFReport'])->name('StudentPDFReport');
 Route::get('/studentformpdf/{id}', [StudentController::class, 'studentFormPDF'])->name('StudentPDFForm');
 Route::get('/studentidcard/{id}', [StudentController::class, 'studentIDCard'])->name('StudentIDCard');
-Route::get('/studentreport', [StudentController::class, 'studentReportIndex'])->name('StudentReport');
+Route::get('/studentreport', [StudentController::class, 'studentReportIndex'])->name('StudentReportIndex');
 Route::get('/studentadmissionreport', [StudentController::class, 'studentAdmissionReport'])->name('StudentAdmissionReport');
 Route::get('/studentleavecertificate/{id}', [StudentController::class, 'studentLeaveCertificate'])->name('StudentLeaveCertificate');
 
+
 Route::resource('attendance',AttendanceController::class);
+Route::get('/classreportindex', [AttendanceController::class, 'classReportIndex'])->name('ClassAttReportIndex');
+Route::get('/studentreportindex', [AttendanceController::class, 'studentReportIndex'])->name('StudentAttReportIndex');
+Route::get('/classreport', [AttendanceController::class, 'classReport'])->name('ClassReport');
+Route::get('/studentreport/{id}', [AttendanceController::class, 'studentReport'])->name('StudentReport');
 
 Route::post('api/fetch-states', [ProvinceController::class, 'fetchState']);
 Route::post('api/fetch-cities', [DistrictController::class, 'fetchCities']);

@@ -126,7 +126,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h6 class="card-title">Attendance Dashboard</h6>
+                <h6 class="card-title">Attendance Report</h6>
 
                 <div class="card-tools">
                     <div class="title_right">
@@ -149,7 +149,7 @@
 
             </div>
 
-            <form action="{{ route('attendance.create') }}" method="GET">
+            <form action="{{ route('ClassReport') }}" method="GET">
                 <div class="check1">
                     <div class="first">
                         <p>Select Class</p>
@@ -177,6 +177,15 @@
                             @enderror
 
                         </span>
+                    </div>
+                    <div class="third">
+                        <p>Select Report Type</p>
+                        <select id="report-dd" name="ReportID">
+                            <option value="">Select Report Type</option>
+                            <option value="1">Weekly</option>
+                            <option value="2">Monthly</option>
+                            <option value="3">Yearly</option>
+                        </select>
                     </div>
                     <div class="btn">
                         <button class="btn btn-primary" type="submit">Open Attendance Sheet</button>

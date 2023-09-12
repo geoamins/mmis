@@ -126,26 +126,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h6 class="card-title">Admission Dashboard</h6>
-
-                <div class="tile_count">
-                    <div class="col-md-2 col-sm-4  tile_stats_count">
-                        <span class="count_top"><i class="fa fa-user"></i> Total Students</span>
-                        <div class="count">{{ $students->count() }}</div>
-                    </div>
-                    <div class="col-md-2 col-sm-4  tile_stats_count">
-                        <span class="count_top"><i class="fa fa-clock-o"></i> Total Departments</span>
-                        <div class="count">{{ $departments->count() }}</div>
-                    </div>
-                    <div class="col-md-2 col-sm-4  tile_stats_count">
-                        <span class="count_top"><i class="fa fa-user"></i> Total Classes</span>
-                        <div class="count green">{{ $classes->count() }}</div>
-                    </div>
-                    <div class="col-md-2 col-sm-4  tile_stats_count">
-                        <span class="count_top"><i class="fa fa-user"></i> Total Sections</span>
-                        <div class="count">{{ $sections->count() }}</div>
-                    </div>
-                </div>
+                <h6 class="card-title">Attendance Report Dashboard</h6>
 
                 <div class="card-tools">
                     <div class="title_right">
@@ -168,56 +149,9 @@
 
             </div>
 
-            <form action="{{ route('StudentReportIndex') }}" method="GET">
-                <div class="check1">
-                    <div class="first">
-                        <p>Country Name</p>
-                        <select id="country-dd" name="CountryID">
-                            <option value="">Select Country Name</option>
-                            @foreach ($countries as $country)
-                                <option value="{{ $country->CountryID }}">{{ $country->CountryName }}</option>
-                            @endforeach
-
-                        </select>
-                    </div>
-                    <div class="fourth">
-                        <p>Province Name</p>
-                        <select id="province-dd" name="ProvinceID">
-                            <option value="">Select Province</option>
-                            @foreach ($provinces as $province)
-                                <option value="{{ $province->ProvinceID }}">{{ $province->ProvinceName }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="second">
-                        <p>District Name</p>
-                        <select id="district-dd" name="DistrictID">
-                            <option value="">Select District Name</option>
-                            @foreach ($districts as $district)
-                                <option value="{{ $district->DistrictID }}">{{ $district->DistrictName }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="third">
-                        <p>Department Name</p>
-                        <select id="DepartmentName" name="DeptID">
-                            <option value="">Select Department Name</option>
-                            @foreach ($departments as $department)
-                                <option value="{{ $department->DeptID }}">{{ $department->DepartmentName }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
+            <form action="{{ route('StudentAttReportIndex') }}" method="GET">
                 <div class="check">
-                    <div class="fourth">
-                        <p>Session Name</p>
-                        <select id="SessionTitle" name="SessionID">
-                            <option value="">Select Session</option>
-                            @foreach ($sessions as $session)
-                                <option value="{{ $session->SessionID }}">{{ $session->SessionTitle }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+
                     <div class="first">
                         <p>Class Name</p>
                         <select id="class-dd" name="ClassID">
@@ -243,7 +177,7 @@
                     </div>
                 </div>
 
-            </form>
+
 
 
             <div class="card-body">
@@ -255,13 +189,11 @@
                             <th>{{ __('Student.Registration No') }}</th>
                             <th>{{ __('Student.Student Name') }}</th>
                             <th>{{ __('Student.Father Name') }}</th>
-                            <th>Country</th>
-                            <th>Province</th>
-                            <th>District</th>
                             <th>Department</th>
                             <th>Class</th>
                             <th>Section</th>
                             <th>Session</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -274,13 +206,14 @@
                                 <td>{{ $student->RegistrationNo }}</td>
                                 <td>{{ $student->StudentName }}</td>
                                 <td>{{ $student->FatherName }}</td>
-                                <td>{{ $student->CountryName }}</td>
-                                <td>{{ $student->ProvinceName }}</td>
-                                <td>{{ $student->DistrictName }}</td>
                                 <td>{{ $student->DepartmentName }}</td>
                                 <td>{{ $student->ClassName }}</td>
                                 <td>{{ $student->SectionName }}</td>
                                 <td>{{ $student->SessionTitle }}</td>
+                                <td>
+                                    <a class="btn btn-success"
+                                            href="{{route('StudentReport', $student->StudentID)}}">{{'Report'}}</a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -288,6 +221,7 @@
                 {{-- {{ $data->render() }} --}}
             </div>
         </div>
+    </form>
     </div>
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

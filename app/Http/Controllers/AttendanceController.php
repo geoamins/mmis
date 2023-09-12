@@ -13,6 +13,7 @@ use App\Models\StudentType;
 use App\Models\Classes;
 use App\Models\Sections;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AttendanceController extends Controller
 {
@@ -40,7 +41,7 @@ class AttendanceController extends Controller
         if (!empty($request->query('ClassID')) && !empty($request->query('ClassID'))) {
 
             $query->where('studentmaster.ClassID', '=', $request->input('ClassID'))
-            ->where('studentmaster.SectionID', '=', $request->input('SectionID'));
+                ->where('studentmaster.SectionID', '=', $request->input('SectionID'));
 
             $data = $query->get();
         }
@@ -67,19 +68,19 @@ class AttendanceController extends Controller
         foreach ($attendanceData as $studentID => $Status) {
 
             $existingAttendance = Attendance::where('StudentID', $studentID)
-            ->whereDate('Date', $request->Date)
-            ->first();
+                ->whereDate('Date', $request->Date)
+                ->first();
 
-             if ($existingAttendance) {
+            if ($existingAttendance) {
                 return redirect()->back()
-                ->with('error', 'Attendance for this class on this date already exists.');
-             }else{
+                    ->with('error', 'Attendance for this class on this date already exists.');
+            } else {
                 Attendance::create([
-                'StudentID' => $studentID,
-                'Date' => $request->Date,
-                'Status' => $Status,
-            ]);
-             }
+                    'StudentID' => $studentID,
+                    'Date' => $request->Date,
+                    'Status' => $Status,
+                ]);
+            }
 
         }
 
@@ -94,7 +95,7 @@ class AttendanceController extends Controller
      */
     public function show(Attendance $attendance)
     {
-        //
+
     }
 
     /**
@@ -120,4 +121,155 @@ class AttendanceController extends Controller
     {
         //
     }
+    public function studentReportIndex(Request $request)
+    {
+        $classes = Classes::all();
+        $sections = Sections::all();
+        $students = StudentMaster::all();
+
+        $query = StudentMaster::query()
+            ->leftjoin('setup_country', 'setup_country.CountryID', '=', 'studentmaster.CountryID')
+            ->leftjoin('setup_province', 'setup_province.ProvinceID', '=', 'studentmaster.ProvinceID')
+            ->leftjoin('setup_district', 'setup_district.DistrictID', '=', 'studentmaster.DistrictID')
+            ->leftjoin('setup_department', 'setup_department.DeptID', '=', 'studentmaster.DeptID')
+            ->leftjoin('setup_session', 'setup_session.SessionID', '=', 'studentmaster.SessionID')
+            ->leftjoin('setup_student_type', 'setup_student_type.StudentTypeID', '=', 'studentmaster.StudentTypeID')
+            ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
+            ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID');
+
+        $query->with('class', 'section');
+
+        if (!empty($request->query('ClassID'))) {
+            $query->whereHas('class', function ($classQuery) use ($request) {
+                $classQuery->where('studentmaster.ClassID', '=', $request->input('ClassID'));
+            });
+        }
+        if (!empty($request->query('SectionID'))) {
+            $query->whereHas('section', function ($classQuery) use ($request) {
+                $classQuery->where('studentmaster.SectionID', '=', $request->input('SectionID'));
+            });
+        } else {
+            $data = StudentMaster::leftjoin('setup_country', 'setup_country.CountryID', '=', 'studentmaster.CountryID')
+                ->leftjoin('setup_province', 'setup_province.ProvinceID', '=', 'studentmaster.ProvinceID')
+                ->leftjoin('setup_district', 'setup_district.DistrictID', '=', 'studentmaster.DistrictID')
+                ->leftjoin('setup_department', 'setup_department.DeptID', '=', 'studentmaster.DeptID')
+                ->leftjoin('setup_session', 'setup_session.SessionID', '=', 'studentmaster.SessionID')
+                ->leftjoin('setup_student_type', 'setup_student_type.StudentTypeID', '=', 'studentmaster.StudentTypeID')
+                ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
+                ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
+                ->orderBy('StudentID', 'DESC');
+        }
+        $data = $query->orderBy('StudentID', 'DESC')->get();
+
+        return view('attendance.report.studentindex', compact('data', 'students', 'classes', 'sections'));
+    }
+
+    public function studentReport(string $id)
+    {
+
+        // $dateInput = $request->input('dateInput');
+
+        // // Create a DateTime instance from the input date
+        // $date = \DateTime::createFromFormat('Y-m-d', $dateInput);
+
+        // // Extract the month and year
+        // $month = $date->format('m'); // Month as a two-digit number (01 - 12)
+        // $year = $date->format('Y');
+
+        $studentId = $id;
+        $month = date('n');
+        $year = date('Y');
+
+        $studentMonthlyReport = DB::table('student_attendance')
+            ->select('date', 'status')
+            ->where('StudentID', $studentId)
+            ->whereYear('date', $year)
+            ->whereMonth('date', $month)
+            ->groupBy('status')
+            ->groupBy('date')
+            ->get();
+
+
+        $student = StudentMaster::leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
+            ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
+            ->find($studentId);
+        return view('attendance.report.studentreport', compact('studentMonthlyReport', 'student'));
+
+    }
+
+
+    public function classReportIndex(Request $request)
+    {
+        $classes = Classes::all();
+        return view('attendance.report.classindex', compact('classes'));
+    }
+    public function classReport(Request $request)
+    {
+
+        $month = date('n');
+        $year = date('Y');
+        $classId = $request->ClassID;
+        $sectionId = $request->SectionID;
+
+        if (!empty($request->ReportID)) {
+            if ($request->ReportID == 1) {
+
+            }
+            if ($request->ReportID == 2) {
+                $Report = DB::table('student_attendance')
+                    ->select('date', DB::raw('SUM(CASE WHEN status = "P" THEN 1 ELSE 0 END) as present_count'), DB::raw('SUM(CASE WHEN status = "A" THEN 1 ELSE 0 END) as absent_count'))
+                    ->whereYear('date', $year)
+                    ->whereMonth('date', $month)
+                    ->whereExists(function ($query) use ($classId, $sectionId) {
+                        $query->select(DB::raw(1))
+                            ->from('studentmaster')
+                            ->whereColumn('studentmaster.StudentID', 'student_attendance.StudentID')
+                            ->where('studentmaster.ClassID', $classId)
+                            ->where('studentmaster.SectionID', $sectionId);
+                    })
+                    ->groupBy('date')
+                    ->get();
+            }
+            if ($request->ReportID == 3) {
+                $Report = DB::table('student_attendance')
+                    ->select(DB::raw('MONTH(date) as month'), DB::raw('SUM(CASE WHEN status = "P" THEN 1 ELSE 0 END) as present_count'), DB::raw('SUM(CASE WHEN status = "A" THEN 1 ELSE 0 END) as absent_count'))
+                    ->whereYear('date', $year)
+                    ->whereExists(function ($query) use ($classId, $sectionId) {
+                        $query->select(DB::raw(1))
+                            ->from('studentmaster')
+                            ->whereColumn('studentmaster.StudentID', 'student_attendance.StudentID')
+                            ->where('studentmaster.ClassID', $classId)
+                            ->where('studentmaster.SectionID', $sectionId);
+                    })
+                    ->groupBy(DB::raw('MONTH(date)'))
+                    ->get();
+            }
+        } else {
+
+            $Report = DB::table('student_attendance')
+                ->select('date', DB::raw('SUM(CASE WHEN status = "P" THEN 1 ELSE 0 END) as present_count'), DB::raw('SUM(CASE WHEN status = "A" THEN 1 ELSE 0 END) as absent_count'))
+                ->whereYear('date', $year)
+                ->whereMonth('date', $month)
+                ->whereExists(function ($query) use ($classId, $sectionId) {
+                    $query->select(DB::raw(1))
+                        ->from('studentmaster')
+                        ->whereColumn('studentmaster.StudentID', 'student_attendance.StudentID')
+                        ->where('studentmaster.ClassID', $classId)
+                        ->where('studentmaster.SectionID', $sectionId);
+                })
+                ->groupBy('date')
+                ->get();
+
+                // dd($Report);
+        }
+
+
+
+        $class = Classes::find($classId);
+        $section = Sections::find($sectionId);
+        return view('attendance.report.classreport', compact('Report', 'class', 'section'));
+
+    }
+
+
 }
