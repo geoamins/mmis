@@ -164,9 +164,10 @@ class AttendanceController extends Controller
         return view('attendance.report.studentindex', compact('data', 'students', 'classes', 'sections'));
     }
 
-    public function studentReport(string $id)
+    public function studentReport(Request $request,string $id)
     {
 
+        // dd($request);
         // $dateInput = $request->input('dateInput');
 
         // // Create a DateTime instance from the input date
@@ -187,6 +188,7 @@ class AttendanceController extends Controller
             ->whereMonth('date', $month)
             ->groupBy('status')
             ->groupBy('date')
+            ->orderBy('date')
             ->get();
 
 

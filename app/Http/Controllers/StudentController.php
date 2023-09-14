@@ -12,7 +12,7 @@ use App\Models\Session;
 use App\Models\StudentType;
 use App\Models\Classes;
 use App\Models\Sections;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class StudentController extends Controller
 {
@@ -327,9 +327,6 @@ class StudentController extends Controller
             ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
             ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
             ->find($id);
-
-        // $pdfname = $data->StudentName.'.pdf';
-        // $pdf = PDF::loadView('student.studentformpdf', array('data' => $data));
 
         return view('student.studentformpdf', compact('data'));
     }

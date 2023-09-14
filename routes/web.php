@@ -19,6 +19,7 @@ use App\Http\Controllers\PDFController;
 use App\Http\Controllers\SectionsController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\LeaveController;
 
 
 /*
@@ -37,7 +38,7 @@ Route::get('/', function () {
 });
 
 Route::get('/check', function () {
-    return view('report.admission.index');
+    return view('attendance.leavemanagment.create');
 });
 
 Auth::routes();
@@ -69,6 +70,11 @@ Route::get('/classreportindex', [AttendanceController::class, 'classReportIndex'
 Route::get('/studentreportindex', [AttendanceController::class, 'studentReportIndex'])->name('StudentAttReportIndex');
 Route::get('/classreport', [AttendanceController::class, 'classReport'])->name('ClassReport');
 Route::get('/studentreport/{id}', [AttendanceController::class, 'studentReport'])->name('StudentReport');
+
+Route::resource('leave',LeaveController::class);
+Route::get('/leavecreate', function () {
+    return view('attendance.leavemanagment.create');
+})->name('LeaveCreate');
 
 Route::post('api/fetch-states', [ProvinceController::class, 'fetchState']);
 Route::post('api/fetch-cities', [DistrictController::class, 'fetchCities']);

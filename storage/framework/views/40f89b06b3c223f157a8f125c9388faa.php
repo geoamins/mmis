@@ -128,16 +128,19 @@
                   </li>
 
                   <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['student-list'])): ?>
-                  <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-users"></i>Attendance<span class="fa fa-chevron-down"></span></a>
+                  <li class="<?php echo e(isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : ''); ?>"><a><i class="fa fa-edit"></i>Attendance<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('student-list')): ?>
                         <li><a href="<?php echo e(route('attendance.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Student Attendance</a></li>
                       <?php endif; ?>
                       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('student-list')): ?>
-                        <li><a href="<?php echo e(route('ClassAttReportIndex')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Class Wise Report</a></li>
+                        <li><a href="<?php echo e(route('leave.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Leave System</a></li>
                       <?php endif; ?>
                       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('student-list')): ?>
-                        <li><a href="<?php echo e(route('StudentAttReportIndex')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Student Wise Report</a></li>
+                        <li><a href="<?php echo e(route('StudentAttReportIndex')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Student Report</a></li>
+                      <?php endif; ?>
+                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('student-list')): ?>
+                        <li><a href="<?php echo e(route('ClassAttReportIndex')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Class Report</a></li>
                       <?php endif; ?>
                     </ul>
                     <?php endif; ?>

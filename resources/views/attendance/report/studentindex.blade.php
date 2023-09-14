@@ -180,48 +180,48 @@
 
 
 
-            <div class="card-body">
-                {{-- {{ $data->render() }} --}}
-                <table id="myTable" class="table table-hover">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>{{ __('Users.#') }}</th>
-                            <th>{{ __('Student.Registration No') }}</th>
-                            <th>{{ __('Student.Student Name') }}</th>
-                            <th>{{ __('Student.Father Name') }}</th>
-                            <th>Department</th>
-                            <th>Class</th>
-                            <th>Section</th>
-                            <th>Session</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @php
-                            $i = 1;
-                        @endphp
-                        @foreach ($data as $key => $student)
+                <div class="card-body">
+                    {{-- {{ $data->render() }} --}}
+                    <table id="myTable" class="table table-hover">
+                        <thead class="thead-dark">
                             <tr>
-                                <td>{{ $i++ }}</td>
-                                <td>{{ $student->RegistrationNo }}</td>
-                                <td>{{ $student->StudentName }}</td>
-                                <td>{{ $student->FatherName }}</td>
-                                <td>{{ $student->DepartmentName }}</td>
-                                <td>{{ $student->ClassName }}</td>
-                                <td>{{ $student->SectionName }}</td>
-                                <td>{{ $student->SessionTitle }}</td>
-                                <td>
-                                    <a class="btn btn-success"
-                                            href="{{route('StudentReport', $student->StudentID)}}">{{'Report'}}</a>
-                                </td>
+                                <th>{{ __('Users.#') }}</th>
+                                <th>{{ __('Student.Registration No') }}</th>
+                                <th>{{ __('Student.Student Name') }}</th>
+                                <th>{{ __('Student.Father Name') }}</th>
+                                <th>Department</th>
+                                <th>Class</th>
+                                <th>Section</th>
+                                <th>Session</th>
+                                <th>Monthly Report</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                {{-- {{ $data->render() }} --}}
-            </div>
+                        </thead>
+                        <tbody>
+                            @php
+                                $i = 1;
+                            @endphp
+                            @foreach ($data as $key => $student)
+                                <tr>
+                                    <td>{{ $i++ }}</td>
+                                    <td>{{ $student->RegistrationNo }}</td>
+                                    <td>{{ $student->StudentName }}</td>
+                                    <td>{{ $student->FatherName }}</td>
+                                    <td>{{ $student->DepartmentName }}</td>
+                                    <td>{{ $student->ClassName }}</td>
+                                    <td>{{ $student->SectionName }}</td>
+                                    <td>{{ $student->SessionTitle }}</td>
+                                    <td>
+                                        <a id="Reportbtn" class="btn btn-success"
+                                            href="{{ route('StudentReport', $student->StudentID) }}">{{ 'Report' }}</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    {{-- {{ $data->render() }} --}}
+                </div>
         </div>
-    </form>
+        </form>
     </div>
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -239,48 +239,6 @@
     }
 
     $(document).ready(function() {
-        $('#country-dd').on('change', function() {
-            var CountryID = this.value;
-            $("#province-dd").html('');
-            $.ajax({
-                url: "{{ url('api/fetch-states') }}",
-                type: "post",
-                data: {
-                    CountryID: CountryID,
-                    _token: '{{ csrf_token() }}'
-                },
-                dataType: 'json',
-                success: function(result) {
-                    $('#province-dd').html('<option value="">Select State</option>');
-                    $.each(result.states, function(key, value) {
-                        $("#province-dd").append('<option value="' + value
-                            .ProvinceID + '">' + value.ProvinceName +
-                            '</option>');
-                    });
-                }
-            });
-        });
-        $('#province-dd').on('change', function() {
-            var ProvinceID = this.value;
-            $("#district-dd").html('');
-            $.ajax({
-                url: "{{ url('api/fetch-cities') }}",
-                type: "post",
-                data: {
-                    ProvinceID: ProvinceID,
-                    _token: '{{ csrf_token() }}'
-                },
-                dataType: 'json',
-                success: function(result) {
-                    $('#district-dd').html('<option value="">Select District</option>');
-                    $.each(result.cities, function(key, value) {
-                        $("#district-dd").append('<option value="' + value
-                            .DistrictID + '">' + value.DistrictName +
-                            '</option>');
-                    });
-                }
-            });
-        });
         $('#class-dd').on('change', function() {
             var ClassID = this.value;
             $("#section-dd").html('');
@@ -301,6 +259,18 @@
                 }
             });
         });
+
+        // Add an event listener to the action button
+        const actionButtons = document.querySelectorAll('#Reportbtn');
+
+
+        actionButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Submit the form associated with this button
+                this.closest('tr').querySelector('form').submit();
+            });
+        });
+
     });
 </script>
 

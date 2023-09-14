@@ -128,16 +128,19 @@
                   </li>
 
                   @canany(['student-list'])
-                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-users"></i>Attendance<span class="fa fa-chevron-down"></span></a>
+                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-edit"></i>Attendance<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       @can('student-list')
                         <li><a href="{{ route('attendance.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Student Attendance</a></li>
                       @endcan
                       @can('student-list')
-                        <li><a href="{{ route('ClassAttReportIndex') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Class Wise Report</a></li>
+                        <li><a href="{{ route('leave.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Leave System</a></li>
                       @endcan
                       @can('student-list')
-                        <li><a href="{{ route('StudentAttReportIndex') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Student Wise Report</a></li>
+                        <li><a href="{{ route('StudentAttReportIndex') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Student Report</a></li>
+                      @endcan
+                      @can('student-list')
+                        <li><a href="{{ route('ClassAttReportIndex') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Class Report</a></li>
                       @endcan
                     </ul>
                     @endcan
