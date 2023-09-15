@@ -185,7 +185,7 @@
                                 <input type="date" name="FromDate">
                             </div>
                             <div class="third">
-                                <p>ToDate</p>
+                                <p>To Date</p>
                                 <input type="date" name="ToDate">
                             </div>
                             <div class="fourth">

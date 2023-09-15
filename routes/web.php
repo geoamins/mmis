@@ -63,6 +63,8 @@ Route::get('/studentidcard/{id}', [StudentController::class, 'studentIDCard'])->
 Route::get('/studentreport', [StudentController::class, 'studentReportIndex'])->name('StudentReportIndex');
 Route::get('/studentadmissionreport', [StudentController::class, 'studentAdmissionReport'])->name('StudentAdmissionReport');
 Route::get('/studentleavecertificate/{id}', [StudentController::class, 'studentLeaveCertificate'])->name('StudentLeaveCertificate');
+Route::get('/struckoffindex', function () { return view('student.struckoffstudent'); })->name('StruckOffIndex');
+Route::post('/struckoffstudent', [StudentController::class, 'struckOffStudent'])->name('StruckOffStudent');
 
 
 Route::resource('attendance',AttendanceController::class);
@@ -72,14 +74,13 @@ Route::get('/classreport', [AttendanceController::class, 'classReport'])->name('
 Route::get('/studentreport/{id}', [AttendanceController::class, 'studentReport'])->name('StudentReport');
 
 Route::resource('leave',LeaveController::class);
-Route::get('/leavecreate', function () {
-    return view('attendance.leavemanagment.create');
-})->name('LeaveCreate');
+Route::get('/leavecreate', function () { return view('attendance.leavemanagment.create'); })->name('LeaveCreate');
 
 Route::post('api/fetch-states', [ProvinceController::class, 'fetchState']);
 Route::post('api/fetch-cities', [DistrictController::class, 'fetchCities']);
 Route::post('api/fetch-sections', [SectionsController::class, 'fetchSections']);
 Route::post('api/fetch-students', [StudentController::class, 'fetchStudents']);
+Route::post('api/fetch-studentsbysection', [StudentController::class, 'fetchStudentsBySection']);
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);

@@ -32,12 +32,12 @@ class StudentController extends Controller
 
         if (!empty($request->query('search'))) {
             $search = $request->query('search');
-            $data = StudentMaster::where('StudentName', 'like', '%' . $search . '%')->orderBy('StudentID', 'DESC')->paginate(5);
+            $data = StudentMaster::where('StudentName', 'like', '%' . $search . '%')->orderBy('StudentID', 'DESC')->paginate(10);
         } elseif (!empty($request->query('searchbyrollno'))) {
             $search = $request->query('searchbyrollno');
-            $data = StudentMaster::where('RegistrationNo', '=', $search)->orderBy('StudentID', 'DESC')->paginate(5);
+            $data = StudentMaster::where('RegistrationNo', '=', $search)->orderBy('StudentID', 'DESC')->paginate(10);
         } else {
-            $data = StudentMaster::orderBy('StudentID', 'DESC')->paginate(5);
+            $data = StudentMaster::orderBy('StudentID', 'DESC')->paginate(10);
         }
         return view('student.index', compact('data'));
     }
@@ -96,7 +96,7 @@ class StudentController extends Controller
             'ClassID' => 'required',
             'SectionID' => 'required',
             'HostelStatus' => 'required',
-            'PreviousMadrasa' => 'required',
+            // 'PreviousMadrasa' => 'required',
             // 'IslamicEdu' => 'required',
             // 'AsriEdu' => 'required',
             // 'AddlEdu' => 'required',
@@ -298,6 +298,23 @@ class StudentController extends Controller
         return redirect()->route('student.index')
             ->with('success', 'Student deleted successfully');
     }
+    public function struckOffStudent(Request $request)
+    {
+        $validated = $request->validate([
+            'DOSLC' => 'required',
+            'ReasonSLC' => 'required',
+        ]);
+
+        $data = StudentMaster::find($request->StudentID);
+
+        $data->DOSLC = $request->input('DOSLC');
+        $data->ReasonSLC = $request->input('ReasonSLC');
+        $data->save();
+
+        return redirect()->route('StruckOffIndex')
+            ->with('success', 'Student Struck Offed!');
+    }
+
 
     public function createPDFReport()
     {
@@ -486,6 +503,16 @@ class StudentController extends Controller
             ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
             ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
             ->where("RegistrationNo", $request->RegistrationNo)->get();
+        return response()->json($data);
+    }
+
+    public function fetchStudentsBySection(Request $request)
+    {
+        $data['student'] = StudentMaster::leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
+            ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
+            ->where('setup_section.SectionID','=',$request->SectionID)
+            ->get();
+
         return response()->json($data);
     }
 }

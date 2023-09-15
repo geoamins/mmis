@@ -121,7 +121,7 @@
                         <li><a href="<?php echo e(route('student.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>"><?php echo e(__('sidebar.Student Registration')); ?></a></li>
                       <?php endif; ?>
                       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('student-list')): ?>
-                        <li><a href="<?php echo e(route('student.index')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>"><?php echo e(__('sidebar.Generate Cards')); ?></a></li>
+                        <li><a href="<?php echo e(route('StruckOffIndex')); ?>"  class="<?php echo e(isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : ''); ?>">Struck OFF</a></li>
                       <?php endif; ?>
                     </ul>
                     <?php endif; ?>

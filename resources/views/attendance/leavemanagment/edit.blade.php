@@ -139,7 +139,6 @@
 
     <body>
         <div class="form">
-            <dd>{{ $data }}</dd>
             <h1>
                 Student Leave System
             </h1>

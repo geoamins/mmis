@@ -119,12 +119,6 @@
                             @error('Date')
                                 <p class="text-danger">{{ 'Date is Required' }}</p>
                             @enderror
-                            @error('StudentID')
-                                <p class="text-danger">{{ 'ST is Required' }}</p>
-                            @enderror
-                            @error('Status')
-                                <p class="text-danger">{{ 'S is Required' }}</p>
-                            @enderror
 
                         </span>
                     </div>

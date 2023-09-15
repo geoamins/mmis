@@ -12,8 +12,11 @@ use App\Models\Session;
 use App\Models\StudentType;
 use App\Models\Classes;
 use App\Models\Sections;
+use App\Models\Leave;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use DateTime;
+use Carbon\Carbon;
 
 class AttendanceController extends Controller
 {
@@ -81,7 +84,6 @@ class AttendanceController extends Controller
                     'Status' => $Status,
                 ]);
             }
-
         }
 
         // dd($attendanceData);
@@ -95,7 +97,6 @@ class AttendanceController extends Controller
      */
     public function show(Attendance $attendance)
     {
-
     }
 
     /**
@@ -148,6 +149,53 @@ class AttendanceController extends Controller
             $query->whereHas('section', function ($classQuery) use ($request) {
                 $classQuery->where('studentmaster.SectionID', '=', $request->input('SectionID'));
             });
+        }
+        if (!empty($request->query('RegistrationNo'))) {
+            $studentId = $request->RegistrationNo;
+
+            $selectedDate = $request->input('Date');
+            $dateTime = new DateTime($selectedDate);
+            $month = $dateTime->format('m');
+            $year = $dateTime->format('Y');
+
+            //counting leave days in leave with approved status
+            $leaveRecords = Leave::where('StudentID', '=', $studentId)
+                ->where('Status', '=', 'Approved')->get();
+
+            $totalLeaveDays = 0;
+            foreach ($leaveRecords as $leave) {
+                $fromDate = Carbon::parse($leave->FromDate);
+                $toDate = Carbon::parse($leave->ToDate);
+                $leaveDays = $fromDate->diffInDays($toDate) + 1;
+                $totalLeaveDays += $leaveDays;
+            }
+
+            //getting all sundays in the selected month
+            $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+            $sundays = array_fill(1, $daysInMonth, false);
+            for ($day = 1; $day <= $daysInMonth; $day++) {
+                $date = date("Y-m-d", strtotime("$year-$month-$day"));
+                if (date('w', strtotime($date)) == 0) {
+                    $sundays[$day] = true;
+                }
+            }
+
+            $studentMonthlyReport = DB::table('student_attendance')
+                ->select('date', 'status')
+                ->where('StudentID', $studentId)
+                ->whereYear('date', $year)
+                ->whereMonth('date', $month)
+                ->groupBy('status')
+                ->groupBy('date')
+                ->orderBy('date')
+                ->get();
+
+
+            $student = StudentMaster::leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
+                ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
+                ->find($studentId);
+
+            return view('attendance.report.studentreport', compact('studentMonthlyReport', 'student', 'month', 'year', 'totalLeaveDays', 'sundays'));
         } else {
             $data = StudentMaster::leftjoin('setup_country', 'setup_country.CountryID', '=', 'studentmaster.CountryID')
                 ->leftjoin('setup_province', 'setup_province.ProvinceID', '=', 'studentmaster.ProvinceID')
@@ -164,22 +212,39 @@ class AttendanceController extends Controller
         return view('attendance.report.studentindex', compact('data', 'students', 'classes', 'sections'));
     }
 
-    public function studentReport(Request $request,string $id)
+    public function studentReport(Request $request, string $id)
     {
-
-        // dd($request);
-        // $dateInput = $request->input('dateInput');
-
-        // // Create a DateTime instance from the input date
-        // $date = \DateTime::createFromFormat('Y-m-d', $dateInput);
-
-        // // Extract the month and year
-        // $month = $date->format('m'); // Month as a two-digit number (01 - 12)
-        // $year = $date->format('Y');
-
         $studentId = $id;
         $month = date('n');
         $year = date('Y');
+
+        $selectedDate = $request->input('Date');
+        $dateTime = new DateTime($selectedDate);
+        $month = $dateTime->format('m');
+        $year = $dateTime->format('Y');
+
+        //counting leave days in leave with approved status
+        $leaveRecords = Leave::where('StudentID', '=', $studentId)
+            ->where('Status', '=', 'Approved')->get();
+
+        $totalLeaveDays = 0;
+        foreach ($leaveRecords as $leave) {
+            $fromDate = Carbon::parse($leave->FromDate);
+            $toDate = Carbon::parse($leave->ToDate);
+            $leaveDays = $fromDate->diffInDays($toDate) + 1;
+            $totalLeaveDays += $leaveDays;
+        }
+
+        //getting all sundays in the selected month
+        $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+        $sundays = array_fill(1, $daysInMonth, false);
+        for ($day = 1; $day <= $daysInMonth; $day++) {
+            $date = date("Y-m-d", strtotime("$year-$month-$day"));
+            if (date('w', strtotime($date)) == 0) {
+                $sundays[$day] = true;
+            }
+        }
+
 
         $studentMonthlyReport = DB::table('student_attendance')
             ->select('date', 'status')
@@ -195,8 +260,9 @@ class AttendanceController extends Controller
         $student = StudentMaster::leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
             ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
             ->find($studentId);
-        return view('attendance.report.studentreport', compact('studentMonthlyReport', 'student'));
 
+
+        return view('attendance.report.studentreport', compact('studentMonthlyReport', 'student', 'month', 'year','totalLeaveDays','sundays'));
     }
 
 
@@ -215,7 +281,6 @@ class AttendanceController extends Controller
 
         if (!empty($request->ReportID)) {
             if ($request->ReportID == 1) {
-
             }
             if ($request->ReportID == 2) {
                 $Report = DB::table('student_attendance')
@@ -262,7 +327,7 @@ class AttendanceController extends Controller
                 ->groupBy('date')
                 ->get();
 
-                // dd($Report);
+            // dd($Report);
         }
 
 
@@ -270,8 +335,5 @@ class AttendanceController extends Controller
         $class = Classes::find($classId);
         $section = Sections::find($sectionId);
         return view('attendance.report.classreport', compact('Report', 'class', 'section'));
-
     }
-
-
 }

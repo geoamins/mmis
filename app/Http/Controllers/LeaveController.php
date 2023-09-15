@@ -12,7 +12,7 @@ class LeaveController extends Controller
      */
     public function index()
     {
-            $data = Leave::leftjoin('studentmaster', 'studentmaster.StudentID', '=', 'student_leave.StudentID')
+        $data = Leave::leftjoin('studentmaster', 'studentmaster.StudentID', '=', 'student_leave.StudentID')
             ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
             ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
             ->orderBy('LeaveID', 'DESC')->paginate(10);

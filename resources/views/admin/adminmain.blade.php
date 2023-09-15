@@ -121,7 +121,7 @@
                         <li><a href="{{ route('student.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Student Registration')}}</a></li>
                       @endcan
                       @can('student-list')
-                        <li><a href="{{ route('student.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Generate Cards')}}</a></li>
+                        <li><a href="{{ route('StruckOffIndex') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Struck OFF</a></li>
                       @endcan
                     </ul>
                     @endcan

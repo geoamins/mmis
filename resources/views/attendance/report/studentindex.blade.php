@@ -38,7 +38,7 @@
         margin-right: 4px;
     }
 
-    .check .third select {
+    .check .third input {
         width: 100%;
         height: 35px;
         border: none;
@@ -65,61 +65,6 @@
         height: 40px;
     }
 
-    .check1 {
-        display: flex;
-        width: 96%;
-        margin-left: 20px;
-        margin-top: 20px;
-    }
-
-    .check1 div {
-        width: 30%;
-        margin-right: 20px;
-    }
-
-    .check1 .first select {
-        width: 100%;
-        height: 35px;
-        border: none;
-        background-color: rgb(232, 231, 231);
-        padding-left: 8px;
-        padding-right: 8px;
-        border-radius: 4px;
-        margin-right: 4px;
-    }
-
-    .check1 .second select {
-        width: 100%;
-        height: 35px;
-        border: none;
-        background-color: rgb(232, 231, 231);
-        padding-left: 8px;
-        padding-right: 8px;
-        border-radius: 4px;
-        margin-right: 4px;
-    }
-
-    .check1 .third select {
-        width: 100%;
-        height: 35px;
-        border: none;
-        background-color: rgb(232, 231, 231);
-        padding-left: 8px;
-        padding-right: 8px;
-        border-radius: 4px;
-        margin-right: 4px;
-    }
-
-    .check1 .fourth select {
-        width: 100%;
-        height: 35px;
-        border: none;
-        background-color: rgb(232, 231, 231);
-        padding-left: 8px;
-        padding-right: 8px;
-        border-radius: 4px;
-        margin-right: 4px;
-    }
 </style>
 
 @section('contents')
@@ -166,14 +111,21 @@
                         <p>Section Name</p>
                         <select id="section-dd" name="SectionID">
                             <option value="">Select Section Name</option>
-                            {{-- @foreach ($sections as $section)
-                                <option value="{{ $section->SectionID }}">{{ $section->SectionName }}</option>
-                            @endforeach --}}
+                        </select>
+                    </div>
+                    <div class="third">
+                        <p>Select Month</p>
+                        <input type="month" name="Date">
+                    </div>
+                    <div class="fourth">
+                        <p>Registration No</p>
+                        <select name="RegistrationNo" id="reg-dd">
+                            <option value="">Select Registration No</option>
                         </select>
                     </div>
                     <div class="btn">
                         <button class="btn btn-primary" type="submit">Search</button>
-                        <button onclick="printDiv('myTable')" class="btn btn-primary">Export</button>
+                        <button onclick="" class="btn btn-primary">Generate</button>
                     </div>
                 </div>
 
@@ -218,7 +170,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{-- {{ $data->render() }} --}}
                 </div>
         </div>
         </form>
@@ -260,16 +211,28 @@
             });
         });
 
-        // Add an event listener to the action button
-        const actionButtons = document.querySelectorAll('#Reportbtn');
-
-
-        actionButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Submit the form associated with this button
-                this.closest('tr').querySelector('form').submit();
+        $('#section-dd').on('change', function() {
+            var SectionID = this.value;
+            $("#reg-dd").html('');
+            $.ajax({
+                url: "{{ url('api/fetch-studentsbysection') }}",
+                type: "post",
+                data: {
+                    SectionID: SectionID,
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function(result) {
+                    $('#reg-dd').html('<option value="">Select Registration No</option>');
+                    $.each(result.student, function(key, value) {
+                        $("#reg-dd").append('<option value="' + value
+                            .StudentID + '">' + value.RegistrationNo +' - '+value.StudentName+'</option>');
+                    });
+                }
             });
         });
+
+
 
     });
 </script>
