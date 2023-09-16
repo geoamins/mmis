@@ -12,7 +12,7 @@
         }
 
         .page {
-            width: 850px;
+            width: 900px;
             height: 1100px;
         }
 
@@ -28,12 +28,12 @@
             width: 100%;
         }
 
-        .info .right{
+        .info .right {
             width: 120px;
             height: 120px;
         }
 
-        .right img{
+        .right img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -75,7 +75,7 @@
         }
 
         .sundayrow {
-            background-color: rgb(204, 204, 204);
+            background-color: rgb(188, 186, 186);
         }
 
         .lastrow {
@@ -86,7 +86,7 @@
         .table td {
             padding: 5px;
             padding-right: 10px;
-            border: 1px solid black;
+            /* border: 1px solid black; */
         }
     </style>
 </head>
@@ -104,7 +104,7 @@
                 <p>Month: {{ $month }}/{{ $year }}</p>
             </div>
             <div class="right">
-                <img src="{{asset('images/'.$student->Image)}}" alt="">
+                <img src="{{ asset('images/' . $student->Image) }}" alt="">
             </div>
         </div>
         <table id="myTable" class="table table-hover">
@@ -158,19 +158,28 @@
                             @if ($isSunday)
                                 Sunday
                             @endif
-                                @if ($record)
-                                    @if ($record->status === 'P')
-                                        Present
-                                    @elseif($record->status === 'A')
-                                        Absent
-                                    @endif
+                            @if ($record)
+                                @if ($record->status === 'P')
+                                    Present
+                                @elseif($record->status === 'A')
+                                    Absent
                                 @endif
+                            @endif
                         </td>
                     </tr>
                     @php
                         $currentDate->addDay();
                     @endphp
                 @endwhile
+                <tr class="lastrow">
+                    <td>Total Classes</td>
+                    <td>{{ $studentMonthlyReport->count() }}</td>
+                    <td>Present Classes</td>
+                    <td>{{ $presentCount }}</td>
+                    <td>Absent Classes</td>
+                    <td>{{ $absentCount }}</td>
+                    <td>Percentage: {{ $presentCount == 0 ? 0 : intval(($presentCount / $studentMonthlyReport->count()) * 100) }}%</td>
+                </tr>
             </tbody>
             {{-- <tbody>
             @php
@@ -218,14 +227,17 @@
         <div class="info">
             <div class="leftbelow">
                 <div class="heading">
-                    <center>Summary</center>
+                    <center>Report Summary</center>
                 </div>
                 <p>Total Classes: {{ $studentMonthlyReport->count() }}</p>
                 <p>Total Present Classes: {{ $presentCount }}</p>
                 <p>Total Absent Classes: {{ $absentCount }}</p>
                 <p>Leave Days: {{ $totalLeaveDays }}</p>
                 @if ($presentCount != 0)
-                    <p>Percentage of Classes: {{ ($presentCount / $studentMonthlyReport->count()) * 100 }}%</p>
+                    @php
+                        $percentage = intval(($presentCount / $studentMonthlyReport->count()) * 100) . '%';
+                    @endphp
+                    <p>Percentage of Classes: {{ $percentage }}</p>
                 @else
                     <p>Percentage of Classes: 0%</p>
                 @endif

@@ -45,7 +45,7 @@
                     <td>{{ $section->SectionName }}</td>
                     <td>{{ $record->present_count }}</td>
                     <td>{{ $record->absent_count }}</td>
-                    <td>{{ $record->present_count -  $record->absent_count}}</td>
+                    <td>{{ '100%' }}</td>
                 </tr>
             @endforeach
         </tbody>

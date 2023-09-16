@@ -134,6 +134,9 @@
                         <li><a href="{{ route('attendance.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Student Attendance</a></li>
                       @endcan
                       @can('student-list')
+                        <li><a href="{{ route('EditIndex') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Edit Attendance</a></li>
+                      @endcan
+                      @can('student-list')
                         <li><a href="{{ route('leave.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Leave System</a></li>
                       @endcan
                       @can('student-list')

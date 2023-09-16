@@ -102,17 +102,65 @@ class AttendanceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Attendance $attendance)
+    public function editIndex()
     {
-        //
+        $classes = Classes::all();
+        return view('attendance.student.editindex', compact('classes'));
+    }
+
+    public function edit(Request $request)
+    {
+        $query = StudentMaster::query();
+
+        $this->validate($request, [
+            'ClassID' => 'required',
+            'SectionID' => 'required',
+            'Date' => 'required|date', // Add validation for the date input
+        ]);
+
+        if (!empty($request->input('ClassID')) && !empty($request->input('SectionID'))) {
+
+            // Fetch the students of the specified class and section
+            $query->where('studentmaster.ClassID', '=', $request->input('ClassID'))
+                ->where('studentmaster.SectionID', '=', $request->input('SectionID'));
+
+            $students = $query->orderBy('StudentName', 'ASC')->get();
+
+            // Fetch attendance records for the specified date
+            $attendance = Attendance::where('date', $request->input('Date'))
+                ->whereIn('StudentID', $students->pluck('StudentID'))
+                ->get();
+            $date = $request->Date;
+
+            return view('attendance.student.edit', compact('students', 'attendance', 'date'));
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Attendance $attendance)
+    public function update(Request $request)
     {
-        //
+        $attendanceData = $request->input('Status', []);
+        $date = $request->input('Date');
+
+        // Loop through the submitted attendance data
+        foreach ($attendanceData as $studentId => $status) {
+            // Update the attendance record for each student and date
+            $attendanceRecord = Attendance::where('StudentID', $studentId)
+                ->where('date', $date)
+                ->first();
+
+            if ($attendanceRecord) {
+                $attendanceRecord->Status = $status;
+                $attendanceRecord->save();
+            } else {
+                // Handle if the attendance record doesn't exist
+            }
+        }
+        $classes = Classes::all();
+        // Redirect back to the form or a success page
+        return view('attendance.student.editindex',compact('classes'))->with('success', 'Attendance updated successfully');
     }
 
     /**
@@ -262,7 +310,7 @@ class AttendanceController extends Controller
             ->find($studentId);
 
 
-        return view('attendance.report.studentreport', compact('studentMonthlyReport', 'student', 'month', 'year','totalLeaveDays','sundays'));
+        return view('attendance.report.studentreport', compact('studentMonthlyReport', 'student', 'month', 'year', 'totalLeaveDays', 'sundays'));
     }
 
 

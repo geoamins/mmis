@@ -68,6 +68,9 @@ Route::post('/struckoffstudent', [StudentController::class, 'struckOffStudent'])
 
 
 Route::resource('attendance',AttendanceController::class);
+Route::get('/editattendanceindex', [AttendanceController::class, 'editIndex'])->name('EditIndex');
+Route::post('/editattendance', [AttendanceController::class, 'edit'])->name('EditAttendance');
+Route::post('/updateattendance', [AttendanceController::class, 'update'])->name('UpdateAttendance');
 Route::get('/classreportindex', [AttendanceController::class, 'classReportIndex'])->name('ClassAttReportIndex');
 Route::get('/studentreportindex', [AttendanceController::class, 'studentReportIndex'])->name('StudentAttReportIndex');
 Route::get('/classreport', [AttendanceController::class, 'classReport'])->name('ClassReport');
