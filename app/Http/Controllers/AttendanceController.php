@@ -70,6 +70,7 @@ class AttendanceController extends Controller
 
         foreach ($attendanceData as $studentID => $Status) {
 
+
             $existingAttendance = Attendance::where('StudentID', $studentID)
                 ->whereDate('Date', $request->Date)
                 ->first();
@@ -208,7 +209,9 @@ class AttendanceController extends Controller
 
             //counting leave days in leave with approved status
             $leaveRecords = Leave::where('StudentID', '=', $studentId)
-                ->where('Status', '=', 'Approved')->get();
+                ->where('Status', '=', 'Approved')
+                ->whereMonth('FromDate',$month)
+                ->get();
 
             $totalLeaveDays = 0;
             foreach ($leaveRecords as $leave) {
@@ -283,6 +286,12 @@ class AttendanceController extends Controller
             $totalLeaveDays += $leaveDays;
         }
 
+        $leaveRecordss = Leave::where('StudentID', $studentId)
+        ->whereYear('FromDate', $year)
+        ->whereMonth('ToDate', $month)
+        ->where('Status', 'Approved')
+        ->get();
+
         //getting all sundays in the selected month
         $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
         $sundays = array_fill(1, $daysInMonth, false);
@@ -310,7 +319,7 @@ class AttendanceController extends Controller
             ->find($studentId);
 
 
-        return view('attendance.report.studentreport', compact('studentMonthlyReport', 'student', 'month', 'year', 'totalLeaveDays', 'sundays'));
+        return view('attendance.report.studentreport', compact('studentMonthlyReport', 'student', 'month', 'year', 'totalLeaveDays', 'sundays','leaveRecordss'));
     }
 
 

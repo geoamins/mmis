@@ -57,14 +57,14 @@ class StudentController extends Controller
         $sections = Sections::all();
 
 
-        if (empty(StudentMaster::get()->last())) {
-            $LastRegNo = 22600;
-        } elseif (!empty(StudentMaster::get()->last())) {
-            $LastReg = StudentMaster::orderBy('StudentID', 'ASC')->get()->last();
-            $LastRegNo = $LastReg->RegistrationNo;
-        }
+        // if (empty(StudentMaster::get()->last())) {
+        //     $LastRegNo = 22600;
+        // } elseif (!empty(StudentMaster::get()->last())) {
+        //     $LastReg = StudentMaster::orderBy('StudentID', 'ASC')->get()->last();
+        //     $LastRegNo = $LastReg->RegistrationNo;
+        // }
 
-        return view('student.create', compact('countries', 'provinces', 'districts', 'departments', 'sessions', 'studenttypes', 'classes', 'sections', 'LastRegNo'));
+        return view('student.create', compact('countries', 'provinces', 'districts', 'departments', 'sessions', 'studenttypes', 'classes', 'sections'));
     }
 
     /**
@@ -75,27 +75,27 @@ class StudentController extends Controller
         $validated = $request->validate([
             'RegistrationNo' => 'required',
             'StudentName' => 'required',
-            'SCNIC' => 'required',
-            'DOB' => 'required',
-            'GenderID' => 'required',
-            'DeptID' => 'required',
-            'FatherName' => 'required',
-            'FCNIC' => 'required',
-            'GuardianName' => 'required',
-            'GuardianRelation' => 'required',
-            'FMobile' => 'required',
-            'CurrentAddress' => 'required',
-            'PermanentAddress' => 'required',
-            'CountryID' => 'required',
-            'ProvinceID' => 'required',
-            'DistrictID' => 'required',
-            'SessionID' => 'required',
-            'AdmissionDate' => 'required',
-            'HijriYear' => 'required',
-            'StudentTypeID' => 'required',
-            'ClassID' => 'required',
-            'SectionID' => 'required',
-            'HostelStatus' => 'required',
+            // 'SCNIC' => 'required',
+            // 'DOB' => 'required',
+            // 'GenderID' => 'required',
+            // 'DeptID' => 'required',
+            // 'FatherName' => 'required',
+            // 'FCNIC' => 'required',
+            // 'GuardianName' => 'required',
+            // 'GuardianRelation' => 'required',
+            // 'FMobile' => 'required',
+            // 'CurrentAddress' => 'required',
+            // 'PermanentAddress' => 'required',
+            // 'CountryID' => 'required',
+            // 'ProvinceID' => 'required',
+            // 'DistrictID' => 'required',
+            // 'SessionID' => 'required',
+            // 'AdmissionDate' => 'required',
+            // 'HijriYear' => 'required',
+            // 'StudentTypeID' => 'required',
+            // 'ClassID' => 'required',
+            // 'SectionID' => 'required',
+            // 'HostelStatus' => 'required',
             // 'PreviousMadrasa' => 'required',
             // 'IslamicEdu' => 'required',
             // 'AsriEdu' => 'required',

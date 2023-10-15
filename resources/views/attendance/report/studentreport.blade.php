@@ -69,7 +69,7 @@
 
         .table th {
             padding: 10px;
-            border: 1px solid black;
+            /* border: 1px solid black; */
             background-color: rgb(142, 142, 142);
             font-weight: bold;
         }
@@ -101,7 +101,7 @@
                 <p>Date: {{ now() }}</p>
                 <p>Name: {{ $student->StudentName }}</p>
                 <p>Father Name: {{ $student->FatherName }}</p>
-                <p>Month: {{ $month }}/{{ $year }}</p>
+                <p>Month: {{ $month }}/{{ $year }} - Report</p>
             </div>
             <div class="right">
                 <img src="{{ asset('images/' . $student->Image) }}" alt="">
@@ -178,7 +178,9 @@
                     <td>{{ $presentCount }}</td>
                     <td>Absent Classes</td>
                     <td>{{ $absentCount }}</td>
-                    <td>Percentage: {{ $presentCount == 0 ? 0 : intval(($presentCount / $studentMonthlyReport->count()) * 100) }}%</td>
+                    <td>Percentage:
+                        {{ $presentCount == 0 ? 0 : intval(($presentCount / $studentMonthlyReport->count()) * 100) }}%
+                    </td>
                 </tr>
             </tbody>
             {{-- <tbody>

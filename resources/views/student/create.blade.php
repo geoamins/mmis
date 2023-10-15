@@ -93,7 +93,7 @@
                 width: 100%;
                 height: 35px;
                 border: none;
-                background-color: rgb(190, 190, 190);
+                background-color: rgb(232, 231, 231);
                 padding-left: 8px;
                 padding-right: 8px;
                 border-radius: 4px;
@@ -741,10 +741,7 @@
                         <div class="name">
                             <div class="first">
                                 <p>{{ __('Student.Registration No') }}</p>
-                                @php
-                                    $RegistrationNo = $LastRegNo + 1;
-                                @endphp
-                                <input type="text" name="RegistrationNo" value="{{ $RegistrationNo }}" readonly>
+                                <input type="text" name="RegistrationNo" value="{{ old('RegistrationNo') }}">
                                 @error('RegistrationNo')
                                     <p class="text-danger">{{ 'Registration No is Required' }}</p>
                                 @enderror
