@@ -1,5 +1,5 @@
 @extends('admin.adminmain', [
-    'menu' => 'userconfiguration',
+    'menu' => 'basicsetting',
     'sub_menu' => 'roleslist'
 ])
 @section('contents')
