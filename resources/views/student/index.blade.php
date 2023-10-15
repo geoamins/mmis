@@ -8,7 +8,6 @@
     <div class="card">
         <div class="card-header">
             <h6 class="card-title">{{ __('Student.Student List') }}</h6>
-
             <div class="card-tools">
                 <div class="title_right">
                     {{-- <form action="{{ route('basic.index') }}" method="GET">

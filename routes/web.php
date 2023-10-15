@@ -18,6 +18,8 @@ use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\SectionsController;
 use App\Http\Controllers\LocalizationController;
+use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\LeaveController;
 
 
 /*
@@ -36,7 +38,7 @@ Route::get('/', function () {
 });
 
 Route::get('/check', function () {
-    return view('student.studentformpdf');
+    return view('attendance.leavemanagment.create');
 });
 
 Auth::routes();
@@ -57,6 +59,31 @@ Route::resource('section',SectionsController::class);
 Route::resource('student',StudentController::class);
 Route::get('/studentdata', [StudentController::class, 'createPDFReport'])->name('StudentPDFReport');
 Route::get('/studentformpdf/{id}', [StudentController::class, 'studentFormPDF'])->name('StudentPDFForm');
+Route::get('/studentidcard/{id}', [StudentController::class, 'studentIDCard'])->name('StudentIDCard');
+Route::get('/studentreport', [StudentController::class, 'studentReportIndex'])->name('StudentReportIndex');
+Route::get('/studentadmissionreport', [StudentController::class, 'studentAdmissionReport'])->name('StudentAdmissionReport');
+Route::get('/studentleavecertificate/{id}', [StudentController::class, 'studentLeaveCertificate'])->name('StudentLeaveCertificate');
+Route::get('/struckoffindex', function () { return view('student.struckoffstudent'); })->name('StruckOffIndex');
+Route::post('/struckoffstudent', [StudentController::class, 'struckOffStudent'])->name('StruckOffStudent');
+
+
+Route::resource('attendance',AttendanceController::class);
+Route::get('/editattendanceindex', [AttendanceController::class, 'editIndex'])->name('EditIndex');
+Route::post('/editattendance', [AttendanceController::class, 'edit'])->name('EditAttendance');
+Route::post('/updateattendance', [AttendanceController::class, 'update'])->name('UpdateAttendance');
+Route::get('/classreportindex', [AttendanceController::class, 'classReportIndex'])->name('ClassAttReportIndex');
+Route::get('/studentreportindex', [AttendanceController::class, 'studentReportIndex'])->name('StudentAttReportIndex');
+Route::get('/classreport', [AttendanceController::class, 'classReport'])->name('ClassReport');
+Route::get('/studentreport/{id}', [AttendanceController::class, 'studentReport'])->name('StudentReport');
+
+Route::resource('leave',LeaveController::class);
+Route::get('/leavecreate', function () { return view('attendance.leavemanagment.create'); })->name('LeaveCreate');
+
+Route::post('api/fetch-states', [ProvinceController::class, 'fetchState']);
+Route::post('api/fetch-cities', [DistrictController::class, 'fetchCities']);
+Route::post('api/fetch-sections', [SectionsController::class, 'fetchSections']);
+Route::post('api/fetch-students', [StudentController::class, 'fetchStudents']);
+Route::post('api/fetch-studentsbysection', [StudentController::class, 'fetchStudentsBySection']);
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);

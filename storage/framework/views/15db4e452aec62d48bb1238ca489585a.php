@@ -3,8 +3,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h6 class="card-title">Student List</h6>
-
+            <h6 class="card-title"><?php echo e(__('Student.Student List')); ?></h6>
             <div class="card-tools">
                 <div class="title_right">
                     
@@ -15,22 +14,22 @@
                     <div class="col-md-6">
                         <form action="<?php echo e(route('student.index')); ?>" method="GET" class="form-inline">
                             <div class="input-group">
-                                <input type="text" name="search" class="form-control" placeholder="Search by name">
+                                <input type="text" name="search" class="form-control" placeholder="<?php echo e(__('Student.Search by Student name!')); ?>">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-primary" type="submit">Search</button>
+                                    <button class="btn btn-primary" type="submit"><?php echo e(__('Users.Search')); ?></button>
                                 </div>
                             </div>
                             <div class="input-group">
-                                <input type="text" name="searchbyrollno" class="form-control" placeholder="Search by Roll No">
+                                <input type="text" name="searchbyrollno" class="form-control" placeholder="<?php echo e(__('Student.Search by Roll no!')); ?>">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-secondary" type="submit">Search</button>
+                                    <button class="btn btn-secondary" type="submit"><?php echo e(__('Users.Search')); ?></button>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="col-md-6 text-right">
-                        <a class="btn btn-primary" href="<?php echo e(route('student.create')); ?>">New Student</a>
-                        <a class="btn btn-primary" href="<?php echo e(route('StudentPDFReport')); ?>">Export PDF</a>
+                        <a class="btn btn-primary" href="<?php echo e(route('student.create')); ?>"><?php echo e(__('Student.New Student')); ?></a>
+                        <a class="btn btn-primary" href="<?php echo e(route('StudentPDFReport')); ?>"><?php echo e(__('Student.Export Pdf')); ?></a>
                     </div>
                 </div>
 
@@ -44,14 +43,14 @@
             <table id="myTable" class="table table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th>#</th>
-                        <th>Registration No</th>
-                        <th>Student Name</th>
-                        <th>Father Name</th>
-                        <th>Guardian Name</th>
-                        <th>Admission Date</th>
-                        <th>CNIC</th>
-                        <th width="280px">Action</th>
+                        <th><?php echo e(__('Users.#')); ?></th>
+                        <th><?php echo e(__('Student.Registration No')); ?></th>
+                        <th><?php echo e(__('Student.Student Name')); ?></th>
+                        <th><?php echo e(__('Student.Father Name')); ?></th>
+                        <th><?php echo e(__('Student.Guardian Name')); ?></th>
+                        <th><?php echo e(__('Student.Admission Date')); ?></th>
+                        <th><?php echo e(__('Student.CNIC')); ?></th>
+                        <th width="280px"><?php echo e(__('Users.Action')); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,10 +65,10 @@
                             <td><?php echo e($student->SCNIC); ?></td>
                             <td>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('student-list')): ?>
-                                 <a class="btn btn-success" href="<?php echo e(route('student.show',$student->StudentID)); ?>">Show</a>
+                                 <a class="btn btn-success" href="<?php echo e(route('student.show',$student->StudentID)); ?>"><?php echo e(__('Users.Show')); ?></a>
                                  <?php endif; ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('student-edit')): ?>
-                                    <a class="btn btn-primary" href="<?php echo e(route('student.edit', $student->StudentID)); ?>">Edit</a>
+                                    <a class="btn btn-primary" href="<?php echo e(route('student.edit', $student->StudentID)); ?>"><?php echo e(__('Users.Edit')); ?></a>
                                 <?php endif; ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('student-delete')): ?>
 
@@ -77,7 +76,7 @@
 
 
                                     <input name="_method" type="hidden" value="DELETE">
-                                    <button type="submit" class="btn btn-danger del-roles" data-toggle="tooltip" title='Delete'>Delete</button>
+                                    <button type="submit" class="btn btn-danger del-roles" data-toggle="tooltip" title='Delete'><?php echo e(__('Users.Delete')); ?></button>
                                     <?php echo Form::close(); ?>
 
 

@@ -97,4 +97,10 @@ class SectionsController extends Controller
         return redirect()->route('section.index')
             ->with('success', 'Section deleted successfully');
     }
+
+    public function fetchSections(Request $request)
+    {
+        $data['sections'] = Sections::where("ClassID",$request->ClassID)->get(["SectionID", "SectionName"]);
+        return response()->json($data);
+    }
 }

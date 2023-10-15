@@ -85,7 +85,7 @@
                     @endcan
                   </li>
                   @canany(['basic-list'])
-                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> {{ __('sidebar.Basic Setting') }} <span class="fa fa-chevron-down"></span></a>
+                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-cog"></i> {{ __('sidebar.Basic Setting') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       @can('country-list')
                         <li><a href="{{ route('country.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Country Setup')}}</a></li>
@@ -114,25 +114,55 @@
                     </ul>
                   </li>
 
-                  @canany(['basic-list'])
-                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-home"></i> {{ __('sidebar.Student Record') }} <span class="fa fa-chevron-down"></span></a>
+                  @canany(['student-list'])
+                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-users"></i> {{ __('sidebar.Student Record') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      @can('basic-list')
+                      @can('student-list')
                         <li><a href="{{ route('student.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Student Registration')}}</a></li>
                       @endcan
-                      @can('section-list')
-                        <li><a href="{{ route('student.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Generate Cards')}}</a></li>
+                      @can('student-list')
+                        <li><a href="{{ route('StruckOffIndex') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Struck OFF</a></li>
+                      @endcan
+                    </ul>
+                    @endcan
+                  </li>
+
+                  @canany(['student-list'])
+                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-edit"></i>Attendance<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      @can('student-list')
+                        <li><a href="{{ route('attendance.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Student Attendance</a></li>
+                      @endcan
+                      @can('student-list')
+                        <li><a href="{{ route('EditIndex') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Edit Attendance</a></li>
+                      @endcan
+                      @can('student-list')
+                        <li><a href="{{ route('leave.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Leave System</a></li>
+                      @endcan
+                      @can('student-list')
+                        <li><a href="{{ route('StudentAttReportIndex') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Student Report</a></li>
+                      @endcan
+                      @can('student-list')
+                        <li><a href="{{ route('ClassAttReportIndex') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Class Report</a></li>
+                      @endcan
+                    </ul>
+                    @endcan
+                  </li>
+
+                  @canany(['report-list'])
+                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-search"></i>Reports<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      @can('report-list')
+                        <li><a href="{{ route('StudentReportIndex') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Students Report</a></li>
+                      @endcan
+                      @can('report-list')
+                        <li><a href="{{ route('StudentAdmissionReport') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Admission Report</a></li>
                       @endcan
                     </ul>
                     @endcan
                   </li>
 
                   @endcan
-
-
-
-
-
 
                   {{-- <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li> --}}
                 </ul>

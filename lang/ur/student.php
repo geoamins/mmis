@@ -65,6 +65,8 @@ return [
     'DOSLC' => 'ڈی او ایس ایل سی',
     'Reason For DOSLC' => ' ڈی او ایس ایل سی کی وجہ ',
     'Save' => 'محفوظ کریں۔',
+    'Print Form' => 'پرنٹ فارم',
+    'Print Card' => 'پرنٹ کارڈ',
     'Full Name' => 'پورا نام',
     'Student Detail' => 'طالب علم کی تفصیل',
     'You can update if following detail have any error' => 'اگر درج ذیل تفصیلات میں کوئی خرابی ہو تو آپ اپ ڈیٹ کر سکتے ہیں۔',

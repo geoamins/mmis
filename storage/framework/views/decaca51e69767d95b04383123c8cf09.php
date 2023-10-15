@@ -4,6 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src=”https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src=”https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 
     <style>
@@ -174,8 +176,22 @@
             display: flex;
         }
 
+        .btn{
+            margin: 20px;
+        }
+
         .btn button{
-            margin-left: 20px;
+            width: 90px;
+            height: 45px;
+            border: none;
+            background-color: green;
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn a{
+            color: white;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -183,7 +199,7 @@
     <div class="main">
 
 
-        <div class="form">
+        <div class="form" id="form">
             <div class="header">
                 <div class="logo">
                     <img src="<?php echo e(asset('images/logo.png')); ?>" alt="">
@@ -249,7 +265,11 @@
                         <p>Gender</p>
                     </div>
                     <div class="data">
-                        <p><?php echo e($data->GenderID); ?></p>
+                    <?php if($data->GenderID == 1): ?>
+                        <p>Male</p>
+                    <?php elseif($data->GenderID == 2): ?>
+                        <p>Female</p>
+                    <?php endif; ?>
                     </div>
                 </div>
                 <div class="right">
@@ -288,7 +308,7 @@
                         <p>District</p>
                     </div>
                     <div class="data">
-                        <p><?php echo e($data->DistrictID); ?></p>
+                        <p><?php echo e($data->DistrictName); ?></p>
                     </div>
                 </div>
                 <div class="right">
@@ -296,7 +316,7 @@
                         <p>Province</p>
                     </div>
                     <div class="data">
-                        <p><?php echo e($data->ProvinceID); ?></p>
+                        <p><?php echo e($data->ProvinceName); ?></p>
                     </div>
                 </div>
 
@@ -307,7 +327,7 @@
                         <p>Country</p>
                     </div>
                     <div class="data">
-                        <p><?php echo e($data->CountryID); ?></p>
+                        <p><?php echo e($data->CountryName); ?></p>
                     </div>
                 </div>
 
@@ -402,7 +422,12 @@
                         <p>Hostel Resident</p>
                     </div>
                     <div class="data">
-                        <p>26000</p>
+                        <?php if($data->HostelStatus == 0): ?>
+                        <p>Non - Resident</p>
+                    <?php elseif($data->HostelStatus == 1): ?>
+                        <p>Resident</p>
+                    <?php endif; ?>
+
                     </div>
                 </div>
             </div>
@@ -512,10 +537,24 @@
             </div>
 
         </div>
+        <div class="btn">
+            <button onclick="printDiv('form')"><a href="">Print Form</a></button>
+        </div>
     </div>
 
 </body>
 <script>
+    function printDiv(divName){
+        var printContents = document.getElementById(divName).outerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+
+    }
 </script>
 </html>
 <?php /**PATH /Users/rizwansarwar/Desktop/mmis/resources/views/student/studentformpdf.blade.php ENDPATH**/ ?>

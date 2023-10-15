@@ -21,15 +21,17 @@
                             </div>
                         <?php endif; ?>
                         <div class="card">
-                            <div class="card-header">Create Department
+                            <div class="card-header"><?php echo e(__('Basic.Create Department')); ?>
+
                                 
                             </div>
                             <div class="card-body">
                                 <?php echo Form::open(array('route' => 'department.store','method'=>'POST')); ?>
 
                                     <div class="form-group">
-                                        <strong>Department Name:</strong>
-                                        <?php echo Form::text('DepartmentName', null, array('placeholder' => 'Enter Department Name','class' => 'form-control')); ?>
+                                        <strong><?php echo e(__('Basic.Department Name')); ?>:</strong>
+                                        <?php echo Form::text('DepartmentName', null, array('placeholder' => __('Basic.Enter Department Name here!'), 'class' => 'form-control')); ?>
+
 
                                     </div>
                                     <div class="form-group">
@@ -37,7 +39,7 @@
 
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary"><?php echo e(__('Users.Submit')); ?></button>
                                 <?php echo Form::close(); ?>
 
                             </div>
