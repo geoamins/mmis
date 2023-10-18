@@ -693,7 +693,7 @@
 </head>
 
 <body>
-    <form action="{{route('student.update', $data->StudentID)}}" method="POST">
+    <form action="{{route('student.update', $data->StudentID)}}" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
         {{method_field('put')}}
     <div class="form">

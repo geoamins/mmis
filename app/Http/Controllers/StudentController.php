@@ -102,11 +102,17 @@ class StudentController extends Controller
             // 'AddlEdu' => 'required',
             // 'DOSLC' => 'required',
             // 'ReasonSLC' => 'required',
-            'Image' => 'required'
+            // 'Image' => 'required'
         ]);
 
-        $ImageName = time() . '.' . $request->Image->extension();
-        $request->Image->move(public_path('images'), $ImageName);
+        if (!empty($request->Image)) {
+            $ImageName = time() . '.' . $request->Image->extension();
+            $request->Image->move(public_path('images'), $ImageName);
+        } else {
+            $ImageName = 'Null';
+        }
+
+
 
         StudentMaster::create([
             'RegistrationNo' => $request->RegistrationNo,
@@ -218,39 +224,43 @@ class StudentController extends Controller
         $validated = $request->validate([
             'RegistrationNo' => 'required',
             'StudentName' => 'required',
-            'SCNIC' => 'required',
-            'DOB' => 'required',
-            'GenderID' => 'required',
-            'DeptID' => 'required',
-            'FatherName' => 'required',
-            'FCNIC' => 'required',
-            'GuardianName' => 'required',
-            'GuardianRelation' => 'required',
-            'FMobile' => 'required',
-            'CurrentAddress' => 'required',
-            'PermanentAddress' => 'required',
-            'CountryID' => 'required',
-            'ProvinceID' => 'required',
-            'DistrictID' => 'required',
-            'SessionID' => 'required',
-            'AdmissionDate' => 'required',
-            'HijriYear' => 'required',
-            'StudentTypeID' => 'required',
-            'ClassID' => 'required',
-            'SectionID' => 'required',
-            'HostelStatus' => 'required',
-            'PreviousMadrasa' => 'required',
-            'IslamicEdu' => 'required',
-            'AsriEdu' => 'required',
-            'AddlEdu' => 'required',
+            // 'SCNIC' => 'required',
+            // 'DOB' => 'required',
+            // 'GenderID' => 'required',
+            // 'DeptID' => 'required',
+            // 'FatherName' => 'required',
+            // 'FCNIC' => 'required',
+            // 'GuardianName' => 'required',
+            // 'GuardianRelation' => 'required',
+            // 'FMobile' => 'required',
+            // 'CurrentAddress' => 'required',
+            // 'PermanentAddress' => 'required',
+            // 'CountryID' => 'required',
+            // 'ProvinceID' => 'required',
+            // 'DistrictID' => 'required',
+            // 'SessionID' => 'required',
+            // 'AdmissionDate' => 'required',
+            // 'HijriYear' => 'required',
+            // 'StudentTypeID' => 'required',
+            // 'ClassID' => 'required',
+            // 'SectionID' => 'required',
+            // 'HostelStatus' => 'required',
+            // 'PreviousMadrasa' => 'required',
+            // 'IslamicEdu' => 'required',
+            // 'AsriEdu' => 'required',
+            // 'AddlEdu' => 'required',
             //     'DOSLC' => 'required',
             //     'ReasonSLC' => 'required',
         ]);
 
         $data = StudentMaster::find($id);
 
-        // $ImageName = time().'.'.$request->Image->extension();
-        // $request->Image->move(public_path('images'), $ImageName);
+        if (!empty($request->Image)) {
+            $ImageName = time() . '.' . $request->Image->extension();
+            $request->Image->move(public_path('images'), $ImageName);
+        } else {
+            $ImageName = $data->Image;
+        }
 
         $data->RegistrationNo = $request->input('RegistrationNo');
         $data->StudentName = $request->input('StudentName');
@@ -281,7 +291,7 @@ class StudentController extends Controller
         $data->AddlEdu = $request->input('AddlEdu');
         $data->DOSLC = $request->input('DOSLC');
         $data->ReasonSLC = $request->input('ReasonSLC');
-        // $data->Image = $ImageName;
+        $data->Image = $ImageName;
         $data->save();
 
         return redirect()->route('student.index')
@@ -383,7 +393,7 @@ class StudentController extends Controller
             ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
             ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID');
 
-        $query->with('country','province','district','dept', 'session', 'class', 'section');
+        $query->with('country', 'province', 'district', 'dept', 'session', 'class', 'section');
 
         if (!empty($request->query('CountryID'))) {
             $query->where('studentmaster.CountryID', '=', $request->input('CountryID'));
@@ -418,8 +428,7 @@ class StudentController extends Controller
             $query->whereHas('section', function ($classQuery) use ($request) {
                 $classQuery->where('studentmaster.SectionID', '=', $request->input('SectionID'));
             });
-        }
-        else {
+        } else {
             $data = StudentMaster::leftjoin('setup_country', 'setup_country.CountryID', '=', 'studentmaster.CountryID')
                 ->leftjoin('setup_province', 'setup_province.ProvinceID', '=', 'studentmaster.ProvinceID')
                 ->leftjoin('setup_district', 'setup_district.DistrictID', '=', 'studentmaster.DistrictID')
@@ -432,7 +441,7 @@ class StudentController extends Controller
         }
         $data = $query->orderBy('StudentID', 'DESC')->get();
 
-        return view('report.student.index', compact('data', 'students' , 'countries' , 'provinces' , 'districts' , 'departments', 'sessions', 'classes', 'sections'));
+        return view('report.student.index', compact('data', 'students', 'countries', 'provinces', 'districts', 'departments', 'sessions', 'classes', 'sections'));
     }
 
     public function studentAdmissionReport(Request $request)
@@ -440,34 +449,33 @@ class StudentController extends Controller
         $admitted = StudentMaster::whereNotNull('AdmissionDate')->whereNull('DOSLC')->count();
         $doslcstudents = StudentMaster::whereNotNull('DOSLC')->count();
         $totalstudents = StudentMaster::count();
-        if(!empty($request->OptionID)){
-            if($request->OptionID == 1){
+        if (!empty($request->OptionID)) {
+            if ($request->OptionID == 1) {
                 $data = StudentMaster::whereNotNull('AdmissionDate')
-                ->whereNull('DOSLC')
-                ->leftjoin('setup_country', 'setup_country.CountryID', '=', 'studentmaster.CountryID')
-                ->leftjoin('setup_province', 'setup_province.ProvinceID', '=', 'studentmaster.ProvinceID')
-                ->leftjoin('setup_district', 'setup_district.DistrictID', '=', 'studentmaster.DistrictID')
-                ->leftjoin('setup_department', 'setup_department.DeptID', '=', 'studentmaster.DeptID')
-                ->leftjoin('setup_session', 'setup_session.SessionID', '=', 'studentmaster.SessionID')
-                ->leftjoin('setup_student_type', 'setup_student_type.StudentTypeID', '=', 'studentmaster.StudentTypeID')
-                ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
-                ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
-                ->orderBy('StudentID', 'DESC')->get();
+                    ->whereNull('DOSLC')
+                    ->leftjoin('setup_country', 'setup_country.CountryID', '=', 'studentmaster.CountryID')
+                    ->leftjoin('setup_province', 'setup_province.ProvinceID', '=', 'studentmaster.ProvinceID')
+                    ->leftjoin('setup_district', 'setup_district.DistrictID', '=', 'studentmaster.DistrictID')
+                    ->leftjoin('setup_department', 'setup_department.DeptID', '=', 'studentmaster.DeptID')
+                    ->leftjoin('setup_session', 'setup_session.SessionID', '=', 'studentmaster.SessionID')
+                    ->leftjoin('setup_student_type', 'setup_student_type.StudentTypeID', '=', 'studentmaster.StudentTypeID')
+                    ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
+                    ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
+                    ->orderBy('StudentID', 'DESC')->get();
             }
-            if($request->OptionID == 2){
+            if ($request->OptionID == 2) {
                 $data = StudentMaster::whereNotNull('DOSLC')
-                ->leftjoin('setup_country', 'setup_country.CountryID', '=', 'studentmaster.CountryID')
-                ->leftjoin('setup_province', 'setup_province.ProvinceID', '=', 'studentmaster.ProvinceID')
-                ->leftjoin('setup_district', 'setup_district.DistrictID', '=', 'studentmaster.DistrictID')
-                ->leftjoin('setup_department', 'setup_department.DeptID', '=', 'studentmaster.DeptID')
-                ->leftjoin('setup_session', 'setup_session.SessionID', '=', 'studentmaster.SessionID')
-                ->leftjoin('setup_student_type', 'setup_student_type.StudentTypeID', '=', 'studentmaster.StudentTypeID')
-                ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
-                ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
-                ->orderBy('StudentID', 'DESC')->get();
+                    ->leftjoin('setup_country', 'setup_country.CountryID', '=', 'studentmaster.CountryID')
+                    ->leftjoin('setup_province', 'setup_province.ProvinceID', '=', 'studentmaster.ProvinceID')
+                    ->leftjoin('setup_district', 'setup_district.DistrictID', '=', 'studentmaster.DistrictID')
+                    ->leftjoin('setup_department', 'setup_department.DeptID', '=', 'studentmaster.DeptID')
+                    ->leftjoin('setup_session', 'setup_session.SessionID', '=', 'studentmaster.SessionID')
+                    ->leftjoin('setup_student_type', 'setup_student_type.StudentTypeID', '=', 'studentmaster.StudentTypeID')
+                    ->leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
+                    ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
+                    ->orderBy('StudentID', 'DESC')->get();
             }
-        }
-        else {
+        } else {
             $data = StudentMaster::leftjoin('setup_country', 'setup_country.CountryID', '=', 'studentmaster.CountryID')
                 ->leftjoin('setup_province', 'setup_province.ProvinceID', '=', 'studentmaster.ProvinceID')
                 ->leftjoin('setup_district', 'setup_district.DistrictID', '=', 'studentmaster.DistrictID')
@@ -479,7 +487,7 @@ class StudentController extends Controller
                 ->orderBy('StudentID', 'DESC')->get();
         }
 
-        return view('report.admission.index', compact('data','admitted','doslcstudents','totalstudents'));
+        return view('report.admission.index', compact('data', 'admitted', 'doslcstudents', 'totalstudents'));
     }
 
     public function studentLeaveCertificate(string $id)
@@ -510,7 +518,7 @@ class StudentController extends Controller
     {
         $data['student'] = StudentMaster::leftjoin('setup_class', 'setup_class.ClassID', '=', 'studentmaster.ClassID')
             ->leftjoin('setup_section', 'setup_section.SectionID', '=', 'studentmaster.SectionID')
-            ->where('setup_section.SectionID','=',$request->SectionID)
+            ->where('setup_section.SectionID', '=', $request->SectionID)
             ->get();
 
         return response()->json($data);
