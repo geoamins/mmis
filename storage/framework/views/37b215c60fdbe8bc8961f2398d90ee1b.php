@@ -85,6 +85,6 @@
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('admin.adminmain', [
-    'menu' => 'userconfiguration',
+    'menu' => 'basicsetting',
     'sub_menu' => 'roleslist'
 ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/rizwansarwar/Desktop/mmis/resources/views/basic/province/index.blade.php ENDPATH**/ ?>

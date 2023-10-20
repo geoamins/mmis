@@ -108,14 +108,14 @@
                     @can('class-list')
                         <li><a href="{{ route('class.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Classes Setup')}}</a></li>
                     @endcan
-                    @can('student-type-list')
+                    @can('section-list')
                         <li><a href="{{ route('section.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Sections Setup')}}</a></li>
                     @endcan
                     </ul>
                   </li>
 
                   @canany(['student-list'])
-                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-users"></i> {{ __('sidebar.Student Record') }} <span class="fa fa-chevron-down"></span></a>
+                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-cog"></i> {{ __('sidebar.Student Record') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       @can('student-list')
                         <li><a href="{{ route('student.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">{{__('sidebar.Student Registration')}}</a></li>
@@ -128,7 +128,7 @@
                   </li>
 
                   @canany(['student-list'])
-                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-edit"></i>Attendance<span class="fa fa-chevron-down"></span></a>
+                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-cog"></i>Attendance<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       @can('student-list')
                         <li><a href="{{ route('attendance.index') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Student Attendance</a></li>
@@ -150,7 +150,7 @@
                   </li>
 
                   @canany(['report-list'])
-                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-search"></i>Reports<span class="fa fa-chevron-down"></span></a>
+                  <li class="{{ isset($menu) ? ($menu == 'userconfiguration' ? 'active open' : '') : '' }}"><a><i class="fa fa-cog"></i>Reports<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       @can('report-list')
                         <li><a href="{{ route('StudentReportIndex') }}"  class="{{ isset($sub_menu) ? ($sub_menu == 'userlist' ? 'active' : '') : '' }}">Students Report</a></li>

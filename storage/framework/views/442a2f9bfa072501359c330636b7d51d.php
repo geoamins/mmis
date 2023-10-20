@@ -689,7 +689,7 @@
 </head>
 
 <body>
-    <form action="<?php echo e(route('student.update', $data->StudentID)); ?>" method="POST">
+    <form action="<?php echo e(route('student.update', $data->StudentID)); ?>" method="POST" enctype="multipart/form-data">
         <?php echo e(csrf_field()); ?>
 
         <?php echo e(method_field('put')); ?>
@@ -1353,6 +1353,6 @@ unset($__errorArgs, $__bag); ?>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('admin.adminmain', [
-    'menu' => 'userconfiguration',
+    'menu' => 'student',
     'sub_menu' => 'roleslist'
 ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/rizwansarwar/Desktop/mmis/resources/views/student/edit.blade.php ENDPATH**/ ?>

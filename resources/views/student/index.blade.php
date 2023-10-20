@@ -1,5 +1,5 @@
 @extends('admin.adminmain', [
-    'menu' => 'userconfiguration',
+    'menu' => 'student',
     'sub_menu' => 'roleslist'
 ])
 @section('contents')
@@ -65,59 +65,59 @@
                 @endcan
             </div>
         </div>
-        <div class="card-body">
-            {{ $data->render() }}
-            <table id="myTable" class="table table-hover">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>{{ __('Users.#') }}</th>
-                        <th>{{ __('Student.Registration No') }}</th>
-                        <th>{{ __('Student.Student Name') }}</th>
-                        <th>{{ __('Student.Father Name') }}</th>
-                        <th>{{ __('Student.Guardian Name') }}</th>
-                        <th>{{ __('Student.Admission Date') }}</th>
-                        <th>{{ __('Student.CNIC') }}</th>
-                        <th width="280px">{{ __('Users.Action') }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($data as $key => $student)
+            <div class="card-body">
+                {{ $data->render() }}
+                <table id="myTable" class="table table-hover">
+                    <thead class="thead-dark">
                         <tr>
-                            <td>{{ $student->StudentID }}</td>
-                            <td>{{ $student->RegistrationNo }}</td>
-                            <td>{{ $student->StudentName }}</td>
-                            <td>{{ $student->FatherName }}</td>
-                            <td>{{ $student->GuardianName }}</td>
-                            <td>{{ $student->AdmissionDate }}</td>
-                            <td>{{ $student->SCNIC }}</td>
-                            <td>
-                                @can('student-list')
-                                 <a class="btn btn-success" href="{{ route('student.show',$student->StudentID) }}">{{ __('Users.Show') }}</a>
-                                 @endcan
-                                @can('student-edit')
-                                    <a class="btn btn-primary" href="{{ route('student.edit', $student->StudentID) }}">{{ __('Users.Edit') }}</a>
-                                @endcan
-                                @can('student-delete')
-
-                                    {!! Form::open(['method' => 'DELETE','route' => ['student.destroy', $student->StudentID],'style'=>'display:inline']) !!}
-
-                                    <input name="_method" type="hidden" value="DELETE">
-                                    <button type="submit" class="btn btn-danger del-roles" data-toggle="tooltip" title='Delete'>{{ __('Users.Delete') }}</button>
-                                    {!! Form::close() !!}
-
-                                    {{--  <form action="{{ url('/basic', $data->CountryID) }}" method="post">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger del-roles" data-toggle="tooltip" title='Delete'>Delete</button>
-                                    </form>  --}}
-                                @endcan
-                            </td>
+                            <th>{{ __('Users.#') }}</th>
+                            <th>{{ __('Student.Registration No') }}</th>
+                            <th>{{ __('Student.Student Name') }}</th>
+                            <th>{{ __('Student.Father Name') }}</th>
+                            <th>{{ __('Student.Guardian Name') }}</th>
+                            <th>{{ __('Student.Admission Date') }}</th>
+                            <th>{{ __('Student.CNIC') }}</th>
+                            <th width="280px">{{ __('Users.Action') }}</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            {{ $data->render() }}
-        </div>
+                    </thead>
+                    <tbody>
+                        @foreach ($data as $key => $student)
+                            <tr>
+                                <td>{{ $student->StudentID }}</td>
+                                <td>{{ $student->RegistrationNo }}</td>
+                                <td>{{ $student->StudentName }}</td>
+                                <td>{{ $student->FatherName }}</td>
+                                <td>{{ $student->GuardianName }}</td>
+                                <td>{{ $student->AdmissionDate }}</td>
+                                <td>{{ $student->SCNIC }}</td>
+                                <td>
+                                    @can('student-list')
+                                    <a class="btn btn-success" href="{{ route('student.show',$student->StudentID) }}">{{ __('Users.Show') }}</a>
+                                    @endcan
+                                    @can('student-edit')
+                                        <a class="btn btn-primary" href="{{ route('student.edit', $student->StudentID) }}">{{ __('Users.Edit') }}</a>
+                                    @endcan
+                                    @can('student-delete')
+
+                                        {!! Form::open(['method' => 'DELETE','route' => ['student.destroy', $student->StudentID],'style'=>'display:inline']) !!}
+
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button type="submit" class="btn btn-danger del-roles" data-toggle="tooltip" title='Delete'>{{ __('Users.Delete') }}</button>
+                                        {!! Form::close() !!}
+
+                                        {{--  <form action="{{ url('/basic', $data->CountryID) }}" method="post">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger del-roles" data-toggle="tooltip" title='Delete'>Delete</button>
+                                        </form>  --}}
+                                    @endcan
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                {{ $data->render() }}
+            </div>
     </div>
 </div>
 
